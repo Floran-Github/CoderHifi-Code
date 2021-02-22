@@ -135,7 +135,17 @@ div.ex1 {
     margin-right: 20px;
 
 }
-
+.blog-pic{
+    width: 50%;
+    margin: 10px auto;
+    display: block;
+}
+.blog-video{
+    width: 50%;
+    margin: 10px auto;
+    display: block;
+    border: none;
+}
 .like-com {
     float: left;
     margin-top: 20px;
