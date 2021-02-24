@@ -121,6 +121,15 @@ div.ex1 {
     width: 65px;
     margin-right: 26px;
 }
+.teacher-img {
+    height: 30px;
+    width: 30px;
+    margin-right: 26px;
+}
+.teacher_name{
+    padding-left: 25px;
+    font-size: 1em;
+}
 .comment-img {
     height: 42px;
     width: 42px;
@@ -217,6 +226,131 @@ div.ex1 {
     border: solid 0.5px #000;
     padding: 10px;
 }
+
+.fa {
+    font-size: 25px;
+  }
+  
+.checked {
+color: orange;
+}
+
+.course-link:hover,
+.course-link{
+    text-decoration: none;
+    text-transform: none;
+    color: #000;
+}
+
+
+
+.course-img{
+    width: 80%;
+    /* height: 80%; */
+    margin: auto;
+    border-radius: 10px;
+ 
+    display: block;
+}
+
+.couse-desp{
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.header-box{
+    background-color: #fff;
+    border-radius: 25px !important;
+    background-color: #fff !important;
+    padding: 20px 40px;
+    min-height: 200px;
+    margin-bottom: 10px;
+    width: 100%;
+    /* text-align: ; */
+    background-image: url("../pic/header-bg2.jpg");
+    background-size: cover;
+}
+
+
+
+.header-box h3{
+    /* position: relative;
+    bottom: 0;
+    left: 0; */
+    /* color: #fff; */
+    margin-bottom: 0;
+    margin-top: 200px;
+    display: block;
+}
+
+
+/* POST SLIDER */
+
+.post-slider {
+  position: relative;
+}
+
+.post-slider .slider-title {
+  text-align: center;
+  margin: 30px auto;
+}
+
+.post-slider .next {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  font-size: 2em;
+  color: #000;
+  cursor: pointer;
+}
+
+.post-slider .prev {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  font-size: 2em;
+  color: #000;
+  cursor: pointer;
+}
+
+.post-slider .post-wrapper {
+  width: 84%;
+  height: 350px;
+  margin: 0px auto;
+  overflow: hidden;
+  padding: 10px 0px 10px 0px;
+}
+
+.post-slider .post-wrapper .post {
+  width: 300px;
+  height: 330px;
+  margin: 0px 10px;
+  display: inline-block;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 1rem 1rem 1rem -1rem #a0a0a033;
+}
+
+.post-slider .post-wrapper .post .post-info {
+  height: 130px;
+  padding: 0px 5px;
+}
+
+.post-slider .post-wrapper .post .slider-image {
+  width: 100%;
+  height: 200px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+@media(max-width:500px){
+    .post-slider .next,
+    .post-slider .prev{
+        display: none;
+    }
+}
+
 @media(max-width:400px){
     .sidebar{
         display: none;
