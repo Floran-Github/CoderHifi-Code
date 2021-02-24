@@ -149,6 +149,11 @@ div.ex1 {
     margin: 10px auto;
     display: block;
 }
+.blog-picture{
+    width: 20%;
+    margin: 10px auto;
+    display: block;
+}
 .blog-video{
     width: 50%;
     margin: 10px auto;
