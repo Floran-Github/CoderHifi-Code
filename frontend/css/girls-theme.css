@@ -8,3 +8,12 @@ section .content input{
 section .content h2{
     color: #fff;
 }
+.navbar{
+    background-color: #b3009b !important;
+}
+.container-style{
+    background-color: #b3009b !important;  
+}
+.sidebar{
+    background-color: #6f007e;
+}

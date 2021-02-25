@@ -11,11 +11,12 @@ body{
     height: 100%;
     /* width: 100%; */
     font-family: 'Poppins', sans-serif !important;
-    background-color: #4f5b62;
+    /* background-color: #4f5b62; */
 }
+
 .navbar{
     border-radius: 50px !important;
-    background-color: #000a12 !important;
+    /* background-color: #000a12 !important; */
 
     margin: 20px;
 }
@@ -32,6 +33,48 @@ body{
 .nav-link:hover{
     border-bottom: solid 1px #fff;
 }
+.theme-toggler{
+    /* position: absolute; */
+    top: 30px;
+    /* right: 30px; */
+    color: #fff;
+    font-weight: 700;
+    font-size: 1em;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.theme-change{
+    position: relative;
+    top: 5px;
+    width: 60px;
+    height: 25px;
+    -webkit-appearance: none;
+    background-color: #f403d4;
+    outline: none;
+    border-radius: 50px;
+    transition: 0.5s;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+}
+.theme-change:checked{
+    background-color: #03a9f4;
+}
+
+.theme-change:before{
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    transition: .5s;
+    box-shadow:  0 2px 5px rgba(0, 0, 0, .2);
+}
+.theme-change:checked::before{
+    left: 40px;
+}
 .dropdown-item{
     color: #000a12 !important;
 }
@@ -44,7 +87,7 @@ body{
 }
 .container-style{
     border-radius: 25px !important;
-    background-color: #000 !important;
+    /* background-color: #000 !important; */
     padding: 0 10px;
     padding-bottom: 10px;
     
@@ -78,7 +121,7 @@ body{
     /* position: fixed; */
     border-radius: 25px !important;
     padding: 20px 40px;
-    background-color: #000a12;
+    /* background-color: #000a12; */
     color: #fff;
     width: 250px;
 }
