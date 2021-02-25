@@ -49,6 +49,13 @@ body{
     padding-bottom: 10px;
     
 }
+.down-style{
+    border-radius: 25px !important;
+    background-color: #fff !important;
+    padding: 0 10px;
+    padding-bottom: 10px;
+    
+}
 .blog-sec{
     margin-top: 10px;
     border-radius: 25px !important;
@@ -240,7 +247,9 @@ div.ex1 {
 .fa {
     font-size: 25px;
   }
-  
+.fa-star{
+    font-size: 15px;
+}
 .checked {
 color: orange;
 }
@@ -316,17 +325,17 @@ color: orange;
 }
 
 .post-slider .prev {
-  position: absolute;
-  top: 50%;
-  left: 30px;
-  font-size: 2em;
-  color: #000;
-  cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    font-size: 2em;
+    color: #000;
+    cursor: pointer;
 }
 
 .post-slider .post-wrapper {
   width: 84%;
-  height: 350px;
+  /* height: 350px; */
   margin: 0px auto;
   overflow: hidden;
   padding: 10px 0px 10px 0px;
@@ -334,7 +343,7 @@ color: orange;
 
 .post-slider .post-wrapper .post {
   width: 300px;
-  height: 330px;
+  /* height: 330px; */
   margin: 0px 10px;
   display: inline-block;
   background: white;
@@ -343,8 +352,19 @@ color: orange;
 }
 
 .post-slider .post-wrapper .post .post-info {
-  height: 130px;
-  padding: 0px 5px;
+    /* height: 130px; */
+    padding: 0 5px;
+    padding-top: 5px;
+}
+
+.post-info h4{
+    font-size: 1.5em;
+    padding-top: 10px;
+}
+
+.post-info h4 a{
+    color: #000;
+    text-decoration: none;
 }
 
 .post-slider .post-wrapper .post .slider-image {
@@ -354,10 +374,121 @@ color: orange;
   border-top-right-radius: 5px;
 }
 
+.main-course-page-teacher-name{
+    color: #4f5b62;
+    font-size: 0.9em;
+}
+
+.explore-more-course-sec{
+    padding: 50px;
+}
+
+.explore-more-course{
+    text-decoration: none;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+}
+.enroll-button:hover,
+.explore-more-course:hover{
+    background-color: #fff;
+    color: #000;
+    border: solid 1px #000a12;
+}
+
+.teacher-logo{
+    background-color: #000;
+    border: solid 1px #000a12;
+    max-width: 300px;
+    height: 70px;
+}
+
+.enroll-button{
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+}
+.certificate{
+    width: 30px;    
+}
+.fa-globe{
+    font-size: 27px;
+}
+.coursename h4{
+    font-size: 2em;
+}
+
+.course-section-desp{
+    /* margin-left: 2px; */
+    padding:  0 25px;
+}
+.course-section-desp h2{
+    font-size: 20px;
+    padding: 0;
+}
+.course-section-desp h5{
+    font-size: 14.4px;
+    padding: 0;
+    color: #4f5b62;
+}
+
+.course-short-desc{
+    list-style-type:none;
+    margin:30px 0;
+
+    padding: 0;
+}
+.course-short-desc li{
+    margin-bottom: 10px;
+}
+
+.about-course{
+    margin-top: 50px;
+}
+
+.review{
+    margin-bottom: 30px;
+}
+.top-review,
+.review-upper-area{
+    padding: 20px 50px;
+}
+
+.top-review{
+    background-color: #f8fafc;
+}
+
+.review-star{
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 10px;
+}
+
+.teacher-img-detail-page{
+    margin-top: 20px;
+    max-width: 200px;
+}
+
+.teacher-desc-detail-page{
+    margin-top: auto;
+    margin-bottom: auto;
+    display: block;
+    
+}
+@media(max-width:800px){
+    .teacher-logo{
+        max-width: 200px;
+        height: 50px;
+    }
+}
 @media(max-width:500px){
     .post-slider .next,
     .post-slider .prev{
         display: none;
+        color: #fff;
     }
 }
 

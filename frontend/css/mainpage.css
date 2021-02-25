@@ -103,6 +103,7 @@ section .content p{
     margin: 20px 0 10px;
 }
 
+section .content a,
 section .content input{
     color: #fff;
     /* background-color: #4f3cfa; */
@@ -116,6 +117,7 @@ section .content input{
     transform: 0.5 ease-in-out;
     transition: 0.5s;
 }
+section .content a:hover,
 section .content input:hover{
     /* color: #fff; */
     text-decoration: none;
