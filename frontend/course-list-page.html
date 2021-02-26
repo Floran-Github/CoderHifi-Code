@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/font-awesome.min.css">
+    <link id="theme" rel="stylesheet" href="css/girls-theme.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>CoderHi</title>
+    </head>
+    <body>
+      <!-- upar ka navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+              <!-- brand area -->
+              <a class="navbar-brand" href="#">CoderHi</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="blog-page.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Projects</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="main-course-page.html">Learn</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="event-page.html">Event</a>
+                  </li>
+                  <li class="nav-item">
+                    <div class="theme-toggler">
+                      Girl <input type="checkbox" class="theme-change" onclick="MaintoggleTheme()"> Boy
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="pic/default.jpg" class="rounded-circle profile-img">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                    </ul>
+                  </li>
+    
+                </ul>
+                
+              </div>
+              
+            </div>
+          </nav>
+      
+      
+        <div class="container main">
+        <div class="row">
+            <div class="col-10">
+                <input type="text" class="comment-box" placeholder="Enter Course Name">
+            </div>
+            <div class="col-2">
+                <button class="comment-button">Search</button>
+            </div>
+        </div>
+        <br><br>
+          <div class="row">
+            <div class="col-12 col-md-12 container-style">
+              <!-- blog-section -->
+                <a class="course-link" href="course-detail.html">
+                    <div class="blog-sec">
+                        
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <img class="course-img" src="pic/course/course-1.jpeg">
+                            </div>
+                            <div class="col-12 col-md-8 couse-desp">
+                                <h2>Course 1 </h2>
+                                <p>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id aut nam eius, 
+                                    molestias itaque hic quaerat accusamus 
+                                    magnam? Dolorum mollitia, neque eum magnam quas dolor. Quia, minus vero. Corporis,
+                                    commodi.
+                                </p>      
+                                <div class="row">
+                                    <div class="col-4">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>                 
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="row">
+                                            <div class="col-1">
+                                            <img class="rounded-circle teacher-img" src="pic/default.jpg">
+                                            </div>
+                                            <div class="col-11 teacher_name">
+                                            <h5>Khan Zaki Ur Rahman</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="course-link" href="course-detail.html">
+                    <div class="blog-sec">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <img class="course-img" src="pic/course/course-2.jpeg">
+                            </div>
+                            <div class="col-12 col-md-8 couse-desp">
+                                <h2>Course 2 </h2>
+                                <p>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id aut nam eius, 
+                                    molestias itaque hic quaerat accusamus 
+                                    magnam? Dolorum mollitia, neque eum magnam quas dolor. Quia, minus vero. Corporis,
+                                    commodi.
+                                </p>      
+                                <div class="row">
+                                    <div class="col-4">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>                 
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="row">
+                                            <div class="col-1">
+                                            <img class="rounded-circle teacher-img" src="pic/default.jpg">
+                                            </div>
+                                            <div class="col-11 teacher_name">
+                                            <h5>Khan Farhan Nadeem</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a class="course-link" href="course-detail.html">
+                    <div class="blog-sec">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <img class="course-img" src="pic/course/course-3.jpeg">
+                            </div>
+                            <div class="col-12 col-md-8 couse-desp">
+                                <h2>Course 3 </h2>
+                                <p>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id aut nam eius, 
+                                    molestias itaque hic quaerat accusamus 
+                                    magnam? Dolorum mollitia, neque eum magnam quas dolor. Quia, minus vero. Corporis,
+                                    commodi.
+                                </p>      
+                                <div class="row">
+                                    <div class="col-4">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>                 
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="row">
+                                            <div class="col-1">
+                                            <img class="rounded-circle teacher-img" src="pic/default.jpg">
+                                            </div>
+                                            <div class="col-11 teacher_name">
+                                            <h5>Sarim Ansari</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a class="course-link" href="course-detail.html">
+                    <div class="blog-sec">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <img class="course-img" src="pic/course/course-4.jpeg">
+                            </div>
+                            <div class="col-12 col-md-8 couse-desp">
+                                <h2>Course 4 </h2>
+                                <p>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id aut nam eius, 
+                                    molestias itaque hic quaerat accusamus 
+                                    magnam? Dolorum mollitia, neque eum magnam quas dolor. Quia, minus vero. Corporis,
+                                    commodi.
+                                </p>      
+                                <div class="row">
+                                    <div class="col-4">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>                 
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="row">
+                                            <div class="col-1">
+                                            <img class="rounded-circle teacher-img" src="pic/default.jpg">
+                                            </div>
+                                            <div class="col-11 teacher_name">
+                                            <h5>Khan Zaki Ur Rahman</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+          </div>
+        </div>
+      
+
+        
+</body>
+</html>

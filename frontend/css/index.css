@@ -11,11 +11,12 @@ body{
     height: 100%;
     /* width: 100%; */
     font-family: 'Poppins', sans-serif !important;
-    background-color: #4f5b62;
+    /* background-color: #4f5b62; */
 }
+
 .navbar{
     border-radius: 50px !important;
-    background-color: #000a12 !important;
+    /* background-color: #000a12 !important; */
 
     margin: 20px;
 }
@@ -32,6 +33,48 @@ body{
 .nav-link:hover{
     border-bottom: solid 1px #fff;
 }
+.theme-toggler{
+    /* position: absolute; */
+    top: 30px;
+    /* right: 30px; */
+    color: #fff;
+    font-weight: 700;
+    font-size: 1em;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.theme-change{
+    position: relative;
+    top: 5px;
+    width: 60px;
+    height: 25px;
+    -webkit-appearance: none;
+    background-color: #f403d4;
+    outline: none;
+    border-radius: 50px;
+    transition: 0.5s;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+}
+.theme-change:checked{
+    background-color: #03a9f4;
+}
+
+.theme-change:before{
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    transition: .5s;
+    box-shadow:  0 2px 5px rgba(0, 0, 0, .2);
+}
+.theme-change:checked::before{
+    left: 40px;
+}
 .dropdown-item{
     color: #000a12 !important;
 }
@@ -44,7 +87,14 @@ body{
 }
 .container-style{
     border-radius: 25px !important;
-    background-color: #000 !important;
+    /* background-color: #000 !important; */
+    padding: 0 10px;
+    padding-bottom: 10px;
+    
+}
+.down-style{
+    border-radius: 25px !important;
+    background-color: #fff !important;
     padding: 0 10px;
     padding-bottom: 10px;
     
@@ -71,7 +121,7 @@ body{
     /* position: fixed; */
     border-radius: 25px !important;
     padding: 20px 40px;
-    background-color: #000a12;
+    /* background-color: #000a12; */
     color: #fff;
     width: 250px;
 }
@@ -121,6 +171,15 @@ div.ex1 {
     width: 65px;
     margin-right: 26px;
 }
+.teacher-img {
+    height: 30px;
+    width: 30px;
+    margin-right: 26px;
+}
+.teacher_name{
+    padding-left: 25px;
+    font-size: 1em;
+}
 .comment-img {
     height: 42px;
     width: 42px;
@@ -137,6 +196,11 @@ div.ex1 {
 }
 .blog-pic{
     width: 50%;
+    margin: 10px auto;
+    display: block;
+}
+.event-pic{
+    width: 70%;
     margin: 10px auto;
     display: block;
 }
@@ -222,6 +286,255 @@ div.ex1 {
     border: solid 0.5px #000;
     padding: 10px;
 }
+
+.fa {
+    font-size: 25px;
+  }
+.fa-star{
+    font-size: 15px;
+}
+.checked {
+color: orange;
+}
+
+.course-link:hover,
+.course-link{
+    text-decoration: none;
+    text-transform: none;
+    color: #000;
+}
+
+
+
+.course-img{
+    width: 80%;
+    /* height: 80%; */
+    margin: auto;
+    border-radius: 10px;
+ 
+    display: block;
+}
+
+.couse-desp{
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.header-box{
+    background-color: #fff;
+    border-radius: 25px !important;
+    background-color: #fff !important;
+    padding: 20px 40px;
+    min-height: 200px;
+    margin-bottom: 10px;
+    width: 100%;
+    /* text-align: ; */
+    background-image: url("../pic/header-bg2.jpg");
+    background-size: cover;
+}
+
+
+
+.header-box h3{
+    /* position: relative;
+    bottom: 0;
+    left: 0; */
+    /* color: #fff; */
+    margin-bottom: 0;
+    margin-top: 200px;
+    display: block;
+}
+
+
+/* POST SLIDER */
+
+.post-slider {
+  position: relative;
+}
+
+.post-slider .slider-title {
+  text-align: center;
+  margin: 30px auto;
+}
+
+.post-slider .next {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  font-size: 2em;
+  color: #000;
+  cursor: pointer;
+}
+
+.post-slider .prev {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    font-size: 2em;
+    color: #000;
+    cursor: pointer;
+}
+
+.post-slider .post-wrapper {
+  width: 84%;
+  /* height: 350px; */
+  margin: 0px auto;
+  overflow: hidden;
+  padding: 10px 0px 10px 0px;
+}
+
+.post-slider .post-wrapper .post {
+  width: 300px;
+  /* height: 330px; */
+  margin: 0px 10px;
+  display: inline-block;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 1rem 1rem 1rem -1rem #a0a0a033;
+}
+
+.post-slider .post-wrapper .post .post-info {
+    /* height: 130px; */
+    padding: 0 5px;
+    padding-top: 5px;
+}
+
+.post-info h4{
+    font-size: 1.5em;
+    padding-top: 10px;
+}
+
+.post-info h4 a{
+    color: #000;
+    text-decoration: none;
+}
+
+.post-slider .post-wrapper .post .slider-image {
+  width: 100%;
+  height: 200px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.main-course-page-teacher-name{
+    color: #4f5b62;
+    font-size: 0.9em;
+}
+
+.explore-more-course-sec{
+    padding: 50px;
+}
+
+.explore-more-course{
+    text-decoration: none;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+}
+.enroll-button:hover,
+.explore-more-course:hover{
+    background-color: #fff;
+    color: #000;
+    border: solid 1px #000a12;
+}
+
+.teacher-logo{
+    background-color: #000;
+    border: solid 1px #000a12;
+    max-width: 300px;
+    height: 70px;
+}
+
+.enroll-button{
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+}
+.certificate{
+    width: 30px;    
+}
+.fa-globe{
+    font-size: 27px;
+}
+.coursename h4{
+    font-size: 2em;
+}
+
+.course-section-desp{
+    /* margin-left: 2px; */
+    padding:  0 25px;
+}
+.course-section-desp h2{
+    font-size: 20px;
+    padding: 0;
+}
+.course-section-desp h5{
+    font-size: 14.4px;
+    padding: 0;
+    color: #4f5b62;
+}
+
+.course-short-desc{
+    list-style-type:none;
+    margin:30px 0;
+
+    padding: 0;
+}
+.course-short-desc li{
+    margin-bottom: 10px;
+}
+
+.about-course{
+    margin-top: 50px;
+}
+
+.review{
+    margin-bottom: 30px;
+}
+.top-review,
+.review-upper-area{
+    padding: 20px 50px;
+}
+
+.top-review{
+    background-color: #f8fafc;
+}
+
+.review-star{
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 10px;
+}
+
+.teacher-img-detail-page{
+    margin-top: 20px;
+    max-width: 200px;
+}
+
+.teacher-desc-detail-page{
+    margin-top: auto;
+    margin-bottom: auto;
+    display: block;
+    
+}
+@media(max-width:800px){
+    .teacher-logo{
+        max-width: 200px;
+        height: 50px;
+    }
+}
+@media(max-width:500px){
+    .post-slider .next,
+    .post-slider .prev{
+        display: none;
+        color: #fff;
+    }
+}
+
 @media(max-width:400px){
     .sidebar{
         display: none;
