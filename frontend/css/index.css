@@ -149,6 +149,12 @@ div.ex1 {
     margin: 10px auto;
     display: block;
 }
+.blog-pict{
+    width: 70%;
+    /* margin: 10px auto; */
+    display: block;
+    border-radius: 250px;
+}
 .event-pic{
     width: 70%;
     margin: 10px auto;
