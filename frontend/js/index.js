@@ -34,7 +34,8 @@ function MaintoggleTheme() {
             } else { 
                 theme.setAttribute('href', 'css/boy-theme.css'); 
             } 
-        } 
+        }
+
 
 $(document).ready(function() {
     $(".menu-toggle").on("click", function() {
