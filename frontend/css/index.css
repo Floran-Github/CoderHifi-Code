@@ -190,7 +190,6 @@ div.ex1 {
 
 .blog-text{
     padding: 0 10px;
-    margin-left: 20px;
     margin-right: 20px;
 
 }
@@ -198,6 +197,15 @@ div.ex1 {
     width: 50%;
     margin: 10px auto;
     display: block;
+}
+.blog-pict{
+    margin-top: 20px;
+    max-width: 200px;
+    margin-right: 50px;
+    /* width: 70%; */
+    /* margin: 10px auto; */
+    /* display: block; */
+    /* border-radius: 250px; */
 }
 .event-pic{
     width: 70%;
@@ -353,6 +361,10 @@ color: orange;
   position: relative;
 }
 
+.enroll-title{
+    margin: 30px 70px;
+
+}
 .post-slider .slider-title {
   text-align: center;
   margin: 30px auto;
@@ -376,6 +388,8 @@ color: orange;
     cursor: pointer;
 }
 
+.post-slider .enroll-wrapper,
+.post-slider .completed-wrapper,
 .post-slider .post-wrapper {
   width: 84%;
   /* height: 350px; */
@@ -384,6 +398,8 @@ color: orange;
   padding: 10px 0px 10px 0px;
 }
 
+.post-slider .completed-wrapper .post,
+.post-slider .enroll-wrapper .post,
 .post-slider .post-wrapper .post {
   width: 300px;
   /* height: 330px; */
@@ -394,6 +410,8 @@ color: orange;
   box-shadow: 1rem 1rem 1rem -1rem #a0a0a033;
 }
 
+.post-slider .enroll-wrapper .post .post-info,
+.post-slider .completed-wrapper .post .post-info,
 .post-slider .post-wrapper .post .post-info {
     /* height: 130px; */
     padding: 0 5px;
@@ -410,6 +428,8 @@ color: orange;
     text-decoration: none;
 }
 
+.post-slider .completed-wrapper .post .slider-image,
+.post-slider .enroll-wrapper .post .slider-image,
 .post-slider .post-wrapper .post .slider-image {
   width: 100%;
   height: 200px;
@@ -526,7 +546,70 @@ color: orange;
     margin-top: 20px;
     font-size: 0.9em;
 }
+
+.activites-list ul{
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.activites-list li{
+    font-size: 0.9em;
+    color: #4f5b62;
+}
+
+.profile-username-section{
+    margin-top: 10px;
+    text-align: center;
+    padding-right: 20px;
+}
+
+.profile-username-section h2{
+    font-size: 2em;
+    margin: 0;
+}
+.completed-course-section{
+    text-align: center;
+    margin: 10px 0;
+    
+    /* border: solid 1px #000; */
+    /* padding: 10px; */
+}
+
+.completed-course-section img{
+    width: 200px;
+}
+
+.completed-course-section h4{
+    font-size: 1.5em;
+    margin-top: 5px;
+}
+
+.completed-course,
+.enrolled-course{
+    margin-top: 10px;
+    border: solid 1px #4f5b62;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.username-sec{
+    margin-top: 10px;
+    padding-right: 40px;
+}
+
+
 @media(max-width:800px){
+    .blog-pict{
+        width: 150px;
+        height: 150px;
+        margin-right: 100px;
+        /* border-radius: 250px; */
+    }
+    .completed-course-section img{
+        width: 100px;
+    }
     .article-img{
         width: 40px;
         height: 40px;
@@ -537,6 +620,9 @@ color: orange;
     }
 }
 @media(max-width:500px){
+    .enroll-title{
+        margin: 0;
+    }
     .post-slider .next,
     .post-slider .prev{
         display: none;
