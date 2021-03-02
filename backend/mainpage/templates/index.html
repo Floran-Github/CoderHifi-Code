@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
+    <link id="theme" rel="stylesheet" href="{% static 'css/girls-theme.css' %}">
+    <title>CoderHi</title>
+</head>
+<body>
+    <section>
+        <div class="logo">
+            <img class="logo-img" src="{% static 'pic/coderHi logo 5.png' %}">
+            <!-- <button onclick="toggleTheme()">Switch</button>  -->
+        </div>
+        <div class="theme-toggler">
+            Girl <input type="checkbox" class="theme-change" onclick="toggleTheme()"> Boy
+        </div>
+        <img src="{% static 'pic/bg-code-5.png' %}" class="bg">
+        <div class="content" id="home" data-aos="fade-up">
+            <h2>CoderHI</h2>
+            <p>
+               One Step Away From World Of 0 and 1
+            </p>
+            <!-- <input type="button" value="Lets Start" onclick="startfun();" > -->
+            <a href="blog-page.html">Lets Start</a>
+        </div>
+    </section>
+</body>
+</html>
