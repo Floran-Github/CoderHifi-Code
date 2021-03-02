@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/font-awesome.min.css">
+    <link id="theme" rel="stylesheet" href="css/girls-theme.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>CoderHi</title>
+</head>
+<body>
+  <!-- upar ka navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <!-- brand area -->
+      <a class="navbar-brand" href="#">CoderHi</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="blog-page.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="project-page.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="main-course-page.html">Learn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="event-page.html">Event</a>
+          </li>
+          <li class="nav-item">
+            <div class="theme-toggler">
+              Girl <input type="checkbox" class="theme-change" onclick="MaintoggleTheme()"> Boy
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="pic/default.jpg" class="rounded-circle profile-img">
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="profile_page.html">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Sign Out</a></li>
+            </ul>
+          </li>
+
+        </ul>
+        
+      </div>
+      
+    </div>
+  </nav>
+      
+      
+        <div class="container main">
+          <div class="row">
+            <div class="col-12 col-md-12 container-style">
+              <!-- main-section -->
+              <div class="blog-sec">
+                <!-- uper area area -->
+                <div class="row">
+                    <div class="col-12 col-md-8 coursename">
+                      <h4>Course Name</h4>
+                      <div class="row">
+                          <div class="col-12 col-md-3">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span> 
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>   
+                            4.3
+                          </div>
+                          <div class="col-12 col-md-3"> 914 ratings</div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col-3 ">
+                          <a class="btn enroll-button" href="#">Enroll Now</a>
+                        </div>
+                        <div class="col-6">
+                          <h4>$250</h4>
+                        </div>
+                      </div>
+                      <div class="about-course">
+                        <h5>About this course</h5>
+                        <p class="">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus iste deserunt, repellendus ab, cupiditate, 
+                          tempore fuga asperiores corrupti eaque unde qui itaque magni voluptatibus iusto expedita nesciunt. Saepe, iusto?
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus iste deserunt, repellendus ab, cupiditate, 
+                          tempore fuga asperiores corrupti eaque unde qui itaque magni voluptatibus iusto expedita nesciunt. Saepe, iusto?
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus iste deserunt, repellendus ab, cupiditate, 
+                          tempore fuga asperiores corrupti eaque unde qui itaque magni voluptatibus iusto expedita nesciunt. Saepe, iusto?
+                        </p>
+                      </div>
+                    </div>
+                  <div class="col-12 col-md-4">
+                      offered by<br>
+                    <img class="teacher-logo" src="pic/course-detail/teacher-logo.png">
+
+                    <ul class="course-short-desc">
+                        <li>
+                            <div class="row">
+                                <div class="col-1">
+                                    <img class="certificate" src="pic/course-detail/certificate.png">
+                                </div>
+                                <div class="col-11 course-section-desp">
+                                    <h2>Shareable Certificate</h2>
+                                    <h5>Earn a certificate upon completion</h5>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-1">
+                                  <i class="fas fa-globe"></i>
+                                </div>
+                                <div class="col-11 course-section-desp">
+                                    <h2>100% online</h2>
+                                    <h5>Start instantly and learn at your own schedule.</h5>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col-1">
+                                    <img class="certificate" src="pic/course-detail/certificate.png">
+                                </div>
+                                <div class="col-11 course-section-desp">
+                                    <h2>Intermediate Level</h2>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+                <hr>
+                <!-- syallbus-area -->
+                <div class="row">
+                  <div class="post-slider">
+                    <h1 class="slider-title">What You Will Learn</h1>
+                    <i class="fas fa-chevron-left prev"></i>
+                    <i class="fas fa-chevron-right next"></i>
+              
+                    <div class="post-wrapper">
+                      <div class="post">
+                        <div class="row">
+                          <div class="col-12">
+                            <img src="pic/course/course-3.jpeg" alt="" class="slider-image">
+                          </div>
+                          <div class="col-12">
+                            <div class="post-info">
+                              <h4>
+                                <a href="single.html">
+                                  syallbus topic name will be here
+                                </a>
+                              </h4>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <h6 class="main-course-page-teacher-name">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Delectus asperiores officia animi, exercitationem earum cum voluptatum, 
+                              unde veniam, ipsum illum sunt tempora nam sapiente 
+                            </h6>
+                          </div>
+                         
+                          <div class="col-12">
+                            <a href="#">Explore more</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="post">
+                        <div class="row">
+                          <div class="col-12">
+                            <img src="pic/course/course-3.jpeg" alt="" class="slider-image">
+                          </div>
+                          <div class="col-12">
+                            <div class="post-info">
+                              <h4>
+                                <a href="single.html">
+                                  syallbus topic name will be here
+                                </a>
+                              </h4>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <h6 class="main-course-page-teacher-name">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Delectus asperiores officia animi, exercitationem earum cum voluptatum, 
+                              unde veniam, ipsum illum sunt tempora nam sapiente 
+                            </h6>
+                          </div>
+                         
+                          <div class="col-12">
+                            <a href="#">Explore more</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="post">
+                        <div class="row">
+                          <div class="col-12">
+                            <img src="pic/course/course-3.jpeg" alt="" class="slider-image">
+                          </div>
+                          <div class="col-12">
+                            <div class="post-info">
+                              <h4>
+                                <a href="single.html">
+                                  syallbus topic name will be here
+                                </a>
+                              </h4>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <h6 class="main-course-page-teacher-name">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Delectus asperiores officia animi, exercitationem earum cum voluptatum, 
+                              unde veniam, ipsum illum sunt tempora nam sapiente 
+                            </h6>
+                          </div>
+                         
+                          <div class="col-12">
+                            <a href="#">Explore more</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="post">
+                        <div class="row">
+                          <div class="col-12">
+                            <img src="pic/course/course-3.jpeg" alt="" class="slider-image">
+                          </div>
+                          <div class="col-12">
+                            <div class="post-info">
+                              <h4>
+                                <a href="single.html">
+                                  syallbus topic name will be here
+                                </a>
+                              </h4>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <h6 class="main-course-page-teacher-name">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Delectus asperiores officia animi, exercitationem earum cum voluptatum, 
+                              unde veniam, ipsum illum sunt tempora nam sapiente 
+                            </h6>
+                          </div>
+                         
+                          <div class="col-12">
+                            <a href="#">Explore more</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="post">
+                        <div class="row">
+                          <div class="col-12">
+                            <img src="pic/course/course-3.jpeg" alt="" class="slider-image">
+                          </div>
+                          <div class="col-12">
+                            <div class="post-info">
+                              <h4>
+                                <a href="single.html">
+                                  syallbus topic name will be here
+                                </a>
+                              </h4>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <h6 class="main-course-page-teacher-name">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Delectus asperiores officia animi, exercitationem earum cum voluptatum, 
+                              unde veniam, ipsum illum sunt tempora nam sapiente 
+                            </h6>
+                          </div>
+                         
+                          <div class="col-12">
+                            <a href="#">Explore more</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="post">
+                        <div class="row">
+                          <div class="col-12">
+                            <img src="pic/course/course-3.jpeg" alt="" class="slider-image">
+                          </div>
+                          <div class="col-12">
+                            <div class="post-info">
+                              <h4>
+                                <a href="single.html">
+                                  syallbus topic name will be here
+                                </a>
+                              </h4>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <h6 class="main-course-page-teacher-name">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Delectus asperiores officia animi, exercitationem earum cum voluptatum, 
+                              unde veniam, ipsum illum sunt tempora nam sapiente 
+                            </h6>
+                          </div>
+                         
+                          <div class="col-12">
+                            <a href="#">Explore more</a>
+                          </div>
+                        </div>
+                      </div>
+                     
+                    </div>
+              
+                  
+                  
+                  </div>
+                </div>
+              
+                <!-- review section -->
+                <div class="review-upper-area row">
+                
+                    <div class="col-1">
+                      <h1>4.3</h1>
+                    </div>
+                    <div class="review-star col-12 col-md-3">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span> 
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span> &nbsp;&nbsp;
+                     174 rating 
+                    </div>
+                </div>
+                <div class="top-review row">
+                  <div class="col-12">
+                    <h4>Top Reviews</h4>
+                  </div>
+                  <div class="col-12 review">
+                    <div class="row">
+
+                      <div class="col-12 col-md-6">
+                        <div class="comment row">
+                          <div class="col-2">
+                            <img src="pic/default.jpg" class="rounded-circle comment-img">
+                          </div>
+                          <div class="col-10">
+                            <div class="row">
+                              <h5>username</h5>
+                            </div>
+                            <div class="row">
+                              <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-12 col-md-6">
+                        <div class="comment row">
+                          <div class="col-2">
+                            <img src="pic/default.jpg" class="rounded-circle comment-img">
+                          </div>
+                          <div class="col-10">
+                            <div class="row">
+                              <h5>username</h5>
+                            </div>
+                            <div class="row">
+                              <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="comment row">
+                          <div class="col-2">
+                            <img src="pic/default.jpg" class="rounded-circle comment-img">
+                          </div>
+                          <div class="col-10">
+                            <div class="row">
+                              <h5>username</h5>
+                            </div>
+                            <div class="row">
+                              <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="comment row">
+                          <div class="col-2">
+                            <img src="pic/default.jpg" class="rounded-circle comment-img">
+                          </div>
+                          <div class="col-10">
+                            <div class="row">
+                              <h5>username</h5>
+                            </div>
+                            <div class="row">
+                              <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  
+                  <hr>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-12 col-md-4">
+                        <img src="pic/default.jpg" class="rounded-circle teacher-img-detail-page">
+                      </div>
+                      <div class="col-12 col-md-6 teacher-desc-detail-page">
+                        <h3>Khan Zaki Ur Rahman</h3>
+                        <h5>Software Engg</h5>
+                        <h6>School of Engg</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+      
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>  
+</body>
+</html>
