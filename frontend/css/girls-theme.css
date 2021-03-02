@@ -1,9 +1,19 @@
 body{
     background-color: #ff61ea;
 }
+section .content a,
 section .content input{
     background-color: #4f3cfa;
 }
 section .content h2{
     color: #fff;
+}
+.navbar{
+    background-color: #b3009b !important;
+}
+.container-style{
+    background-color: #b3009b !important;  
+}
+.sidebar{
+    background-color: #6f007e;
 }
