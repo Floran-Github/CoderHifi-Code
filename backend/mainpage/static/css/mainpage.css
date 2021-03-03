@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0px;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    
+}
+
+body{
+    height: 100%;
+    /* width: 100%; */
+    font-family: 'Poppins', sans-serif !important;
+    /* background-color: #ff61ea; */
+}
+
+.theme-change{
+    position: relative;
+    width: 60px;
+    height: 25px;
+    -webkit-appearance: none;
+    background-color: #f403d4;
+    outline: none;
+    border-radius: 50px;
+    transition: 0.5s;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+}
+.theme-change:checked{
+    background-color: #03a9f4;
+}
+
+.theme-change:before{
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    transition: .5s;
+    box-shadow:  0 2px 5px rgba(0, 0, 0, .2);
+}
+.theme-change:checked::before{
+    left: 40px;
+}
+section{
+    padding: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+}
+section .logo{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: #fff;
+    font-weight: 700;
+    /* font-size: 2em; */
+    z-index: 100;
+    cursor: pointer;
+}
+section .theme-toggler{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.5em;
+    z-index: 100;
+    cursor: pointer;
+}
+.logo-img{
+    width: 40%;
+    /* height: 20%; */
+
+}
+section .bg{
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    height: 90%;
+    width: 60%;
+}
+
+section .content{
+    position: relative;
+    max-width: 650px;
+    z-index: 1;
+}
+section .content h2{
+    color: #fff;
+    font-size: 3em;
+    font-weight: 700;
+    line-height: 1.1em;
+}
+
+section .content p{
+    color: #fff;
+    font-size: 1.4em;
+    margin: 20px 0 10px;
+}
+
+section .content a,
+section .content input{
+    color: #fff;
+    /* background-color: #4f3cfa; */
+    font-size: 1em;
+    margin: 20px 0;
+    padding: 10px 30px;
+    display: inline-block;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transform: 0.5 ease-in-out;
+    transition: 0.5s;
+}
+section .content a:hover,
+section .content input:hover{
+    /* color: #fff; */
+    text-decoration: none;
+    background-color: #ffd7;
+    transform: 0.5 ease-in;
+    transition: 0.5s;
+}
+
+@media(max-width: 800px){
+    .skill .skill-card-gap,
+    .skill .skill-card{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    section .bg{
+        position: absolute;
+        top: 0 ;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+    }
+
+    .main .test .bg{
+        position: absolute;
+        top: 0 ;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+    }
+    .main .test h3{
+        font-size: 4em;
+        font-weight: 800;
+        line-height: 1.1em;
+        max-width: 800px;
+    }
+    .main .test .content h4{
+        font-size: 3em;
+        font-weight: 600;
+        line-height: 1.1em;
+    }
+    .main .test .content p{
+        font-size: 2.3em;
+        font-weight: 100;
+        line-height: 1.1em;
+        max-width: 620px;
+    }
+}
+
+@media(max-width: 770px){
+    section{
+        padding: 100px 40px;
+    }
+    section .content h2{
+        font-size: 2.5em;
+    }
+   
+    .logo-img{
+        width: 50%;
+    }
+    .navigation{
+        left: 100%;
+    }
+
+    section .bg{
+        position: absolute;
+        top: 0 ;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.4;
+    }
+
+    section .logo{
+        top: 30px;
+        font-size: 1.5em;
+    }
+    .navigation ul li a{
+        font-size: 2em;
+        color: #111;
+        text-decoration: none;
+        font-weight: 200;
+    
+        -webkit-transition: font-size 0.5s;
+    }
+    .navigation ul li a:hover{
+        color: #f60f20;
+        font-size: 3em;
+        font-weight: 500;
+        transition: 0.5s;
+        
+        -webkit-transition: font-size 0.5s;
+    }
+    .main .test{
+        padding: 100px 40px;
+    }
+    .main .test .content h3{
+        font-size: 2.5em;
+    }
+    .main .test .bg{
+        position: absolute;
+        top: 0 ;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+    }
+}
+
+@media(max-width: 500px){
+    section .logo{
+        top: 30px;
+        left: 20px;
+    }
+    .bginfo{
+        height: 39vh;
+    }
+    .main .about-me{
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    .team-title,
+    .about-title{
+        padding: 0px ;
+        text-align: center;
+    }
+    .infotext{
+        font-size: 1em;
+        padding: 100px 20px;
+    }
+    .team-section{
+        padding: 0px;
+    }
+    .team-title{
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .team-pic{
+        width: 80%;
+        padding-bottom: 10px;
+    }
+}
