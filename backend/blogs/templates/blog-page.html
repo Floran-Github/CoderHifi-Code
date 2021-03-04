@@ -1,0 +1,347 @@
+{% extends 'base.html' %}
+{% block content %}
+
+          <div class="row">
+            <div class="col-12 col-md-10 container-style">
+              <!-- blog-section -->
+              <div class="blog-sec">
+                <!-- blog post user area -->
+                <div class="row">
+                  <div class="col-1">
+                    <img class="rounded-circle article-img" src="pic/default.jpg">
+                  </div>
+                  <div class="col-11 username">
+                    <h5>Khan Zaki Ur Rahman</h5>
+                  </div>
+                </div>
+                <hr>
+                <!-- blog-post -->
+                <div class="row">
+                  <p class="blog-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus iste deserunt, repellendus ab, cupiditate, 
+                    tempore fuga asperiores corrupti eaque unde qui itaque magni voluptatibus iusto expedita nesciunt. Saepe, iusto?
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus iste deserunt, repellendus ab, cupiditate, 
+                    tempore fuga asperiores corrupti eaque unde qui itaque magni voluptatibus iusto expedita nesciunt. Saepe, iusto?
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus iste deserunt, repellendus ab, cupiditate, 
+                    tempore fuga asperiores corrupti eaque unde qui itaque magni voluptatibus iusto expedita nesciunt. Saepe, iusto?
+                  </p>
+                </div>
+                <!-- like comment -->
+                <div class="row">
+                  <ul class="like-com">
+                    <li>
+                      <button><i class="fas fa-heart"></i> Like</button>
+                      <button class="com" id="1" onclick="showComment(this.id)" ><i class="fas fa-comment-alt"></i> Comment</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- comment section -->
+              <div class="comment-sec" id="comment1" style="display: none;" >
+                <div class="row">
+                  <!-- comments -->
+                  <div class="comment-list">
+                    <div class="row">
+
+                      <!-- comment -->
+                      <div class="comment row">
+                        <div class="col-1">
+                          <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-11">
+                          <div class="row">
+                            <h5>username</h5>
+                          </div>
+                          <div class="row">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="comment row">
+                        <div class="col-1">
+                          <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-11">
+                          <div class="row">
+                            <h5>username</h5>
+                          </div>
+                          <div class="row">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis
+                               deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, 
+                               corrupti accusamus?
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="comment row">
+                        <div class="col-1">
+                          <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-11">
+                          <div class="row">
+                            <h5>username</h5>
+                          </div>
+                          <div class="row">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Excepturi accusantium aspernatur id assumenda odio quibusdam officiis p
+                              erspiciatis deleniti eius repellat tempore fugit nesciunt ex illo labori
+                              osam deserunt aperiam, corrupti accusamus?
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                    </div>
+                  </div>
+                </div>
+                <!-- comment box -->
+                <div class="row">
+                    <div class="col-10">
+                      <input type="text" class="comment-box" placeholder="Enter Your Comment">
+                    </div>
+                    <div class="col-2">
+                      <button class="comment-button">Add</button>
+                    </div>
+                </div>
+              </div>
+              <!-- blog-section -->
+              <div class="blog-sec">
+                <!-- blog post user area -->
+                <div class="row">
+                  <div class="col-1">
+                    <img class="rounded-circle article-img" src="pic/default.jpg">
+                  </div>
+                  <div class="col-11 username">
+                    <h5>Khan Zaki Ur Rahman</h5>
+                  </div>
+                </div>
+                <hr>
+                <!-- blog-post -->
+                <div class="row">
+                  <img class="blog-pic" src="pic/default.jpg">
+                  <p class="blog-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus iste deserunt, repellendus ab, cupiditate, 
+                    tempore fuga asperiores corrupti eaque unde qui itaque magni voluptatibus iusto expedita nesciunt. Saepe, iusto?
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus iste deserunt, repellendus ab, cupiditate, 
+                    tempore fuga asperiores corrupti eaque unde qui itaque magni voluptatibus iusto expedita nesciunt. Saepe, iusto?
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus iste deserunt, repellendus ab, cupiditate, 
+                    tempore fuga asperiores corrupti eaque unde qui itaque magni voluptatibus iusto expedita nesciunt. Saepe, iusto?
+                  </p>
+                </div>
+                <!-- like comment -->
+                <div class="row">
+                  <ul class="like-com">
+                    <li>
+                      <button><i class="fas fa-heart"></i> Like</button>
+                      <button class="com" id="2" onclick="showComment(this.id)" ><i class="fas fa-comment-alt"></i> Comment</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- comment section -->
+              <div class="comment-sec" id="comment2" style="display: none;" >
+                <div class="row">
+                  <!-- comments -->
+                  <div class="comment-list">
+                    <div class="row">
+
+                      <!-- comment -->
+                      <div class="comment row">
+                        <div class="col-1">
+                          <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-11">
+                          <div class="row">
+                            <h5>username</h5>
+                          </div>
+                          <div class="row">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="comment row">
+                        <div class="col-1">
+                          <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-11">
+                          <div class="row">
+                            <h5>username</h5>
+                          </div>
+                          <div class="row">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis
+                               deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, 
+                               corrupti accusamus?
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="comment row">
+                        <div class="col-1">
+                          <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-11">
+                          <div class="row">
+                            <h5>username</h5>
+                          </div>
+                          <div class="row">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Excepturi accusantium aspernatur id assumenda odio quibusdam officiis p
+                              erspiciatis deleniti eius repellat tempore fugit nesciunt ex illo labori
+                              osam deserunt aperiam, corrupti accusamus?
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                    </div>
+                  </div>
+                </div>
+                <!-- comment box -->
+                <div class="row">
+                    <div class="col-10">
+                      <input type="text" class="comment-box" placeholder="Enter Your Comment">
+                    </div>
+                    <div class="col-2">
+                      <button class="comment-button">Add</button>
+                    </div>
+                </div>
+              </div>
+              <!-- blog-section -->
+              <div class="blog-sec">
+                <!-- blog post user area -->
+                <div class="row">
+                  <div class="col-1">
+                    <img class="rounded-circle article-img" src="pic/default.jpg">
+                  </div>
+                  <div class="col-11 username">
+                    <h5>Khan Zaki Ur Rahman</h5>
+                  </div>
+                </div>
+                <hr>
+                <!-- blog-post -->
+                <div class="row">
+                 <video class="blog-video" controls><source src="pic/video.mp4"></video>
+                </div>
+                <!-- like comment -->
+                <div class="row">
+                  <ul class="like-com">
+                    <li>
+                      <button><i class="fas fa-heart"></i> Like</button>
+                      <button class="com" id="3" onclick="showComment(this.id)" ><i class="fas fa-comment-alt"></i> Comment</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- comment section -->
+              <div class="comment-sec" id="comment3" style="display: none;" >
+                <div class="row">
+                  <!-- comments -->
+                  <div class="comment-list">
+                    <div class="row">
+
+                      <!-- comment -->
+                      <div class="comment row">
+                        <div class="col-1">
+                          <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-11">
+                          <div class="row">
+                            <h5>username</h5>
+                          </div>
+                          <div class="row">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="comment row">
+                        <div class="col-1">
+                          <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-11">
+                          <div class="row">
+                            <h5>username</h5>
+                          </div>
+                          <div class="row">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis
+                               deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, 
+                               corrupti accusamus?
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="comment row">
+                        <div class="col-1">
+                          <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-11">
+                          <div class="row">
+                            <h5>username</h5>
+                          </div>
+                          <div class="row">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                              Excepturi accusantium aspernatur id assumenda odio quibusdam officiis p
+                              erspiciatis deleniti eius repellat tempore fugit nesciunt ex illo labori
+                              osam deserunt aperiam, corrupti accusamus?
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                    </div>
+                  </div>
+                </div>
+                <!-- comment box -->
+                <div class="row">
+                    <div class="col-10">
+                      <input type="text" class="comment-box" placeholder="Enter Your Comment">
+                    </div>
+                    <div class="col-2">
+                      <button class="comment-button">Add</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Event Sidebar -->
+            <div class="col-md-2">
+              <div class="sidebar">
+                <div class="ex1">
+                  <h3>Event Title</h3>
+                  <p>
+                    Event Description
+                  </p>
+                  
+                  <br>
+                  <div class="event-button-sec">
+                    <input class="event-button" type="button" value="Enroll">
+                  </div>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+{% endblock content %}
