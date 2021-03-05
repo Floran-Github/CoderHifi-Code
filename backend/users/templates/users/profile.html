@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+  <div class="col-12 col-md-12 container-style">
+    <div class="blog-sec">
+      <div class="container">
+        <div class="row align-items-start">
+
+          <div class="col-12 col-md-4">
+            <div class="content-section">
+              <div class="media">
+                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+                <div class="media-body">
+                  <h2 class="account-heading">{{ user.username }}</h2>
+                  <p class="text-secondary">{{ user.email }}</p>
+                </div>
+              </div>
+                <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <fieldset class="form-group">
+                      <legend class="border-bottom mb-4"> Profile Info </legend>
+                      {{ u_form|crispy }}
+                      {{ p_form|crispy }}
+                      <small class="text-muted ml-2">
+                        <a href="{% url 'password_reset' %}">Change Password</a>
+                    </small>
+                  </fieldset>
+                  
+                  <div class="form-group">
+                      <button class="btn btn-outline-info" type="submit">Update</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-8">
+            <div class="completed-course row">
+              <h3>Completed Course</h3>
+              <hr>
+            <div class="col-12 col-md-4">
+              <div class="completed-course-section">
+                <img src="pic/course/course-3.jpeg">
+                <h4>Course Name</h4>
+              </div>
+            </div>  
+            <div class="col-12 col-md-4">
+              <div class="completed-course-section">
+                <img src="pic/course/course-3.jpeg">
+                <h4>Course Name</h4>
+              </div>
+            </div>  
+            <div class="col-12 col-md-4">
+              <div class="completed-course-section">
+                <img src="pic/course/course-3.jpeg">
+                <h4>Course Name</h4>
+              </div>
+            </div>  
+              
+
+            </div>
+            <div class="enrolled-course row">
+              <h3>Enrolled Course</h3>
+              <hr>
+            <div class="col-12 col-md-4">
+              <div class="completed-course-section">
+                <img src="pic/course/course-3.jpeg">
+                <h4>Course Name</h4>
+              </div>
+            </div>  
+            <div class="col-12 col-md-4">
+              <div class="completed-course-section">
+                <img src="pic/course/course-3.jpeg">
+                <h4>Course Name</h4>
+              </div>
+            </div>  
+            <div class="col-12 col-md-4">
+              <div class="completed-course-section">
+                <img src="pic/course/course-3.jpeg">
+                <h4>Course Name</h4>
+              </div>
+            </div>  
+              
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

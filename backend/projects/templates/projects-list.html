@@ -1,5 +1,133 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="row">
+    <div class="col-12 col-md-10 container-style">
+        {% for project in projects%}
+        <div class="blog-sec">
+            <!-- blog post user area -->
+            <div class="row">
+              <div class="col-1">
+                <img class="rounded-circle article-img" src="{{ project.user.profile.image.url}}">
+              </div>
+              <div class="col-9 username">
+                <h5>{{ project.user }}</h5>
+              </div>
+              <div class="col-2">
+                {% if project.user == user %}
+                <div class="dropdown">
+                    <button class="btn " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <a class="dropdown-item" href="{% url 'project-update' project.id %}">Edit</a>
+                        <a class="dropdown-item" href="{% url 'project-delete' project.id %}">Delete</a>
+                    </ul>
+                  </div>
+                <!-- <div class="dropdown edit">
+                    <button class="btn btn-secondary " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="">Edit</a>
+                        <a class="dropdown-item" href="">Delete</a>
+                    </div>
+                </div> -->
+                {% endif %}
+              </div>
+            </div>
+            <hr>
+            <!-- blog-post -->
+            <div class="row">
+             <video class="blog-video" controls><source src="{{ project.video.url }}"></video>
+            </div>
+            <div class="row">
+                <div class="col-12 about-project">
+                    <p>
+                        {{ project.description }}
+                    </p>
+                </div>
+            </div>
+            <!-- like comment -->
+            <div class="row">
+              <ul class="like-com">
+                <li>
+                    
+                    <form action="{% url 'like_main_post' project.id %}" method="POST">
+                        {% csrf_token %}
+                            {% if user not in project.like.all %}
+                                <button type="submit"  name="post_id" value="{{ project.id }}">
+                                    <i class="fas fa-heart"></i> Like
+                                </button>   
+                                <span>{{ project.like.all.count }} </span>
+                            {% else %}
+                                <button type="submit" style="color: #e44d3a;"  name="post_id" value="{{ project.id }}"><i class="fas fa-heart "></i> Like</button><span>{{ project.like.all.count }}  </span>
+                            {% endif %}
+                    </form>
+                  <!-- <button><i class="fas fa-heart"></i> Like</button> -->
+                </li>
+                <li>
+                  <button class="com" id="{{ forloop.counter }}" onclick="showComment(this.id)" ><i class="fas fa-comment-alt"></i> Comment</button>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+                <small class="text-muted">{{ project.date_posted|date:"F d, Y" }}</small>
+            </div>
+          </div>
+
+          <!-- comment section -->
+          <div class="comment-sec" id="comment{{forloop.counter}}" style="display: none;" >
+            <div class="row">
+              <!-- comments -->
+              <div class="comment-list">
+                <div class="row">
+                  {% for comment in project.comments.all %}
+                  <!-- comment -->
+                  <div class="comment row">
+                    <div class="col-1">
+                      <img src="{{ comment.user.profile.image.url}}" class="rounded-circle comment-img">
+                    </div>
+                    <div class="col-11">
+                      <div class="row">
+                        <small class="text-muted">{{ comment.date_posted|date:"F d, Y" }}</small>
+                      </div>
+                      <div class="row">
+                        <h5>{{ comment.user }}</h5>
+                      </div>
+                      <div class="row">
+                        <p>
+                          {{comment.body}}
+                        </p>
+                      </div>
+                    </div>
+                  
+                  </div>
+                  <hr>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <!-- comment box -->
+            <form id="comment_sec" action="{% url 'comments' %}" method="POST">
+                <div class="row">
+                <div class="col-10">
+                  {% csrf_token %}
+                  {{ comment_form.body }}
+                </div>
+                <div class="col-2">
+                  <button class="comment-button" type="submit" name="comment_id" value="{{ project.id }}">Add</button>
+                  
+                </div>
+              </div>
+              </form>
+          </div>
+        {% endfor %}
+
+
+
+
+    </div>
+</div>
 
 {% endblock content %}

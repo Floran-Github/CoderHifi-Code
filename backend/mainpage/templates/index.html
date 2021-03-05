@@ -31,7 +31,12 @@
                One Step Away From World Of 0 and 1
             </p>
             <!-- <input type="button" value="Lets Start" onclick="startfun();" > -->
-            <a href="blog-page.html">Lets Start</a>
+            {% if user.is_authenticated %}
+                <a class="button" href="{% url 'project-list' %}">Home</a>
+                {% else %}
+                <a class="button" href="{% url 'login' %}">Login</a>
+                <a class="button" href="{% url 'register' %}">Register</a>
+            {% endif %}
         </div>
     </section>
 </body>

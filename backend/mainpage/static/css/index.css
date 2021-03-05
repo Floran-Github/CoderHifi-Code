@@ -234,19 +234,23 @@ div.ex1 {
     margin-right: 15px;
 }
 
-.like-com li  button{
+.like-com li form button{
     color: #b2b2b2;
     background-color: #fff;
     font-size: 14px;
     font-weight: 500;
     float: left;
-    margin-top: 6px;
+    margin-top: 0px;
     margin-right: 5px;
     border: none;
     text-decoration: none;
     cursor: pointer;
 }
 
+
+
+/* {% url 'post-delete' post.id %}
+{% url 'post-update' post.id %} */
 .like-com li  button:hover {
     color: #e44d3a;
 }
@@ -267,6 +271,7 @@ div.ex1 {
     color: #006de2;
 }
 
+#id_body,
 .comment-box{
     margin-top: 20px;
     border-radius: 50px;
