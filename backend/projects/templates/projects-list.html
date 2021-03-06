@@ -3,6 +3,18 @@
 {% block content %}
 <div class="row">
     <div class="col-12 col-md-10 container-style">
+      <a class="add_prj" href="{% url 'project-create' %}">
+      <div class="blog-sec">
+        <div class="row">
+          <div class="col-md-2 col-12"></div>
+          <div class="col-md-9 col-12">
+            <h1>
+              Show World your project <i class="fas fa-plus"></i>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </a>
         {% for project in projects%}
         <div class="blog-sec">
             <!-- blog post user area -->

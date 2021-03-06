@@ -309,6 +309,7 @@ div.ex1 {
 .checked {
 color: orange;
 }
+.add_prj,
 
 .course-link:hover,
 .course-link{
@@ -316,7 +317,9 @@ color: orange;
     text-transform: none;
     color: #000;
 }
-
+.add_prj:hover{
+    color: #4f5b62;
+}
 
 
 .course-img{
