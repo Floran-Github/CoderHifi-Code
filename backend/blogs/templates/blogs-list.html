@@ -73,13 +73,13 @@
                     
                     <form action="{% url 'like_main_post' blog.id %}" method="POST">
                         {% csrf_token %}
-                            {% if user not in blog.like.all %}
+                            {% if user not in blog.bloglike.all %}
                                 <button type="submit"  name="post_id" value="{{ blog.id }}">
                                     <i class="fas fa-heart"></i> Like
                                 </button>   
-                                <span>{{ blog.like.all.count }} </span>
+                                <span>{{ blog.bloglike.all.count }} </span>
                             {% else %}
-                                <button type="submit" style="color: #e44d3a;"  name="post_id" value="{{ blog.id }}"><i class="fas fa-heart "></i> Like</button><span>{{ blog.like.all.count }}  </span>
+                                <button type="submit" style="color: #e44d3a;"  name="post_id" value="{{ blog.id }}"><i class="fas fa-heart "></i> Like</button><span>{{ blog.bloglike.all.count }}  </span>
                             {% endif %}
                     </form>
                   <!-- <button><i class="fas fa-heart"></i> Like</button> -->
