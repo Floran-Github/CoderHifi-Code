@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-12 col-md-10 container-style">
+        <div class="blog-sec">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> Blog </legend>
+                <!-- {{ form|crispy }} -->
+                <div class="row">
+                    <video class="blog-video" controls><source src="{{form.instance.video.url}}"></video>
+                </div>
+                <div class="row">
+                    {{form.video|as_crispy_field}}
+                </div>
+                <div class="row">
+                    <div class="col-12 about-project">
+                        {{form.description |as_crispy_field}}
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+{% endblock content %}
