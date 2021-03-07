@@ -25,7 +25,7 @@ SECRET_KEY = '2j)$9x0bfvr8n!0_v5gt45!87mzxi7ey2m2f)qt7e4!2qsjoyg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['68e11d65d1af.ngrok.io','127.0.0.1']
 
 
 # Application definition
@@ -121,7 +121,7 @@ USE_TZ = True
 
 # login
 
-LOGIN_REDIRECT_URL = 'project-list'
+LOGIN_REDIRECT_URL = 'blog-list'
 
 LOGIN_URL = 'login'
 

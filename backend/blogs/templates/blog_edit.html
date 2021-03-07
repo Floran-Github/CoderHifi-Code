@@ -9,12 +9,22 @@
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4"> Blog </legend>
                 <!-- {{ form|crispy }} -->
+                {% if form.instance.video %}
                 <div class="row">
                     <video class="blog-video" controls><source src="{{form.instance.video.url}}"></video>
                 </div>
                 <div class="row">
                     {{form.video|as_crispy_field}}
                 </div>
+                {% endif %}
+                {% if form.instance.image %}
+                <div class="row">
+                    <img class="blog-pic" src="{{ form.instance.image.url }}">
+                </div>
+                <div class="row">
+                    {{form.image|as_crispy_field}}
+                </div>
+                {% endif %}
                 <div class="row">
                     <div class="col-12 about-project">
                         {{form.description |as_crispy_field}}

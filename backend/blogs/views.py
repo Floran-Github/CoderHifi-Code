@@ -75,6 +75,13 @@ class blogUpdateView(LoginRequiredMixin,UpdateView):
     template_name  = 'blog_edit.html'
     fields = ['image','video','description']
 
+    def get(self, request, *args, **kwargs):
+        prj = self.get_object()
+        if self.request.user != prj.user:
+            return HttpResponseRedirect(reverse('illegal-trespass'))
+        else:
+            return super().get(request, *args, **kwargs)
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -82,13 +89,20 @@ class blogUpdateView(LoginRequiredMixin,UpdateView):
         prj = self.get_object()
         if self.request.user == prj.user:
             return True
-        return HttpResponseRedirect(reverse('illegal-trespass'))
+        return HttpResponseRedirect(reverse('blog-illegal-trespass'))
     
 
-class blogDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+class blogDeleteView(LoginRequiredMixin,DeleteView):
     model = blogs
     template_name  = 'blogs_confirm_delete.html'
     success_url = '/blog/'
+
+    def get(self, request, *args, **kwargs):
+        prj = self.get_object()
+        if self.request.user != prj.user:
+            return HttpResponseRedirect(reverse('blog-illegal-trespass'))
+        else:
+            return super().get(request, *args, **kwargs)
 
     def test_func(self):
         post = self.get_object()

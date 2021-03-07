@@ -73,6 +73,18 @@ class projectUpdateView(LoginRequiredMixin,UpdateView):
     template_name  = 'project_edit.html'
     fields = ['video','description']
 
+    # def get(self, request, *args, **kwargs):
+    #     prj = self.get_object()
+    #     if self.request.user == prj.user:
+    #         return HttpResponseRedirect(reverse('illegal-trespass'))
+    
+    def get(self, request, *args, **kwargs):
+        prj = self.get_object()
+        if self.request.user != prj.user:
+            return HttpResponseRedirect(reverse('illegal-trespass'))
+        else:
+            return super().get(request, *args, **kwargs)
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -80,13 +92,20 @@ class projectUpdateView(LoginRequiredMixin,UpdateView):
         prj = self.get_object()
         if self.request.user == prj.user:
             return True
-        return HttpResponseRedirect(reverse('illegal-trespass'))
+        return False
     
 
-class projectDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+class projectDeleteView(LoginRequiredMixin,DeleteView):
     model = projects
     template_name  = 'projects_confirm_delete.html'
     success_url = '/project/'
+
+    def get(self, request, *args, **kwargs):
+        prj = self.get_object()
+        if self.request.user != prj.user:
+            return HttpResponseRedirect(reverse('illegal-trespass'))
+        else:
+            return super().get(request, *args, **kwargs)
 
     def test_func(self):
         post = self.get_object()
