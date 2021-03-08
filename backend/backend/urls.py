@@ -25,6 +25,7 @@ urlpatterns = [
     path("",include('mainpage.urls')),
     path("project/",include('projects.urls')),
     path("blog/",include('blogs.urls')),
+    path("event/",include('event.urls')),
 
 
     path('register/',user_views.register, name='register'),
