@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-12 col-md-10 container-style">
+        <div class="blog-sec">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> Blog </legend>
+                <!-- {{ form|crispy }} -->
+                <div class="row">
+                    <div class="col-12 about-project">
+                        {{form.title |as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 about-project">
+                        {{form.description |as_crispy_field}}
+                    </div>
+                </div>
+                {% if form.instance.picture %}
+                <div class="row">
+                    <img class="blog-pic" src="{{ form.instance.picture.url }}">
+                </div>
+                <div class="row">
+                    {{form.picture|as_crispy_field}}
+                </div>
+                {% endif %}
+                <div class="row">
+                    <div class="col-12 about-project">
+                        {{form.cost |as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 about-project">
+                        {{form.last_day_of_registration |as_crispy_field}}
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Post</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+{% endblock content %}

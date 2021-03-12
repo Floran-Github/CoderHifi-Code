@@ -29,10 +29,10 @@ function MaintoggleTheme() {
   
             // Change the value of href attribute  
             // to change the css sheet. 
-            if (theme.getAttribute('href') == 'static/css/boy-theme.css') { 
-                theme.setAttribute('href', 'static/css/girls-theme.css'); 
+            if (theme.getAttribute('href') == '/static/css/boy-theme.css') { 
+                theme.setAttribute('href', '/static/css/girls-theme.css'); 
             } else { 
-                theme.setAttribute('href', 'static/css/boy-theme.css'); 
+                theme.setAttribute('href', '/static/css/boy-theme.css'); 
             } 
         }
 

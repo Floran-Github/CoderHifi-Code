@@ -15,7 +15,7 @@
   <script src="{% static 'js/index.js' %}"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/font-awesome.min.css">
-  <link id="theme" rel="stylesheet" href="{%static 'css/girls-theme.css'%}">
+  <link id="theme" rel="stylesheet" href="{% static 'css/girls-theme.css' %}">
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
   <title>CoderHi</title>
 </head>
@@ -24,17 +24,17 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <!-- brand area -->
-      <a class="navbar-brand" href="#">CoderHi</a>
+      <a class="navbar-brand" href="blog">CoderHi</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="blog-page.html">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'blog-list' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="project-page.html">Projects</a>
+            <a class="nav-link" href="{% url 'project-list' %}">Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="main-course-page.html">Learn</a>
@@ -49,12 +49,12 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="pic/default.jpg" class="rounded-circle profile-img">
+              <img src="{{ user.profile.image.url}}" class="rounded-circle profile-img">
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="profile_page.html">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Sign Out</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a></li>
             </ul>
           </li>
 
@@ -70,6 +70,20 @@
 
         {% endblock content %}
     </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+    {% block javascript%}
       
+    {% endblock javascript%}
+
+    {% if messages %}
+    {% for message in messages %}
+    <script type=text/javascript>
+      toastr.options.progressBar = true;
+      toastr.{{ message.tags }}('{{ message }}')
+    </script>
+    {% endfor %}
+    {% endif %}
 </body>
 </html>

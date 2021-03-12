@@ -25,20 +25,25 @@ SECRET_KEY = '2j)$9x0bfvr8n!0_v5gt45!87mzxi7ey2m2f)qt7e4!2qsjoyg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['68e11d65d1af.ngrok.io','127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'mainpage.apps.MainpageConfig',
     'projects.apps.ProjectsConfig',
+    'blogs.apps.BlogsConfig',
+    'users.apps.UsersConfig',
+    'event.apps.EventConfig',
 ]
 
 MIDDLEWARE = [
@@ -115,8 +120,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+# login
+
+LOGIN_REDIRECT_URL = 'blog-list'
+
+LOGIN_URL = 'login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
