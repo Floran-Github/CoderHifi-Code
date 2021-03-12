@@ -30,9 +30,18 @@ body{
     color: #000;
     background-color: #fff;
 }
-.nav-link:hover{
-    border-bottom: solid 1px #fff;
+
+.logo-img{
+    width: 75px;
+    padding:0px 5px;
+    padding-bottom: 1px;
 }
+
+.sidebar-collapse .brand-link .logo-img{
+    /* display: block; */
+    margin-left: -7px;
+}
+
 .theme-toggler{
     /* position: absolute; */
     top: 30px;
@@ -116,43 +125,39 @@ body{
     display: table;
     padding: 0;
 }
-.sidebar{
-    /* width: 100%; */
-    /* position: fixed; */
+.brand-link{
     border-radius: 25px !important;
+    padding: 10px !important;
+    background-color: #00327e !important;
+    max-height: 50px;
+}
+.main-sidebar{
+    
+    background-color: #f8f9fa !important;
+}
+
+.sidebar{
+   
+    border-radius: 35px !important;
     padding: 20px 40px;
     /* background-color: #000a12; */
-    color: #fff;
+    color: #f8f9fa;
     width: 250px;
+    padding: 10px !important;
 }
 
 .sidebar .sidebar-text{
     max-width: 230px;
 }
 
-.enrolledEve{
-    border: solid 1px #f8fafc;
-    border-radius: 25px;
-    margin: 5px;
-    padding: 5px 15px;
-    background-color: #ffcd47;
-    color: #000a12;
-    
-}
-
 .event-button{
-    text-decoration: none;
     border-radius: 50px;
-    border: solid 0.1px #000a12;
-    color: #000a12;
+    border: none;
     padding: 10px;
     width: 100%;
-    display: block;
-    text-align: center;
 }
 
 .event-button-sec{
-    
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -160,7 +165,6 @@ body{
 }
 
 .event-button:hover{
-    text-decoration: none;
     color: #fff;
     background-color: #000;
     border:solid 1px #fff;
@@ -250,23 +254,19 @@ div.ex1 {
     margin-right: 15px;
 }
 
-.like-com li form button{
+.like-com li  button{
     color: #b2b2b2;
     background-color: #fff;
     font-size: 14px;
     font-weight: 500;
     float: left;
-    margin-top: 0px;
+    margin-top: 6px;
     margin-right: 5px;
     border: none;
     text-decoration: none;
     cursor: pointer;
 }
 
-
-
-/* {% url 'post-delete' post.id %}
-{% url 'post-update' post.id %} */
 .like-com li  button:hover {
     color: #e44d3a;
 }
@@ -287,7 +287,6 @@ div.ex1 {
     color: #006de2;
 }
 
-#id_body,
 .comment-box{
     margin-top: 20px;
     border-radius: 50px;
@@ -315,9 +314,7 @@ div.ex1 {
     border: solid 0.5px #000;
     padding: 10px;
 }
-.chart{
-    background-color: #fff;
-}
+
 .fa {
     font-size: 25px;
   }
@@ -327,7 +324,6 @@ div.ex1 {
 .checked {
 color: orange;
 }
-.add_prj,
 
 .course-link:hover,
 .course-link{
@@ -335,9 +331,7 @@ color: orange;
     text-transform: none;
     color: #000;
 }
-.add_prj:hover{
-    color: #4f5b62;
-}
+
 
 
 .course-img{
@@ -625,6 +619,35 @@ color: orange;
     padding-right: 40px;
 }
 
+.number_of_event{
+    background-color: #007bff;
+    padding: 10px;
+    color: #f8fafc;
+    border-radius: 20px;
+    min-height: 150px;
+    text-align: center;
+    height: 100;
+    margin: 5px;
+}
+.dashboard-event-sec{
+    background: #FEBE10; 
+    padding: 10px;
+    color: #f8fafc;
+    border-radius: 20px;
+    min-height: 150px;
+    height: 100;
+    margin: 5px;
+}
+.dashboard-event-sec h1{
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+.number_of_event h1{
+    margin-top: 10px;
+    margin-bottom: 28px;
+    /* margin: auto; */
+    font-size: 1.5em;
+}
 
 @media(max-width:800px){
     .blog-pict{
@@ -660,9 +683,7 @@ color: orange;
     .blog-video{
         width: 100%;
     }
-    .sidebar{
-        display: none;
-    }
+
     .container-style{
         padding: 0;
     }

@@ -599,6 +599,35 @@ color: orange;
     padding-right: 40px;
 }
 
+.number_of_event{
+    background-color: #007bff;
+    padding: 10px;
+    color: #f8fafc;
+    border-radius: 20px;
+    min-height: 150px;
+    text-align: center;
+    height: 100;
+    margin: 5px;
+}
+.dashboard-event-sec{
+    background: #FEBE10; 
+    padding: 10px;
+    color: #f8fafc;
+    border-radius: 20px;
+    min-height: 150px;
+    height: 100;
+    margin: 5px;
+}
+.dashboard-event-sec h1{
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+.number_of_event h1{
+    margin-top: 10px;
+    margin-bottom: 28px;
+    /* margin: auto; */
+    font-size: 1.5em;
+}
 
 @media(max-width:800px){
     .blog-pict{

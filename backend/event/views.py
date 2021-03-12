@@ -1,16 +1,40 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
-# Create your views here.
+from django.contrib import messages
+
+
+def event_dashboard(request):
+    events = event.objects.filter(created_by=request.user)
+    label = []
+    data = []
+    for i in events:
+        label.append(i.title)
+        data.append(i.userEnrolled.count())
+    
+    context = {
+        'events' : events,
+        'number_of_event' : events.count(),
+        'label':label,
+        'data':data,
+    }
+    return render(request,'dashboard.html',context=context)
+    pass
+
 
 
 class eventListView(ListView):
     model = event
     template_name = 'event-list.html'
     context_object_name = 'events'
-    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['enrolled_event'] = eventMaytoMany.objects.filter(userId=self.request.user)
+        # context['comment_form'] = commentForm()
+        return context
 
 class eventCreateView(CreateView):
     model = event
@@ -62,3 +86,21 @@ class eventDeleteView(LoginRequiredMixin,DeleteView):
         if self.request.user == post.created_by:
             return True
         return False
+
+def enroll(request, pk):
+    eventid = get_object_or_404(event,id=pk)
+    userId = request.user
+    enrollNo = f'{eventid.title} - {eventMaytoMany.objects.filter(eventId=eventid).count() + 1}'
+
+
+    if eventid.userEnrolled.filter(id=request.user.id).exists():
+        eventid.userEnrolled.remove(request.user)
+    else:
+        eventid.userEnrolled.add(request.user)
+        eventManytoMany = eventMaytoMany(event_enroll_id = enrollNo,eventId = eventid,userId = userId)
+        eventManytoMany.save()
+
+    print("event enrolled")
+    messages.add_message(request, messages.INFO, "enrolled in {eventid.title} successfully")
+    return redirect('event-list')
+    pass

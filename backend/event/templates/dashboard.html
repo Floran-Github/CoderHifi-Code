@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{number_of_event}}
+<br>
+{% for event in events %}
+{{ event.title }}<br>
+{{ event.last_day_of_registration }}<br>
+{{ event.userEnrolled.all.count }}<br>
+{% endfor %}
+<canvas id="myChart" class="chart" width="200" height="100"></canvas><br>
+{% endblock content %}
+
+{% block javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script>
+
+    label_data = {{ label|safe }}
+    data_data = {{ data|safe }}
+    
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: label_data,
+            datasets: [{
+                label: 'People enrolled ',
+                data: data_data,
+                fill: false,
+                backgroundColor: 'rgb(255, 99, 132)'
+                ,
+                borderColor:'rgb(54, 162, 235)'
+                ,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            tooltips: {
+            mode: 'label',
+            },
+            hover: {
+            mode: 'nearest',
+            intersect: true
+            },
+            scales: {
+                // yAxes: [{
+                //     ticks: {
+                //         beginAtZero: true
+                //     }
+                // }]
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                    display: true,
+                    labelString: 'Value'
+                    }
+                }]
+            }
+        }
+    });
+    
+    
+   
+
+    </script>
+{% endblock javascript %}
