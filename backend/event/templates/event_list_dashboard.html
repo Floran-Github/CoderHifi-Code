@@ -1,0 +1,35 @@
+{% extends 'event-dashboard.html' %}
+
+{% block header %}
+Event List
+{% endblock header %}
+
+{% block content %}
+{% for event in events %}
+<div class="col-md-12 event_list">
+      <h1>{{event.title}}</h1>
+      <p>
+          {{event.description}}
+      </p>
+      <h4>Last day of registration:- {{event.last_day_of_registration}}</h4>
+      <h4>Number of user enrolled:- {{event.userEnrolled.all.count}}</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="event-button-sec">
+            <a href="{% url 'event-update' event.id %} " class="event-list-button">Update</a>
+              <!-- <input class="event-button" type="button" value="Create New"> -->
+            </div>
+        </div>
+        <div class="col-md-6">
+
+          <div class="event-button-sec">
+            <a href="{% url 'event-add-participant' event.id%}" class="event-list-button">Add New Participant</a>
+              <!-- <input class="event-button" type="button" value="Create New"> -->
+            </div>
+        </div>
+      </div>
+  
+  </div>
+
+{% endfor %}
+{% endblock content %}

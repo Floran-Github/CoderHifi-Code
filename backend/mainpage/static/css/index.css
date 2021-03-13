@@ -133,7 +133,7 @@ body{
 .enrolledEve{
     border: solid 1px #f8fafc;
     border-radius: 25px;
-    margin: 5px;
+    /* margin: 5px; */
     padding: 5px 15px;
     background-color: #ffcd47;
     color: #000a12;

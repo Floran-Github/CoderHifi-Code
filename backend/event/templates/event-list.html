@@ -2,6 +2,11 @@
 
 {% block content %}
 <div class="row">
+  <div class="col-5">
+    <a class="event-button" href="{% url 'event-dashboard' %}">Dashboard</a>
+  </div>
+</div>
+<div class="row">
   
   <div class="blog-sec">
     <div class="row">
@@ -93,8 +98,6 @@
                     </div>
                 </div>
                 </div>
-                {% else %}<br>
-                Congratulation You have enrolled in every single event<br>Hope you attend all 😅
                 {% endif %}
                 {% endfor %}
 

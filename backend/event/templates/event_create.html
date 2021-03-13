@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'event-dashboard.html' %}
+
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="row">
-    <div class="col-12 col-md-12 container-style">
+<div class="row"></div>
       <div class="blog-sec">
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -14,7 +14,6 @@
         <button class="btn btn-outline-info" type="submit">Post</button>
     </div>
 </form>
-</div>
 </div>
 </div>
 {% endblock content %}

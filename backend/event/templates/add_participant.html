@@ -1,0 +1,82 @@
+{% extends 'event-dashboard.html' %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+
+<div class="col-md-12 event_list">
+   <!-- {{object}} -->
+   
+   <h1>{{object.title}}</h1>
+   <h4>Last day of registration:- {{object.last_day_of_registration}}</h4>
+   <h4>Number of user enrolled:- {{object.userEnrolled.all.count}}</h4>
+   
+   <hr>
+    <h3>Add Attendees</h3>
+    <br>
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <form action="{% url 'event-add' object.id%}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <input class="search" id="search_bar" name="search_name" type="search" placeholder="Enter the username of attendee to add">
+                        
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <button type="submit" class="event-list-button">Add</button>
+                        <!-- <a href="#" class="event-list-button">Add</a> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover" data-page-length='100'>
+        <thead class="thead-light">
+            <tr>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Ticket no</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for part in participant%}
+        
+            <tr class='clickable-row' data-href="">
+                <td style="max-width: 10px;">{{forloop.counter}}</td>
+                <td>{{part.userId}}</td>
+                <td>{{part.event_enroll_id}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        
+        
+    </div>
+    
+    <!-- <form>
+        <label for="product">Product</label>
+        <input type="text" name="product" id="product">
+    </form> -->
+    
+    
+    
+    
+    
+    
+    
+    
+{% endblock content %}
+{% block morejs %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#search_bar").autocomplete({
+            source: '{% url 'event-add-participant' object.id %}',
+        });
+    });
+</script>
+{% endblock morejs %}

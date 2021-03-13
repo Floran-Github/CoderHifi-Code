@@ -1,13 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'event-dashboard.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="row">
-    <div class="col-12 col-md-10 container-style">
         <div class="blog-sec">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4"> Blog </legend>
+                <legend class="border-bottom mb-4"> Update  </legend>
                 <!-- {{ form|crispy }} -->
                 <div class="row">
                     <div class="col-12 about-project">
@@ -42,7 +41,6 @@
                 <button class="btn btn-outline-info" type="submit">Post</button>
             </div>
         </form>
-    </div>
     </div>
 </div>
 {% endblock content %}

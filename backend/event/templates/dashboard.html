@@ -1,17 +1,41 @@
-{% extends 'base.html' %}
+{% extends 'event-dashboard.html' %}
+
+{% block header %}
+Welcome {{user.username}}
+{% endblock header %}
 
 {% block content %}
-{{number_of_event}}
-<br>
-{% for event in events %}
-{{ event.title }}<br>
-{{ event.last_day_of_registration }}<br>
-{{ event.userEnrolled.all.count }}<br>
-{% endfor %}
-<canvas id="myChart" class="chart" width="200" height="100"></canvas><br>
-{% endblock content %}
 
-{% block javascript %}
+<div class="col-md-3 number_of_event">
+    <h1>
+          Number of Event Done<br>
+            {{number_of_event}}
+    </h1>
+    <div class="event-button-sec">
+        <a href="{% url 'event-create'%}" class="event-button-dash">Create New</a>
+        <!-- <input class="event-button" type="button" value="Create New"> -->
+      </div>
+
+</div>
+{% for event in events %}
+<div class="col-md-3 dashboard-event-sec">
+ 
+    <h1>{{ event.title }}</h1>
+    <hr>
+    <h6>Number of enrollment :- {{ event.userEnrolled.all.count }}</h6>
+    <h6>Last day of registration:- {{ event.last_day_of_registration }}</h6>
+
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block chart%}
+<div class="row">
+    <canvas id="myChart" class="chart" width="200" height="50"></canvas><br>
+  </div>
+{% endblock chart%}
+{% block morejs %}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script>
 
@@ -62,9 +86,9 @@
             }
         }
     });
-    
-    
-   
+</script>
+{% endblock morejs %}
 
-    </script>
-{% endblock javascript %}
+
+
+
