@@ -11,6 +11,9 @@
   <div class="blog-sec">
     <div class="row">
       {% for event in enrolled_event %}
+      {% if event in event_not_done%}
+      jaj
+      {% endif%}
         <div class="col-md-4 enrolledEve">
           <h4><u>Ticket no:</u></h4>
           <h3>

@@ -6,6 +6,8 @@ from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 from django.http import HttpResponseRedirect,JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
 from django.contrib import messages
+import datetime
+from django.db.models import Q
 
 
 def event_dashboard(request):
@@ -67,6 +69,7 @@ def add_participant(request,pk):
             eventManytoMany.save()
     return redirect('event-add-participant',pk=pk)
 
+
 class eventListView(ListView):
     model = event
     template_name = 'event-list.html'
@@ -74,8 +77,17 @@ class eventListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['enrolled_event'] = eventMaytoMany.objects.filter(userId=self.request.user)
+        # context['event_not_done'] = event.objects.filter(Q(last_day_of_registration=datetime.date.today()))
+
+        event_enrolled = []
+        a = eventMaytoMany.objects.filter(userId=self.request.user)
+        b = event.objects.filter(Q(last_day_of_registration__gte=datetime.date.today()))
+
+        for i in a:
+            if i.eventId in b:
+                event_enrolled.append(i)
         # context['comment_form'] = commentForm()
+        context['enrolled_event'] = event_enrolled
         return context
 
 class eventCreateView(CreateView):
