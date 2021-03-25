@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+    <div class="col-10">
+        <input type="text" class="comment-box" placeholder="Enter Course Name">
+    </div>
+    <div class="col-2">
+        <button class="comment-button">Search</button>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col-12 col-md-12 container-style">
+        <!-- blog-section -->
+        {% for object in courses %}
+        <a class="course-link" href="{% url 'course-detail' object.id%}">
+            <div class="blog-sec">
+                
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <img class="course-img" src="{{object.thumbnail_image.url}}">
+                    </div>
+                    <div class="col-12 col-md-8 couse-desp">
+                        <h2>{{object.course_name}}</h2>
+                        <p style="white-space: pre-line;">
+                           {{object.course_description|safe|truncatewords:"50"|linebreaks}}
+                        </p>      
+                        <div class="row">
+                            <div class="col-4">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>                 
+                            </div>
+                            <div class="col-7">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <img class="rounded-circle teacher-img" src="{{ object.teacherId.profile.image.url}}"">
+                                    </div>
+                                    <div class="col-11 teacher_name">
+                                        <h5>{{ object.teacherId.username}}"</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </a>
+        
+        {% endfor %}
+        
+        
+    </div>
+</div>
+{% endblock content %}

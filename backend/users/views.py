@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
-
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm,TeacherProfile
+from django.contrib.auth.models import User
+from .models import *
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -38,3 +39,28 @@ def profile(request):
         'p_form':p_form
     }
     return render(request, 'users/profile.html',context)
+
+def update_to_teacher(request):
+    if request.user.is_staff == False:
+        if request.method == "POST":
+            form = TeacherProfile(request.POST)
+            if form.is_valid():
+
+                form_1 = form.save(commit=False)
+                form_1.user = request.user
+                form_1.save()
+                user = User.objects.get(id=request.user.id)
+                user.is_staff =True
+                user.save()
+                print(user)
+        else:
+            form = TeacherProfile()
+
+        return render(request, 'users/teacher_register.html', {'form' : form})     
+    else:
+        pass
+
+
+
+def share_profile(request,username):
+    pass

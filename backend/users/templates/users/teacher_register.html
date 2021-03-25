@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+    <div class="col-12 col-md-12 container-style">
+      <div class="blog-sec">
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> <h2>
+                    <span class="txt-type" data-wait="2900" data-words='["The art of teaching is the art of assisting discovery.  - Mark Van Doren", "Education breeds confidence. Confidence breeds hope. Hope breeds peace.   - Confucius","A good teacher is like a candle—it consumes itself to light the way for others.   - Mustafa Kemal Atatürk"]'></span></h2>   </legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Become Teacher</button>
+            </div>
+        </form>
+
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+        startEvent: 'DOMContentLoaded',
+        offset:200,
+        duration:1000,
+        once:false,
+    });
+</script>
+{% endblock javascript %}

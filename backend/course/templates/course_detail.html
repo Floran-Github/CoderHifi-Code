@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+    <div class="col-12 col-md-12 container-style">
+        <!-- main-section -->
+        <div class="blog-sec">
+            <!-- uper area area -->
+            <div class="row">
+            <div class="col-12 col-md-8 coursename">
+                <h4>{{object.course_name}}</h4>
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span> 
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>   
+                        4.3
+                    </div>
+                    <div class="col-12 col-md-3"> 914 ratings</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3 ">
+                        <a class="btn enroll-button" href="#">Enroll Now</a>
+                    </div>
+                    <div class="col-6">
+                        <h4>${{object.fees}}</h4>
+                    </div>
+                </div>
+              <div class="about-course">
+                <h5>About this course</h5>
+                <p class="">
+                    {{object.course_description}}
+                </p>
+            </div>
+            {{object.module.all}}
+            </div>
+            <div class="col-12 col-md-4">
+              offered by<br>
+            <img class="teacher-logo" src="pic/course-detail/teacher-logo.png">
+            
+            <ul class="course-short-desc">
+                <li>
+                    <div class="row">
+                        <div class="col-1">
+                            <img class="certificate" src="pic/course-detail/certificate.png">
+                        </div>
+                        <div class="col-11 course-section-desp">
+                            <h2>Shareable Certificate</h2>
+                            <h5>Earn a certificate upon completion</h5>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="col-11 course-section-desp">
+                            <h2>100% online</h2>
+                            <h5>Start instantly and learn at your own schedule.</h5>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div class="col-1">
+                            <img class="certificate" src="pic/course-detail/certificate.png">
+                        </div>
+                        <div class="col-11 course-section-desp">
+                            <h2>Intermediate Level</h2>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <hr>
+        <!-- syallbus-area -->
+        <div class="row">
+            <div class="post-slider">
+                <h1 class="slider-title">What You Will Learn</h1>
+            <i class="fas fa-chevron-left prev"></i>
+            <i class="fas fa-chevron-right next"></i>
+      
+            <div class="post-wrapper">
+            {% for modules in object.module.all %}
+            
+            <div class="post">
+                <div class="row">
+                    <div class="col-12">
+                    <img src="{{ modules.module_image.url}}" alt="" class="slider-image">
+                </div>
+                <div class="col-12">
+                    <div class="post-info">
+                        <h4>
+                        <a href="single.html">
+                            {{modules.module_name}}
+                        </a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-12">
+                <h6 class="main-course-page-teacher-name">
+                    {{modules.Description}}
+                </h6>
+            </div>
+                  
+            <div class="col-12">
+                    <a href="#">Explore more</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}  
+            
+              
+            </div>
+            
+          
+            
+        </div>
+    </div>
+    
+    <!-- review section -->
+    <div class="review-upper-area row">
+        
+        <div class="col-1">
+            <h1>4.3</h1>
+        </div>
+        <div class="review-star col-12 col-md-3">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span> 
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span> &nbsp;&nbsp;
+            174 rating 
+        </div>
+    </div>
+    <div class="top-review row">
+        <div class="col-12">
+            <h4>Top Reviews</h4>
+        </div>
+        <div class="col-12 review">
+            <div class="row">
+                
+                <div class="col-12 col-md-6">
+                    <div class="comment row">
+                        <div class="col-2">
+                            <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                <h5>username</h5>
+                            </div>
+                            <div class="row">
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6">
+                    <div class="comment row">
+                        <div class="col-2">
+                            <img src="pic/default.jpg" class="rounded-circle comment-img">
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                <h5>username</h5>
+                            </div>
+                            <div class="row">
+                      <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                      </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="comment row">
+                    <div class="col-2">
+                    <img src="pic/default.jpg" class="rounded-circle comment-img">
+                </div>
+                  <div class="col-10">
+                    <div class="row">
+                        <h5>username</h5>
+                    </div>
+                    <div class="row">
+                      <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                        </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+              <div class="col-12 col-md-6">
+                <div class="comment row">
+                    <div class="col-2">
+                    <img src="pic/default.jpg" class="rounded-circle comment-img">
+                </div>
+                  <div class="col-10">
+                      <div class="row">
+                          <h5>username</h5>
+                        </div>
+                        <div class="row">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <hr>
+          <div class="col-12">
+              <div class="row">
+                  <div class="col-12 col-md-4">
+                      <img src="pic/default.jpg" class="rounded-circle teacher-img-detail-page">
+                    </div>
+                    <div class="col-12 col-md-6 teacher-desc-detail-page">
+                        <h3>Khan Zaki Ur Rahman</h3>
+                        <h5>Software Engg</h5>
+                        <h6>School of Engg</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    
+</div>
+{% endblock content %}

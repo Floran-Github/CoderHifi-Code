@@ -39,3 +39,14 @@ class Profile(models.Model):
             output_size = (300,300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class teacher_profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    university_picture = models.ImageField(upload_to='university_pic',default='university.png')
+    university_name = models.CharField(max_length = 100)
+    position = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return f'{self.user.username} - Teacher Profile'
+
