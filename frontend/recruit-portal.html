@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>Floran </title>
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <!-- Add the slick-theme.css if you want default styling -->
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <script src="js/index.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/font-awesome.min.css">
+
+      <link id="theme" rel="stylesheet" href="css/boy-theme.css">
+      <link rel="stylesheet" href="css/dashboard.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/css/OverlayScrollbars.min.css" integrity="sha512-jN4O0AUkRmE6Jwc8la2I5iBmS+tCDcfUd1eq8nrZIBnDKTmCp5YxxNN1/aetnAH32qT+dDbk1aGhhoaw5cJNlw==" crossorigin="anonymous" />
+
+  <!-- <link rel="stylesheet"
+    href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css" integrity="sha512-PT0RvABaDhDQugEbpNMwgYBCnGCiTZMh9yOzUsJHDgl/dMhD9yjHAwoumnUk3JydV3QTcIkNDuN40CJxik5+WQ==" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" href="{% static 'plugins/Datatables/datatables.min.css' %}" /> -->
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css" integrity="sha512-rVZC4rf0Piwtw/LsgwXxKXzWq3L0P6atiQKBNuXYRbg2FoRbSTIY0k2DxuJcs7dk4e/ShtMzglHKBOJxW8EQyQ==" crossorigin="anonymous" />
+
+  <!-- <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}"> -->
+  <!-- Google Font: Source Sans Pro -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+    rel="stylesheet">
+    <!-- <link href="{% static 'css/mainpage.css' %}" rel="stylesheet"> -->
+    <!-- icon -->
+    <!-- <link rel="icon" href="{% static 'pic/floran-logo.png' %}" type="image/x-icon" /> -->
+
+    
+  <style>
+      
+    a:link{
+        text-decoration: none;
+        text-align: center;
+        color: inherit;
+    }
+    a:hover{
+            color:green;
+    }
+    a:visited {
+          color:#1a1a1d;
+        }
+  
+    </style>
+    
+</head>
+
+<body
+  class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+              class="fas fa-bars"></i></a>
+        </li>
+        
+      </ul>
+
+
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="pic/default.jpg" class="rounded-circle profile-img">
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="profile_page.html">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Sign Out</a></li>
+            </ul>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true"
+            href="#" role="button"><i class="fas fa-th-large"></i></a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="{% url 'homepage' %}" class="brand-link"><img class="logo-img" src="pic/coderHi logo 5.png"> CoderHi</a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column"data-widget="treeview" role="menu" data-accordion="false">
+                
+                <li class="nav-item has-treeview">
+                  
+                    <li class="nav-item">
+                      <a href="{% url 'create' %}" class="nav-link"> 
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <p>
+                        Dashboard
+                        </p>
+                      </a>
+                    </li>
+
+                   
+                    <li class="nav-item">
+                      <a href="{% url 'create-teacher' %}" class="nav-link"> 
+                        <i class="nav-icon fas fa-bars"></i>
+                        <p>
+                        All Events
+                        </p>
+                      </a>
+                    </li>
+
+                    
+                    <li class="nav-item">
+                      <a href="{% url 'staff-list' %}" class="nav-link">
+                        <i class="nav-icon fas fa-plus"></i>
+                        <p>
+                        Create New Job
+                        </p>
+                      </a>
+                    </li>
+
+                <ul class="nav nav-treeview">
+                        
+                </ul>
+                </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-1">
+            <div class="col-sm-8">
+                <br>
+              <h1>Welcome Zaki</h1>
+            </div>
+            <div class="col-sm-4">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"></li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <!-- {% block fullcard %} -->
+              <div class="card">
+                  
+                <!-- {% block content-header %} -->
+                <!-- {% endblock content-header %} -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-3 number_of_event">
+                      <!-- {% block content %} -->
+                      <!-- {% endblock content %} -->
+                        <h1>
+                              Number of Jobs Created<br>
+                              4
+                        </h1>
+                        
+                        <div class="event-button-sec">
+                            <!-- <input class="event-button" type="button" value="Create Job"> -->
+                          </div><br><br><br>
+                          <button type="button" class="btn btn-dark">Create New job</button>
+                    
+                    </div>
+                    <div class="col-md-3 dashboard-event-sec" style="color: black;">
+                      <!-- {% block content %} -->
+                      <!-- {% endblock content %} -->
+                        <h1>Python Developer<br></h1><br>
+                        <hr>
+                        <h6>Number of Applications :- 12</h6>
+                        <h6>Last day of registration:- 12/12/2222</h6>
+                        <button type="button" class="btn btn-dark">Get list of applicants</button>
+                    
+                    </div>
+                    <div class="col-md-3 dashboard-event-sec" style="color: black;">
+                      <!-- {% block content %} -->
+                      <!-- {% endblock content %} -->
+                        <h1>Django Developer</h1>
+                        <hr>
+                        <h6>Number of Applications :- 23</h6>
+                        <h6>Last day of registration:- 12/12/2222</h6>
+                        <button type="button" class="btn btn-dark">Get list of applicants</button>
+                    
+                    </div>
+                    
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+
+              </div>
+              <!-- {% endblock fullcard %} -->
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <div class="row">
+            <canvas id="myChart" class="chart" width="200" height="50"></canvas><br>
+          </div>
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- REQUIRED SCRIPTS -->
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <!-- Bootstrap -->
+  <!-- <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous"></script>
+
+  <!-- overlayScrollbars -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/js/jquery.overlayScrollbars.min.js" integrity="sha512-3Ofi0j25Ar6Hyqk2sdvfuoVCvvN6nE6Dh/eoMc8RQ/bnCvO8wpE+M5KyJz6T08T7pl/x82I/3Y5Amz9n3T9Esw==" crossorigin="anonymous"></script>
+<!--   
+  <script
+    src="{% static 'plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script> -->
+
+  <!-- AdminLTE App -->
+  <!-- <script src="{% static 'dist/js/adminlte.js' %}"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.min.js" integrity="sha512-++c7zGcm18AhH83pOIETVReg0dr1Yn8XTRw+0bWSIWAVCAwz1s2PwnSj4z/OOyKlwSXc4RLg3nnjR22q0dhEyA==" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+  <script>
+  
+      label_data = ['zaki','farhan','saif','zaki','farhan','saif']
+      data_data = [2,3,4,2,8,7]
+      
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: label_data,
+              datasets: [{
+                  label: 'People enrolled ',
+                  data: data_data,
+                  fill: false,
+                  backgroundColor: 'rgb(255, 99, 132)'
+                  ,
+                  borderColor:'rgb(54, 162, 235)'
+                  ,
+                  borderWidth: 3
+              }]
+          },
+          options: {
+              responsive: true,
+              tooltips: {
+              mode: 'label',
+              },
+              hover: {
+              mode: 'nearest',
+              intersect: true
+              },
+              scales: {
+                  // yAxes: [{
+                  //     ticks: {
+                  //         beginAtZero: true
+                  //     }
+                  // }]
+                  yAxes: [{
+                      display: true,
+                      ticks: {
+                          beginAtZero: true
+                      },
+                      scaleLabel: {
+                      display: true,
+                      labelString: 'Value'
+                      }
+                  }]
+              }
+          }
+      });
+      
+      
+     
+  
+      </script>
+  <!-- OPTIONAL SCRIPTS -->
+  <!-- <script src="{% static 'dist/js/demo.js' %}"></script> -->
+
+  <!-- {% if messages %}
+  {% for message in messages %}
+  <script type=text/javascript>
+    toastr.options.progressBar = true;
+    toastr.{{ message.tags }}('{{ message }}')
+  </script>
+  {% endfor %}
+  {% endif %} -->
+
+  <!-- <script src="{% static 'plugins/Datatables/datatables.min.js' %}"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous"></script>
+
+
+  <script>
+    (function ($) {
+      $('.clickable-row').css('cursor', 'pointer');
+      $(".clickable-row").click(function () {
+        window.location = $(this).data("href");
+      });
+    })(jQuery)
+
+  </script>
+
+  <!-- {% block morejs %}
+
+  {% endblock morejs %} -->
+
+
+
+</body>
+
+</html>

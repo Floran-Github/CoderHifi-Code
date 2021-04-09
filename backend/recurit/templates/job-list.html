@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .card{
+        max-height: 300px;
+        min-height: 300px;
+        border-radius: 10px;
+        border: solid #1b1b1b 0.4px;
+    }
+    .card-img-top{
+        width: 40%;
+    }
+</style>
+<div class="row">
+    <div class="row">
+        {% if is_company == 1%}
+        <a class="btn btn-light" href="{% url 'job-dash' %}">Dashboard</a>
+        {% endif %}
+    </div>
+    <h1 style="color: #fff;">
+        Recommebd For You Based On you skills
+    </h1>
+    {% for i in jobs %}
+        <div class="col-md-3">
+            <a href="{%url 'job-detail' i.id%}">
+
+                <div class="card">
+                    <img src="{{i.company.recruiter_profile.logo.url}}" class="card-img-top">
+                    <div class="card-body">
+                        <div class="card-title">
+                            {{i.job_title}}
+                        </div>
+                        <div class="card-subtitle mb-2 text-muted">
+                            {{i.company.recruiter_profile.company_name}}<br>
+                            {{i.company.recruiter_profile.city}},{{i.company.recruiter_profile.country}}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor%}
+</div>
+
+{% endblock content %}

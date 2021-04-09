@@ -28,3 +28,7 @@ class TeacherProfile(forms.ModelForm):
         model = teacher_profile
         fields = ['university_picture','university_name','position']
         
+class CompanyProfile(forms.ModelForm):
+    class Meta:
+        model = recruiter_profile
+        fields = ['logo','company_name','address','mobile_number']

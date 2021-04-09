@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 col-md-12 container-style">
+        <div class="blog-sec">
+            <div class="row">
+            <div class="col-md-3 col-12"></div>
+            <div class="col-md-9 col-12">
+                <h1>
+                    ask your Doubt! <i class="fas fa-plus"></i>
+              </h1>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="blog-sec">
+            <!-- blog post user area -->
+            {% for i in blogs %}
+            <a href="{% url 'discuss-det' i.id%}" class="course-link" >
+
+                <div class="row">
+                    <div class="col-1">
+                        <img class="rounded-circle article-img" src="{{i.user.profile.image.url}}">
+                    </div>
+                    <div class="col-11 username">
+                        <h5>{{i.user}}</h5>
+                    </div>
+                </div>
+                <hr>
+                <!-- blog-post -->
+                <div class="row">
+                    <h1 class="blog-text">
+                        {{i.title}}
+                    </h1>
+                </div>
+                    <!-- like comment -->
+            </a> 
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

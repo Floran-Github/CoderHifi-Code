@@ -1,0 +1,65 @@
+{% extends 'job-dashboard.html' %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+
+<div class="col-md-12 event_list">
+   <!-- {{object}} -->
+   
+   <h1>{{object.title}}</h1>
+   <h4>Deadline:- {{object.deadline}}</h4>
+   <h4>Number of user apllied:- {{object.applied_people.all.count}}</h4>
+   
+   <hr>
+    <br>
+   
+    <br>
+    <table class="table table-bordered table-hover" data-page-length='100'>
+        <thead class="thead-light">
+            <tr>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Ranking</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in object.applied_people.all %}
+        
+            <tr class='clickable-row' data-href="{% url 'share-profile' i.id%}">
+                <td style="max-width: 10px;">{{forloop.counter}}</td>
+                <td>{{i.username}}</td>
+                <td>{{i.profile.rating}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        
+        
+    </div>
+    
+    <!-- <form>
+        <label for="product">Product</label>
+        <input type="text" name="product" id="product">
+    </form> -->
+    
+    
+    
+    
+    
+    
+    
+    
+{% endblock content %}
+{% block morejs %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#search_bar").autocomplete({
+            source: '{% url 'event-add-participant' object.id %}',
+        });
+    });
+</script>
+{% endblock morejs %}

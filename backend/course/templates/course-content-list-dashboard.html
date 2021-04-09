@@ -1,0 +1,57 @@
+{% extends 'teacher-dashboard.html' %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <h2>Module</h2>
+        <hr>
+        <h1>{{object.module_name}}</h1>
+        <p>
+            {{object.Description}}
+        </p>                        
+    </div>
+</div>
+<hr>
+
+<div class="row">
+    <div class="col-md-9">
+        <h2><u> Content </u></h2>
+    </div>
+    <div class="col-md-3">
+        <a href="{% url 'course-dashboard-content-create' %}" class="event-list-button">Add New Content</a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+    <table class="table table-bordered" data-page-length='100'>
+        <thead class="thead-light">
+            <tr>
+                <th>S/N</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in content %}
+            <tr class='' data-href="">
+                <td style="max-width: 10px;">{{forloop.counter}}</td>
+                <td>{{i.content_name}}</td>
+                <td>
+                    <a href="{% url 'content-dashboard-update' i.id%}">
+                        <i class="fa fa-edit"></i>
+                    </a> 
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+
+{% endblock content %}

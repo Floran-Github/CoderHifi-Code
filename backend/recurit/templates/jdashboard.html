@@ -1,0 +1,85 @@
+{% extends 'job-dashboard.html' %}
+
+{% block header %}
+Welcome {{user.username}}
+{% endblock header %}
+
+{% block content %}
+
+<div class="col-md-3 number_of_event">
+    <h1>
+          Number of Job Posted<br>
+            {{number}}
+    </h1>
+    <div class="event-button-sec">
+        <a href="{% url 'event-create'%}" class="event-button-dash">Create New</a>
+        <!-- <input class="event-button" type="button" value="Create New"> -->
+      </div>
+
+</div>
+
+{% endblock %}
+
+{% block chart%}
+<div class="row">
+    <canvas id="myChart" class="chart" width="200" height="50"></canvas><br>
+  </div>
+{% endblock chart%}
+{% block morejs %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script>
+
+    label_data = {{ label|safe }}
+    data_data = {{ data|safe }}
+    
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: label_data,
+            datasets: [{
+                label: 'People Applied ',
+                data: data_data,
+                fill: false,
+                backgroundColor: 'rgb(255, 99, 132)'
+                ,
+                borderColor:'rgb(54, 162, 235)'
+                ,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            tooltips: {
+            mode: 'label',
+            },
+            hover: {
+            mode: 'nearest',
+            intersect: true
+            },
+            scales: {
+                // yAxes: [{
+                //     ticks: {
+                //         beginAtZero: true
+                //     }
+                // }]
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                    display: true,
+                    labelString: 'Value'
+                    }
+                }]
+            }
+        }
+    });
+</script>
+{% endblock morejs %}
+
+
+
+

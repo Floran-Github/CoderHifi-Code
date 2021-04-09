@@ -1,0 +1,39 @@
+{% extends 'teacher-dashboard.html' %}
+
+{% block header %}
+All Courses
+{% endblock header %}
+
+{% block content %}
+
+<div class="row">
+    {% for course in teacher_course %}
+    <div class="col-md-12 event_list">
+        <h1>{{course.course_name}}</h1>
+        <p>
+            {{course.course_description|safe|truncatewords:"50"|linebreaks}}
+        </p>
+        <h4>Number of Student enrolled:- {{course.studentEnrolled.all.count}} </h4>
+        <h4>Type Of Course : - {{course.course_type.name}}</h4>
+        <h4>Language : - {{course.language_type.name}}</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="event-button-sec">
+              <a href="{% url 'course-dashboard-update' course.id %}" class="event-list-button">Update</a>
+                <!-- <input class="event-button" type="button" value="Create New"> -->
+              </div>
+          </div>
+          <div class="col-md-6">
+  
+            <div class="event-button-sec">
+              <a href="{% url 'course-dashboard-detail' course.id %}" class="event-list-button">Add New Module</a>
+                <!-- <input class="event-button" type="button" value="Create New"> -->
+              </div>
+          </div>
+        </div>
+    
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

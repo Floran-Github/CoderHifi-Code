@@ -1,0 +1,56 @@
+{% extends 'teacher-dashboard.html' %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 ">
+        <h1>{{object.course_name}}</h1>
+        <p>
+            {{object.course_description|safe|truncatewords:"50"|linebreaks}}
+        </p>
+        <h4>Number of Student enrolled:- {{object.studentEnrolled.all.count}} </h4>
+        <h4>Type Of Course : - {{object.course_type.name}}</h4>
+        <h4>Language : - {{object.language_type.name}}</h4>
+        
+    </div>
+    
+  </div>
+  <div class="row">
+      <div class="col-md-9">
+          <br>
+          <h2>&nbsp;&nbsp;&nbsp; <u>Modules </u></h2>
+      </div>
+      <div class="col-md-3">
+        <a href="{% url 'course-dashboard-module-create' %}" class="event-list-button">Add New Module</a>
+      </div>
+</div>
+<br>
+<div class="row">
+    {% for i in module %}
+    <div class="col-12 col-md-4">
+        <div class="card">
+            <div class="card-body">
+            <div class="card-title"><u><h2>{{i.module_name}}</h2></u></div>
+            
+            <p class="card-text">
+                <br>
+                {{i.Description}}
+            </p>
+            <div class="event-button-sec">
+              <a href="{% url 'module-dashboard-update' i.id %}" class="event-list-button">Update Module</a>
+              <!-- <input class="event-button" type="button" value="Create New"> -->
+            </div>
+            
+            <div class="event-button-sec" style="margin-top: 10px;">
+                <a href="{% url 'course-dashboard-module-detail' i.id %}" class="event-list-button">Add New Content</a>
+                <!-- <input class="event-button" type="button" value="Create New"> -->
+            </div>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock content %}

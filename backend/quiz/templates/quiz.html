@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+
+{% block content %} 
+
+		<h1 id="quiz" style="color: bisque;">Quiz</h1>
+		<br>
+		{%for i in question %}
+		
+		<div class="question" style="color: bisque;">
+			<h5>{{forloop.counter}} &nbsp - &nbsp&nbsp&nbsp {{ i.questions }}:</h5>
+			<ul class="row"> 
+<<<<<<< HEAD
+				{
+					{% for j in i.answer.all %}
+				<div class='col-lg-5'>
+					<input type="radio" name="question-1-answers" id="question-1-answers-A" value="A" />
+					<label for="question-1-answers-A">A) {{ }}</label>
+				</div>
+				{% endfor %}
+=======
+			{% for j in i.answer_set.all %}
+				<div class='col-lg-5' style="color: bisque;">
+					<input type="radio" name="question-1-answers" id="question-1-answers-A" value="A" />
+					<label for="question-1-answers-A">{{forloop.counter}}) &nbsp{{ j.ans}}</label>
+				</div> 
+			{% endfor %} 
+>>>>>>> 1af3f1ed50a87e71504342b41c486354a332434f
+			</ul>
+		</div>
+		<br>
+			{% endfor %} 
+		
+
+		<button id="clear" type="button" class="btn btn-danger">Clear All</button>
+	
+		<button id="submit"  type="button" class="btn btn-success"> Submit </button>
+		
+	</div>
+
+{% endblock content %}

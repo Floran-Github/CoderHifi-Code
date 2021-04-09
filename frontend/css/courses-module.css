@@ -1,0 +1,45 @@
+.second-div-1{
+    background-color: #1a1a1d;
+    color: wheat;
+    padding-left:300px;
+}
+.img{
+    border-radius: 50;
+}
+
+.lower-explore{
+    color: firebrick;
+    text-align:center;
+    padding-bottom: 10px;
+    margin-right: 4%;
+    
+}
+.group{
+    background-color:antiquewhite;
+    height: 110%;
+    border-radius:3%;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding-top: 4%;
+  }
+
+  .date-time-container{
+      padding-left:2%;
+      top:50%;
+  }
+  
+  .lower-text{
+      position: relative;
+      padding-top: 2;
+
+  }
+
+  .lower-division{
+      padding-top: 2%;
+      padding-left: 2%;
+  }

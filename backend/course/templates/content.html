@@ -1,0 +1,124 @@
+{% extends 'base.html '%}
+
+{% block content %}
+<style>
+    #status span.status {
+  display: none;
+  font-weight: bold;
+}
+span.status.complete {
+  color: green;
+}
+span.status.incomplete {
+  color: red;
+}
+#status.complete span.status.complete {
+  display: inline;
+}
+#status.incomplete span.status.incomplete {
+  display: inline;
+}
+</style>
+<div class="row">
+    <div class="col-12 col-md-12 container-style">
+      <div class="blog-sec">
+        <div class="row">
+            <div class="col-12 col-md-8 coursename">
+                <h4>{{object.content_name}}</h4>
+        </div>
+        {% if object.video %}
+        <div class="row">
+            <video id="video" class="blog-video" controls><source src="{{object.video.url}}"></video>
+                <br><br>
+                
+        </div>
+        {% endif %}
+        <div class="row">
+            <h4><u>Description</u></h4>
+        </div>
+        <div class="row">
+            <p>
+                {{object.description}}
+            </p>
+        </div>
+
+    </div>
+    
+    <div class="row">
+        <div class="col-9">
+        </div>
+        <div class="col-3">
+            {% if object.video %}
+            <div id="status" class="incomplete">
+                <span class="status complete">
+                    <a href="{% url 'completed-content' object.id %}" class="btn btn-success">Next Item >    </a>
+                </span>
+                <span class="status incomplete">
+                    <a href="" class="btn btn-danger">Next Item </a>
+                </span>
+                <br />
+                </div>
+                <div>
+                <span id="played">0</span> seconds out of 
+                <span id="duration"></span> seconds. (only updates when the video pauses)
+                </div>
+            {% else %}
+            <a href="{% url 'completed-content' object.id %}" class="btn btn-success">Next Item >    </a>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+    <script>
+        var video = document.getElementById("video");
+
+        var timeStarted = -1;
+        var timePlayed = 0;
+        var duration = 0;
+
+        // If video metadata is laoded get duration
+
+        if(video.readyState > 0)
+        getDuration.call(video);
+        //If metadata not loaded, use event to get it
+        else
+        {
+        video.addEventListener('loadedmetadata', getDuration);
+        }
+        // remember time user started the video
+        function videoStartedPlaying() {
+        timeStarted = new Date().getTime()/1000;
+        }
+
+        function videoStoppedPlaying(event) {
+        // Start time less then zero means stop event was fired vidout start event
+            if(timeStarted>0) {
+                var playedFor = new Date().getTime()/1000 - timeStarted;
+                timeStarted = -1;
+                // add the new number of seconds played
+                timePlayed+=playedFor;
+            }
+            document.getElementById("played").innerHTML = Math.round(timePlayed)+"";
+            // Count as complete only if end of video was reached
+            if(timePlayed>=duration && event.type=="ended") {
+                document.getElementById("status").className="complete";   /// completed 
+            }
+        }
+
+        function getDuration() {
+            duration = video.duration;
+            document.getElementById("duration").appendChild(new Text(Math.round(duration)+""));
+            console.log("Duration: ", duration);
+        }
+
+        video.addEventListener("play", videoStartedPlaying);
+        video.addEventListener("playing", videoStartedPlaying);
+
+        video.addEventListener("ended", videoStoppedPlaying);
+        video.addEventListener("pause", videoStoppedPlaying);
+    </script>
+{% endblock javascript %}

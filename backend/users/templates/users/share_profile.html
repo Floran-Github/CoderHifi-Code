@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+  <div class="col-12 col-md-12 container-style">
+    <div class="blog-sec">
+      <div class="container">
+        <div class="row align-items-start">
+
+          <div class="col-12 col-md-4">
+           
+              <div class="col-12 col-md-4">
+                <div class="profile-username-section row">
+                  
+                  <div class="col-12 col-md-12">
+                    <img class="rounded-circle blog-pict" src="{{ object.profile.image.url }}">
+                  </div>
+                  <!-- <div class="col-3"></div> -->
+                  <div class="col-12">
+                    <div class="username-sec">
+                      <h5>{{ object.username }}</h5>
+                      <h5>{{ object.email }}</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-8">
+            <div class="completed-course row">
+              <h3>Completed Course</h3>
+              <hr>
+              {% for i in completed %}
+            <div class="col-12 col-md-4">
+              <div class="completed-course-section">
+                <img src="{{ i.thumbnail_image.url }}">
+                <h4>{{i.course_name}}</h4>
+              </div>
+            </div>  
+            {% endfor %}
+              
+
+            </div>
+            <div class="enrolled-course row">
+              <h3>Enrolled Course</h3>
+              <hr>
+              {% for i in enrolled %}
+              <div class="col-12 col-md-4">
+                <div class="completed-course-section">
+                  <img src="{{ i.thumbnail_image.url }}">
+                  <h4>{{i.course_name}}</h4>
+                </div>
+              </div>
+            {% endfor %}
+              
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

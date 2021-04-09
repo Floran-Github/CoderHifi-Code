@@ -1,0 +1,38 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<div class="row">
+  <form action="" method="get">
+    <div class="row">
+      <div class="col-lg-7 col-sm-12">{{ filter.form.as_p }}</div>
+      <div class="col-lg-4 col-sm-12">
+        <button class="btn btn-primary" type="submit">
+          <i class="fas fa-search"></i> Search
+        </button>
+        <br />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row">
+
+  {% for i in filter.qs %}
+
+  <div class="col-sm-3">
+    <div class="sidebar">
+      <div class="ex1">
+        <h3>{{ i.title }}</h3>
+
+        <h5>{{ i.description }}</h5>
+        <br/>
+        <div class="event-button-sec">
+          <a class="event-button" type="button" href="{% url 'quiz_level' i.id %}">Enroll</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% endblock content %}

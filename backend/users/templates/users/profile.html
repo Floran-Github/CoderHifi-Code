@@ -44,56 +44,69 @@
           </div>
 
           <div class="col-12 col-sm-12 col-md-8">
+            <div class="row">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Share the profile
+              </button>
+            </div>
             <div class="completed-course row">
               <h3>Completed Course</h3>
               <hr>
+              {% for i in completed %}
             <div class="col-12 col-md-4">
               <div class="completed-course-section">
-                <img src="pic/course/course-3.jpeg">
-                <h4>Course Name</h4>
+                <img src="{{ i.thumbnail_image.url }}">
+                <h4>{{i.course_name}}</h4>
               </div>
             </div>  
-            <div class="col-12 col-md-4">
-              <div class="completed-course-section">
-                <img src="pic/course/course-3.jpeg">
-                <h4>Course Name</h4>
-              </div>
-            </div>  
-            <div class="col-12 col-md-4">
-              <div class="completed-course-section">
-                <img src="pic/course/course-3.jpeg">
-                <h4>Course Name</h4>
-              </div>
-            </div>  
+            {% endfor %}
               
 
             </div>
             <div class="enrolled-course row">
               <h3>Enrolled Course</h3>
               <hr>
-            <div class="col-12 col-md-4">
-              <div class="completed-course-section">
-                <img src="pic/course/course-3.jpeg">
-                <h4>Course Name</h4>
+              {% for i in enrolled %}
+              <div class="col-12 col-md-4">
+                <div class="completed-course-section">
+                  <img src="{{ i.thumbnail_image.url }}">
+                  <h4>{{i.course_name}}</h4>
+                </div>
               </div>
-            </div>  
-            <div class="col-12 col-md-4">
-              <div class="completed-course-section">
-                <img src="pic/course/course-3.jpeg">
-                <h4>Course Name</h4>
-              </div>
-            </div>  
-            <div class="col-12 col-md-4">
-              <div class="completed-course-section">
-                <img src="pic/course/course-3.jpeg">
-                <h4>Course Name</h4>
-              </div>
-            </div>  
+            {% endfor %}
               
 
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-9">
+            <input class="form-control" type="text" value="http://127.0.0.1:8000/profile/{{user.id}}" id="myInput">
+          </div>
+          <div class="col-3">
+            <button class="btn btn-secondary" onclick="myFunction()"><i class="bi bi-clipboard"></i></button>
+          </div>
+        </div>
+
+        <!-- The button used to copy the text -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -107,8 +120,24 @@
 
 
 
-
-
-
-
 {% endblock content %}
+{% block javascript%}
+<script>
+  function myFunction() {
+  /* Get the text field */
+  var copyText = document.getElementById("myInput");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+
+
+{% endblock javascript%}

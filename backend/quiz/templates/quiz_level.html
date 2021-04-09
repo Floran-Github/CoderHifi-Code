@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+
+{% block content %} 
+
+<div class="row"></div>
+<div class="row">
+    {%for i in object%}
+        <a href="{% url 'quiz' i.id %}" class="aa">
+            <div class="col-sm-12 panel panel-default blog-sec">
+
+               <div class="panel panel-default">
+                <div class="panel-body row">
+                    <div class="col-8">
+                        <h2>{{i.title}}</h2>
+                    </div>
+                        <div class="col-4">
+                            <h2>
+                                Level :{{i.level}}
+                            </h2>
+                        </div>
+                    </div>
+            </div>
+
+            </div>
+        </a>
+           {% endfor %}
+        </div>
+
+{% endblock content %}

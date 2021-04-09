@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+    <div class="col-12 col-md-12 container-style">
+        <!-- main-section -->
+        <div class="blog-sec">
+            <!-- uper area area -->
+            <div class="row">
+            <div class="col-12 col-md-12 coursename">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>{{object.job_title}}</h4>
+                        <h6>{{object.company.recruiter_profile.company_name}}</h6>
+                        <br>
+                        <h6>posted on - {{object.posted_on}}</h6>
+                        <h6>{{object.applied_people.count}} Applied</h6>
+                        {% if user not in object.applied_people.all %}
+                        <a href="{% url 'job-apply' object.id%}" class="btn btn-primary">Apply </a>
+                        {%else %}
+                        <a href="{% url 'job-apply' object.id%}" class="btn btn-warning">WithDraw </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <img class="rounded-circle blog-pict" src="{{object.company.recruiter_profile.logo.url}}">
+                    </div>
+                </div>
+                <hr>
+              <div class="about-course">
+                <h5>Description</h5>
+                <p style="white-space: pre-line;">
+                    {{object.job_description}}
+                </p>
+                <h5>Role and Responsibilities</h5>
+                <p style="white-space: pre-line;">
+                    {{object.roles_And_responsibilities}}
+                </p>
+                <h5>Skills required</h5>
+                <ul>
+                    {% for i in object.skills.all %}
+                        <li>
+                            {{i}}
+                        </li>
+                    {% endfor%}
+                </ul>
+                <h5>No. of positions</h5>
+                <p>{{object.no_of_position}}</p>
+                <h5>Application Deadline</h5>
+                <p>
+                    {{object.deadline}}
+                </p>
+                <div class="row">
+                    <div class="col-6">
+                        <h5>Seniority level</h5>
+                        <p>
+                            {{object.seniority_level}}
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <h5>Employment Type</h5>
+                        <p>
+                            {{object.employment_type}}
+                        </p>
+                    </div>
+                </div>
+                <h5>Salary</h5>
+                {% if object.salary%}
+                <p>{{object.salary}}</p>
+                {% else %}
+                Pay range unavailbale<br>Salary information is not available at the moment.
+                {% endif %}
+            </div>
+            <!-- {{object.module.all}} -->
+            </div>
+            
+            <hr>
+            <!-- syallbus-area -->
+            </div>
+        </div>
+          <div class="col-12">
+              <div class="row">
+                  <div class="col-12 col-md-4">
+                      <img src="{{object.teacherId.profile.image.url}}" class="rounded-circle teacher-img-detail-page">
+                    </div>
+                    <div class="col-12 col-md-6 teacher-desc-detail-page">
+                        <h3>{{object.teacherId}}</h3>
+                        <h5>{{object.teacherId.teacher_profile.position}}</h5>
+                        <h6>{{object.teacherId.teacher_profile.university_name}}</h6>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -12,19 +12,36 @@
                 <h4>{{object.course_name}}</h4>
                 <div class="row">
                     <div class="col-12 col-md-3">
+                        {% if rating == 0%}
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star "></span>
+                        {% endif %}
+                        {% if rating >= 1%}
                         <span class="fa fa-star checked"></span>
+                        {% endif %}
+                        {% if rating >= 2%}
                         <span class="fa fa-star checked"></span>
+                        {% endif %}
+                        {% if rating >= 3%}
                         <span class="fa fa-star checked"></span> 
+                        {% endif %}
+                        {% if rating >= 4%}
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>   
-                        4.3
+                        {% endif %}
+                        {% if rating >= 5%}
+                        <span class="fa fa-star checked"></span> &nbsp;&nbsp;
+                        {% endif %} 
+                        {{rating}}
                     </div>
-                    <div class="col-12 col-md-3"> 914 ratings</div>
+                    <div class="col-12 col-md-3"> {{review.count}} ratings</div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-3 ">
-                        <a class="btn enroll-button" href="#">Enroll Now</a>
+                        <a class="btn enroll-button" href="{% url 'enroll' object.id %}">Enroll Now</a>
                     </div>
                     <div class="col-6">
                         <h4>${{object.fees}}</h4>
@@ -36,11 +53,11 @@
                     {{object.course_description}}
                 </p>
             </div>
-            {{object.module.all}}
+            <!-- {{object.module.all}} -->
             </div>
             <div class="col-12 col-md-4">
               offered by<br>
-            <img class="teacher-logo" src="pic/course-detail/teacher-logo.png">
+            <img class="teacher-logo" src="{{object.teacherId.teacher_profile.university_picture.url}}">
             
             <ul class="course-short-desc">
                 <li>
@@ -128,15 +145,33 @@
     <div class="review-upper-area row">
         
         <div class="col-1">
-            <h1>4.3</h1>
+            <h1>{{rating}}</h1>
         </div>
         <div class="review-star col-12 col-md-3">
+            {% if rating == 0%}
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star "></span>
+            {% endif %}
+            {% if rating >= 1%}
             <span class="fa fa-star checked"></span>
+            {% endif %}
+            {% if rating >= 2%}
             <span class="fa fa-star checked"></span>
+            {% endif %}
+            {% if rating >= 3%}
             <span class="fa fa-star checked"></span> 
+            {% endif %}
+            {% if rating >= 4%}
             <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span> &nbsp;&nbsp;
-            174 rating 
+            {% endif %}
+            {% if rating >= 5%}
+            <span class="fa fa-star checked"></span> &nbsp;&nbsp;
+            {% endif %}
+            
+            {{review.count}} rating 
         </div>
     </div>
     <div class="top-review row">
@@ -145,77 +180,28 @@
         </div>
         <div class="col-12 review">
             <div class="row">
-                
-                <div class="col-12 col-md-6">
-                    <div class="comment row">
-                        <div class="col-2">
-                            <img src="pic/default.jpg" class="rounded-circle comment-img">
-                        </div>
-                        <div class="col-10">
-                            <div class="row">
-                                <h5>username</h5>
-                            </div>
-                            <div class="row">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-12 col-md-6">
-                    <div class="comment row">
-                        <div class="col-2">
-                            <img src="pic/default.jpg" class="rounded-circle comment-img">
-                        </div>
-                        <div class="col-10">
-                            <div class="row">
-                                <h5>username</h5>
-                            </div>
-                            <div class="row">
-                      <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
-                      </p>
-                    </div>
-                  </div>
-                </div>
-            </div>
+                 
+            {% for i in review %}
             <div class="col-12 col-md-6">
                 <div class="comment row">
                     <div class="col-2">
-                    <img src="pic/default.jpg" class="rounded-circle comment-img">
+                    <img src="{{i.user_name.profile.image.url}}" class="rounded-circle comment-img">
                 </div>
                   <div class="col-10">
                     <div class="row">
-                        <h5>username</h5>
+                        <h5>{{i.user_name}}</h5>
                     </div>
                     <div class="row">
                       <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
-                        </p>
+                        {{i.comment}}
+                      </p>
                     </div>
                 </div>
                 </div>
             </div>
-              <div class="col-12 col-md-6">
-                <div class="comment row">
-                    <div class="col-2">
-                    <img src="pic/default.jpg" class="rounded-circle comment-img">
-                </div>
-                  <div class="col-10">
-                      <div class="row">
-                          <h5>username</h5>
-                        </div>
-                        <div class="row">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi accusantium aspernatur id assumenda odio quibusdam officiis perspiciatis deleniti eius repellat tempore fugit nesciunt ex illo laboriosam deserunt aperiam, corrupti accusamus?
-                            </p>
-                        </div>
-                    </div>
-                </div>
-              </div>
+            {% endfor%}
               
+
             </div>
           </div>
           
@@ -223,12 +209,12 @@
           <div class="col-12">
               <div class="row">
                   <div class="col-12 col-md-4">
-                      <img src="pic/default.jpg" class="rounded-circle teacher-img-detail-page">
+                      <img src="{{object.teacherId.profile.image.url}}" class="rounded-circle teacher-img-detail-page">
                     </div>
                     <div class="col-12 col-md-6 teacher-desc-detail-page">
-                        <h3>Khan Zaki Ur Rahman</h3>
-                        <h5>Software Engg</h5>
-                        <h6>School of Engg</h6>
+                        <h3>{{object.teacherId}}</h3>
+                        <h5>{{object.teacherId.teacher_profile.position}}</h5>
+                        <h6>{{object.teacherId.teacher_profile.university_name}}</h6>
                     </div>
                 </div>
             </div>

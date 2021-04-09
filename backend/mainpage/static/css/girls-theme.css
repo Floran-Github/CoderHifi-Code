@@ -1,19 +1,20 @@
 body{
-    background-color: #ff61ea;
+    background-color: #61a0ff;
 }
 section .content a,
 section .content input{
-    background-color: #4f3cfa;
+    background-color: #0D19A3;
 }
 section .content h2{
     color: #fff;
 }
 .navbar{
-    background-color: #b3009b !important;
+    background-color: #0dc987 !important;
 }
 .container-style{
-    background-color: #b3009b !important;  
+    background-color: #F4E4C1 !important;  
 }
 .sidebar{
-    background-color: #6f007e;
+    background-color: #E4C580;
 }
+

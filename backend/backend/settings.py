@@ -25,19 +25,21 @@ SECRET_KEY = '2j)$9x0bfvr8n!0_v5gt45!87mzxi7ey2m2f)qt7e4!2qsjoyg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['68e11d65d1af.ngrok.io','127.0.0.1']
+ALLOWED_HOSTS = ['8b79df89513b.ngrok.io','127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'crispy_forms',
+    'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     
     'mainpage.apps.MainpageConfig',
     'projects.apps.ProjectsConfig',
@@ -45,6 +47,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'event.apps.EventConfig',
     'course.apps.CourseConfig',
+    'quiz.apps.QuizConfig',
+    'recurit.apps.RecuritConfig',
+    'chat.apps.ChatConfig',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +81,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+ASGI_APPLICATION = 'backend.routing.application'
 
-
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 

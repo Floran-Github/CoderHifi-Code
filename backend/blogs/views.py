@@ -4,8 +4,8 @@ from .forms import *
 from django.urls import reverse
 from django.views.generic import ListView,CreateView,DeleteView,DetailView,UpdateView
 from django.http import HttpResponseRedirect, request,HttpResponse,JsonResponse
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -51,7 +51,6 @@ def comment(request):
             comment.save()
 
     return redirect('blog-list')
-
 
 
 class blogtDetailView(LoginRequiredMixin,DetailView):

@@ -50,14 +50,14 @@ body{
     width: 60px;
     height: 25px;
     -webkit-appearance: none;
-    background-color: #f403d4;
+    background-color: #080F5B;
     outline: none;
     border-radius: 50px;
     transition: 0.5s;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
 }
 .theme-change:checked{
-    background-color: #03a9f4;
+    background-color: #1A1A1D;
 }
 
 .theme-change:before{
@@ -330,16 +330,17 @@ color: orange;
 }
 
 .header-box{
-    background-color: #fff;
+    background-color: #FEBE10;
     border-radius: 25px !important;
-    background-color: #fff !important;
+    background-color: F4E4C1 !important;
     padding: 20px 40px;
-    min-height: 200px;
+    min-height: 100px;
     margin-bottom: 10px;
     width: 100%;
     /* text-align: ; */
     background-image: url("../pic/header-bg2.jpg");
     background-size: cover;
+    border-top-width: 50px;
 }
 
 
@@ -401,9 +402,9 @@ color: orange;
 .post-slider .completed-wrapper .post,
 .post-slider .enroll-wrapper .post,
 .post-slider .post-wrapper .post {
-  width: 300px;
+  width: 350px;
   /* height: 330px; */
-  margin: 0px 10px;
+  margin: 10px 10px;
   display: inline-block;
   background: white;
   border-radius: 5px;
@@ -671,3 +672,9 @@ color: orange;
     }
     
 }
+#profile-img{
+    height: 150px;
+    border-radius: 40px;
+    padding: 10px;
+}
+

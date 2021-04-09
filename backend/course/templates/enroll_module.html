@@ -1,0 +1,72 @@
+{% extends 'course-enroll.html' %} 
+
+{% block content %}
+
+<div class="second-div-1">
+    <div class="second-div-2">
+      <div class="second-div-3">
+        <div class="second-div-4" style="padding-top: 10px">
+          <h1>{{object.module_name}}</h1>
+          <div class="second-div-5"></div>
+          <p>
+            {{object.Description|safe|truncatewords:"50"|linebreaks}}
+            <!-- <a class="button devsite-playlist-return-button" hidden="">
+              Go back
+            </a> -->
+          </p>
+          <div class="devsite-playlist-summary">
+            <div></div>
+            <div class="devsite-playlist-summary-details" style="padding-bottom: 10px">
+              <strong>{{module.count}} Content</strong></strong>
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <br />
+    <br />
+  </div>
+
+  <div class="container">
+    <div class="row">
+`   {% for i in module%}
+    <a href="{% url 'enroll-content' i.id%}">
+
+    <div class="col-md-12">
+        <div class="row enroll_content">
+            <div class="col-1">
+                <h2>{{forloop.counter}}</h2>
+            </div>
+            <div class="col-9">
+                <h2>{{i.content_name}}</h2>
+            </div>
+            
+            <div class="col-1">
+                {% if user not in i.studentCompleted.all %} 
+                    <button class="btn btn-warning" ><i class="bi bi-x"></i></button>
+                {% else %}
+                    <!-- <button type="submit" style="color: #e44d3a;"  name="post_id" value="{{ blog.id }}"><i class="fas fa-heart "></i> Like</button><span>{{ blog.bloglike.all.count }}  </span> -->
+                    <button class="btn btn-success" ><i class="bi bi-check2"></i></button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </a>
+      {% endfor %}
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-9">
+        </div>
+        <div class="col-3" >
+            {% if completed == 1 %}
+            <a href="{% url 'completed-module' object.id %}" class="btn btn-success">Next Module ></a>
+            {% endif%}
+        </div>
+    </div>
+  
+  </div>
+{% endblock content %}

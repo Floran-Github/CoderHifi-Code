@@ -1,0 +1,35 @@
+{% extends 'job-dashboard.html' %}
+
+{% block header %}
+Event List
+{% endblock header %}
+
+{% block content %}
+{% for i in jobs %}
+<div class="col-md-12 event_list">
+      <h1>{{i.job_title}}</h1>
+      <p>
+          {{i.job_description}}
+      </p>
+      <h4>Deadline for Submission:- {{i.deadline}}</h4>
+      <h4>Number of user apllied:- {{i.applied_people.all.count}}</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="event-button-sec">
+            <a href="{% url 'job-update' i.id %} " class="event-list-button">Update</a>
+              <!-- <input class="event-button" type="button" value="Create New"> -->
+            </div>
+        </div>
+        <div class="col-md-6">
+
+          <div class="event-button-sec">
+            <a href="{% url 'job-dash-detail' i.id%}" class="event-list-button">View the Apllied Participant</a>
+              <!-- <input class="event-button" type="button" value="Create New"> -->
+            </div>
+        </div>
+      </div>
+  
+  </div>
+
+{% endfor %}
+{% endblock content %}

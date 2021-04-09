@@ -1,0 +1,105 @@
+{% extends 'teacher-dashboard.html' %}
+
+{% block header %}
+Welcome {{user.username}}
+{% endblock header %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-5 number_of_event">
+      
+        <h1>Number of Course Done<br>
+              {{number_of_course}}
+        </h1>
+        <div class="event-button-sec">
+            <input class="event-button" type="button" value="Create New">
+          </div>
+    
+    </div>
+    <div class="col-md-4 number_of_event" style="background-color: #ffd752;">
+      <br>
+        <h1>
+              Number of Student Enrolled<br>
+              {{number_of_student}}
+        </h1>
+       
+    
+    </div>
+</div>
+
+{% for course in recent_course %}
+<div class="col-md-3 dashboard-event-sec">
+ 
+    <h1>{{ course.course_name }}</h1>
+    <hr>
+    <h6>Number of enrollment :- {{ course.studentEnrolled.all.count }}</h6>
+    <h6>Fees :- {{ course.fees }}</h6>
+
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block chart%}
+<div class="row">
+    <canvas id="myChart" class="chart" width="200" height="50"></canvas><br>
+  </div>
+{% endblock chart%}
+{% block morejs %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script>
+
+    label_data = {{ label|safe }}
+    data_data = {{ data|safe }}
+    
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: label_data,
+            datasets: [{
+                label: 'People enrolled ',
+                data: data_data,
+                fill: false,
+                backgroundColor: 'rgb(255, 99, 132)'
+                ,
+                borderColor:'rgb(54, 162, 235)'
+                ,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            tooltips: {
+            mode: 'label',
+            },
+            hover: {
+            mode: 'nearest',
+            intersect: true
+            },
+            scales: {
+                // yAxes: [{
+                //     ticks: {
+                //         beginAtZero: true
+                //     }
+                // }]
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                    display: true,
+                    labelString: 'Value'
+                    }
+                }]
+            }
+        }
+    });
+</script>
+{% endblock morejs %}
+
+
+
+

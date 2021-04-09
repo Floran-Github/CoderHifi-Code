@@ -1,0 +1,90 @@
+{% extends 'course-enroll.html' %} 
+
+{% block content %}
+<div class="second-div-1">
+    <div class="second-div-2">
+      <div class="second-div-3">
+        <div class="second-div-4" style="padding-top: 10px">
+          <h1>{{object.course_name}}</h1>
+          <div class="second-div-5"></div>
+          <p>
+            {{object.course_description|safe|truncatewords:"50"|linebreaks}}
+            <!-- <a class="button devsite-playlist-return-button" hidden="">
+              Go back
+            </a> -->
+          </p>
+          <div class="devsite-playlist-summary">
+            <div></div>
+            <div
+              class="devsite-playlist-summary-details"
+              style="padding-bottom: 10px"
+            >
+              <strong>{{module.count}} Modules</strong></strong>
+            </div>
+            <div>
+              <a type="button" href="{% url 'discuss' %}" style="
+                  background-color: #4e4350;
+                  border: none;
+                  color: white;
+                  text-align: center;
+                  text-decoration: none;
+                  display: inline-block;
+                  font-size: 16px;
+                  margin: 4px 2px;
+                  cursor: pointer; padding: 10px 24px; border-radius:10%; position:realtive; right:20%; top:20%;">Disscussion Panel</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <br />
+    <br />
+  </div>
+
+  <div class="container">
+    <div class="row">
+`   {% for i in module%}
+      <div class="col-md-4">
+        <div class="group">
+          <div class="upper-dvision">
+            <div class="image">
+              <img
+                src="{{i.module_image.url}}"
+                alt="python"
+                class="center"
+              />
+            </div>
+          </div>
+          <div class="lower-division">
+            <div class="lower-text">
+              <h3>
+                {{i.module_name}}
+              </h3>
+            </div>
+            <br />
+            <div class="date-time-container">june 2021</div>
+            <p>
+              {{i.Description|safe|truncatewords:"50"|linebreaks}}
+            </p>
+            <div class="lower-explore">
+              <h3><a href="{% url 'enroll-module' i.id%}">Continue</a></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+
+  <div class="row">
+    <div class="col-5"></div>
+    <div class="col-5">
+      {% if completed == 1 %}
+      <a href="{% url 'completed-course' object.id %}" class="btn btn-success">Complete Course </a>
+      {% endif%}
+    </div>
+  </div>
+  </div>
+{% endblock content %}

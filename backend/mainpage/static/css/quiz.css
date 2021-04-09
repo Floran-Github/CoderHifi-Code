@@ -1,0 +1,30 @@
+.question{
+    color: #1b1b1b;
+    background-color: #fdb210 !important;
+    border-radius: 30px !important;
+    font-weight: 200;
+    font-size:1.4em;
+}
+#quiz{
+    color: rgb(255, 255, 255);
+}
+#main-container{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#clear{
+    
+}
+h5{
+    padding-top: 30px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+ul .options{
+    padding-left: 30px;
+}
+#logo{
+    height: 40px;
+    padding-right: 20;
+}

@@ -19,7 +19,7 @@ def event_dashboard(request):
         data.append(i.userEnrolled.count())
     
     context = {
-        'events' : events[len(events)-2:],
+        'events' : events[len(events):],
         'number_of_event' : events.count(),
         'label':label,
         'data':data,
@@ -73,7 +73,6 @@ def add_participant(request,pk):
 class eventListView(ListView):
     model = event
     template_name = 'event-list.html'
-    context_object_name = 'events'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -88,6 +87,7 @@ class eventListView(ListView):
                 event_enrolled.append(i)
         # context['comment_form'] = commentForm()
         context['enrolled_event'] = event_enrolled
+        context['events'] = b
         return context
 
 class eventCreateView(CreateView):

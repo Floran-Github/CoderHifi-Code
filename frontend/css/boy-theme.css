@@ -1,19 +1,45 @@
 body{
-    background-color: #5e52ff;
+    background-color: #2e2121;
 }
 section .content a,
 section .content input{
-    background-color: #ffe552;
+    background-color: #4e4e50;
 }
 section .content h2{
     color: #face3c;
 }
 .navbar{
-    background-color: #0048b3 !important;
+    background-color: #6F2232 !important;
 }
 .container-style{
-    background-color: #0054b3 !important;  
+    background-color: #950740 !important;  
 }
 .sidebar{
-    background-color: #00327e;
+    background-color: #E3073F;
 }
+
+
+.h2{
+    color: #950740;
+}
+
+.panel-body{
+    text-decoration: black;
+
+    color: black;
+    font-size:20px;
+
+}
+.navbar-brand{
+    margin-top:1%;
+}
+
+a:link{
+    text-decoration: none;
+    color: inherit;
+}
+a:hover(
+    color:green;
+)
+
+

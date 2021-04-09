@@ -1,0 +1,150 @@
+{% extends 'base.html' %} 
+
+{% block content %} 
+
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-4">
+    <input type="text" class="comment-box" placeholder="Enter Course Name" />
+  </div>
+  <div class="col-2">
+    <button class="comment-button">Search</button>
+  </div>
+</div>
+<br /><br />
+<div class="row">
+  <div class="col-12">
+    <div class="header-box">
+      <!-- <img src="pic/header-bg.jpg" alt=""> -->
+      <h3>Welcome Back  {{user.username}}</h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 col-md-12 container-style">
+    <div class="blog-sec">
+    {% if length != 0 %}
+      <div class="post-slider">
+        <h1 class="enroll-title">Enroll Courses</h1>
+        <i class="fas fa-chevron-left prev"></i>
+        <i class="fas fa-chevron-right next"></i>
+
+        <div class="enroll-wrapper">
+
+        
+        {% for course in enrolled_course %}
+        
+
+          <div class="post">
+           
+              <div class="row">
+                <div class="col-12">
+                  <img
+                    src="{{course.thumbnail_image.url}}"
+                    alt=""
+                    class="slider-image"
+                  />
+                </div>
+                <div class="col-12">
+                  <div class="post-info">
+                    <h4>
+                       {{ course.course_name }}
+                    </h4>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <h6 class="main-course-page-teacher-name">{{course.teacherId}}</h6>
+                </div>
+               
+                
+                <div class="col-12 event-button-sec">
+                  <a href="{% url 'enroll-course' course.id %}" class="event-button">Go To Course</a>             
+                </div>
+                <br><br>
+                <div class="col-12">
+                  <h6 class="main-course-page">Course progress</h6>
+                  <div class="row">
+
+                    <div class="col-3"></div>
+                    <div class="col-9">
+                      
+                      {% if user not in course.studentCompleted.all %} 
+                      <button class="evnet-button btn btn-warning" >ompleted <i class="bi bi-x"></i></button>
+                      {% else %}
+                      <!-- <button type="submit" style="color: #e44d3a;"  name="post_id" value="{{ blog.id }}"><i class="fas fa-heart "></i> Like</button><span>{{ blog.bloglike.all.count }}  </span> -->
+                      <button class="btn btn-success" >Completed <i class="bi bi-check2"></i></button>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <br>
+                </div>
+              </div>
+            
+          </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
+    {% endif %}
+
+      <div class="post-slider">
+        <h1 class="slider-title">Trending Course</h1>
+        <i class="fas fa-chevron-left prev"></i>
+        <i class="fas fa-chevron-right next"></i>
+
+        <div class="post-wrapper">
+
+
+        {% for course in trend %}
+
+          <div class="post">
+            <a href="{% url 'course-detail' course.id %}" class="">
+              <div class="row">
+                <div class="col-12">
+                  <img
+                    src="{{course.thumbnail_image.url}}"
+                    alt=""
+                    class="slider-image"
+                  />
+                </div>
+                <div class="col-12">
+                  <div class="post-info">
+                    <h4>
+                      {{ course.course_name }}
+                    </h4>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <h6 class="main-course-page-teacher-name">teacher name</h6>
+                </div>
+                <div class="col-12">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <div class="col-12">
+                  <h1>${{ course.fees }}</h1>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          
+
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row down-style">
+          <div class="col-12 col-md-4"></div>
+          <div class="col-12 col-md-4 explore-more-course-sec">
+            <a class="btn explore-more-course" href="{% url 'course-list' %}">Explore more <i class="fas fa-chevron-down"></i></a>
+          </div>
+        </div>
+
+  {% endblock content %}
+

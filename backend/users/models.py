@@ -1,31 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-
-# Create your models here.
-
-
-# Now to create users profile first we need to create the model for it as below
-# In model we will have to data 1. user 2. image
-# we have onetoonefield with user means that this table is linked to the User that is created on that instance (User id django default table) 
-# and image will have imagefield with the default image  as default.img that you have to define in media folder. Note: don't put the img in profile_pic folder
-# now whenever user is created from apps.py file the signal will be generated that is define in signals.py
-# the models.py will store the information but will not generate it automatically
-# to generate it will be define the commands in signals.py file 
-
-# Path that will be followed
-
-# User created from register page                     then it will goto                            in signals.py we have commands to        the data will be store 
-# using UserRegisterForm                        --->  apps.py where we have ready function     --> create the user profile and then   -->   in models.py
-# (edit of default UserCreationForm in forms.py)       that will generate command for signals.py    save the user profile
-
-
-
+from django.core.validators import RegexValidator
+from recurit.models import language_category
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg',upload_to='profile_pics')
-
+    languages_prefer = models.ManyToManyField(language_category,blank=True,default=None)
+    rating = models.IntegerField(default=0)
     def __str__(self):
         return f'{self.user.username} Profile'  # this is to give the data in profile.html file
 
@@ -50,3 +33,17 @@ class teacher_profile(models.Model):
     def __str__(self):
         return f'{self.user.username} - Teacher Profile'
 
+class recruiter_profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    logo = models.ImageField(default='default.jpg',upload_to='profile_pics',null=True,blank=True)
+    company_name = models.CharField(max_length=100,null=True,blank=True)
+    address = models.TextField(null=True,blank=True)
+    city = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    mobile_num_regex  = RegexValidator(regex="^[0-9]{10,15}$", message="Entered mobile number isn't in a right format!")
+    mobile_number  = models.CharField(validators=[mobile_num_regex], max_length=13, blank=True)
+
+
+    def __str__(self):
+        return f'{self.user} - company profile'
+    
