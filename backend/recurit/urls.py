@@ -4,6 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('',jobList.as_view(),name='job-list'),
+    path('explore/',allJob.as_view(),name='job-explore'),
     path('create/',jobCreate.as_view(),name='job-create'),
     path('detail/<int:pk>',jobDetail.as_view(),name='job-detail'),
     path('update/<int:pk>',jobUpdate.as_view(),name='job-update'),

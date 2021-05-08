@@ -2,15 +2,30 @@
 
 {% block content %} 
 
-<div class="row">
-  <div class="col-3"></div>
-  <div class="col-4">
-    <input type="text" class="comment-box" placeholder="Enter Course Name" />
+<form action="{%url 'search' %}" method="GET">
+    <div class="row">
+    <div class="col-4">
+      <input type="text" name="search_name" class="comment-box" placeholder="Enter Course Name" />
+    </div>
+    <div class="col-3">
+      <select name="type" class="comment-button" >
+        {%for type in types%}
+        <option value="{{type.name}}">{{type.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-3">
+      <select name="category" class="comment-button">
+        {%for category in categorys %}
+        <option value="{{category.name}}">{{category.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-2">
+      <input type="submit" value="Search"  class="comment-button">
+    </div>
   </div>
-  <div class="col-2">
-    <button class="comment-button">Search</button>
-  </div>
-</div>
+  </form>
 <br /><br />
 <div class="row">
   <div class="col-12">
@@ -35,9 +50,26 @@
         {% for course in enrolled_course %}
         
 
-          <div class="post">
-           
-              <div class="row">
+          <div class="post" style="width: 15rem;">
+              <!-- <div class="row"> -->
+                {% if user not in course.studentCompleted.all %} 
+                <div class="card" style="width: 15rem; max-height: 500px;border: 1px solid #fff !important;padding: 10px;border-radius: 25px;">
+                {% else %}
+                <div class="card text-white bg-success" style="width: 16rem; max-height: 500px;border: 1px solid #fff !important; padding: 10px;border-radius: 25px;">
+                {% endif %}
+                  <img class="card-img-top" style="background-color:#fff !important;" src="{{course.thumbnail_image.url}}" alt="Card image cap">
+                  <div class="card-body">
+                    <h3 class="card-title">{{ course.course_name }}</h3>
+                    <h6 class="main-course-page-teacher-name">{{course.teacherId}}</h6>
+                    <p class="card-text">
+                      <div class="col-12 event-button-sec">
+                        <a href="{% url 'enroll-course' course.id %}" class="event-button">Go To Course</a>             
+                      </div>
+                    </p>
+                  </div>
+                </div>
+              <!-- </div> -->
+              <!-- <div class="row">
                 <div class="col-12">
                   <img
                     src="{{course.thumbnail_image.url}}"
@@ -69,16 +101,15 @@
                     <div class="col-9">
                       
                       {% if user not in course.studentCompleted.all %} 
-                      <button class="evnet-button btn btn-warning" >ompleted <i class="bi bi-x"></i></button>
+                      <button class="evnet-button btn btn-warning" >Incompleted <i class="bi bi-x"></i></button>
                       {% else %}
-                      <!-- <button type="submit" style="color: #e44d3a;"  name="post_id" value="{{ blog.id }}"><i class="fas fa-heart "></i> Like</button><span>{{ blog.bloglike.all.count }}  </span> -->
                       <button class="btn btn-success" >Completed <i class="bi bi-check2"></i></button>
                       {% endif %}
                     </div>
                   </div>
                   <br>
                 </div>
-              </div>
+              </div> -->
             
           </div>
 
@@ -140,11 +171,11 @@
     </div>
   </div>
   <div class="row down-style">
-          <div class="col-12 col-md-4"></div>
-          <div class="col-12 col-md-4 explore-more-course-sec">
-            <a class="btn explore-more-course" href="{% url 'course-list' %}">Explore more <i class="fas fa-chevron-down"></i></a>
-          </div>
-        </div>
+    <div class="col-12 col-md-4"></div>
+    <div class="col-12 col-md-4 explore-more-course-sec">
+      <a class="btn explore-more-course" href="{% url 'course-list' %}">Explore more <i class="fas fa-chevron-down"></i></a>
+    </div>
+  </div>
 
   {% endblock content %}
 

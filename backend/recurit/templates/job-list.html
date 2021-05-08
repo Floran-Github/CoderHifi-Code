@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
-    .card{
-        max-height: 300px;
-        min-height: 300px;
-        border-radius: 10px;
-        border: solid #1b1b1b 0.4px;
+    a{
+        color: #000;
+        text-decoration: none;
     }
-    .card-img-top{
-        width: 40%;
+    a:hover{
+        color: #0592d4;
     }
 </style>
 <div class="row">
@@ -20,25 +18,41 @@
     <h1 style="color: #fff;">
         Recommebd For You Based On you skills
     </h1>
-    {% for i in jobs %}
-        <div class="col-md-3">
-            <a href="{%url 'job-detail' i.id%}">
+    <div class="row">
+        <div class="col-sm-12">
 
-                <div class="card">
-                    <img src="{{i.company.recruiter_profile.logo.url}}" class="card-img-top">
-                    <div class="card-body">
-                        <div class="card-title">
-                            {{i.job_title}}
+            {% for job in jobs %}
+                    <a href="{% url 'job-detail' job.id %}">
+                        <div class="row">
+                            <div class="card" style="border-radius: 10px; padding: 10px; margin: 10px 0;">
+                                <div class="card-body">
+                                    <h4 class="card-title">Job Title : {{job.job_title}} </h4>
+                                    <div class="card-subtitle mb-2 text-muted">
+                                        {{job.company.recruiter_profile.company_name}}<br>
+                                        {{job.company.recruiter_profile.city}},{{job.company.recruiter_profile.country}}
+                                    </div>
+                                    <p class="card-text">
+                                        Computer Support Specialists: Computer support specialists/network specialists provide support
+                                        to Information Technology employees within an organisation. They help IT staff analyze,
+                                        troubleshoot and evaluate the computer network problems.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            Number of Applies : {{job.applied_people.count}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-subtitle mb-2 text-muted">
-                            {{i.company.recruiter_profile.company_name}}<br>
-                            {{i.company.recruiter_profile.city}},{{i.company.recruiter_profile.country}}
-                        </div>
-                    </div>
-                </div>
-            </a>
+                    </a>
+            {% endfor%}
         </div>
-    {% endfor%}
+    </div>
 </div>
-
+<div class="row ">
+    <div class="col-12 col-md-4"></div>
+    <div class="col-12 col-md-4 explore-more-course-sec">
+      <a class="btn explore-more-course" href="{% url 'job-explore' %}">Explore more <i class="fas fa-chevron-down"></i></a>
+    </div>
+  </div>
 {% endblock content %}

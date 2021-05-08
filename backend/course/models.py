@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 import os
 from django.urls import reverse
 from django.utils import timezone
+from django.shortcuts import get_object_or_404 
 # Create your models here
 
 
@@ -45,6 +46,7 @@ class course(models.Model):
         return self.course_name
 
     def get_absolute_url(self):
+
         return reverse('course-dashboard-detail', kwargs={'pk': self.pk})
 class module(models.Model):
     course_associate = models.ForeignKey(course,on_delete=models.CASCADE,related_name="module")
@@ -118,12 +120,15 @@ class discussionpanel(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank = True , null = True)
     bloglike = models.ManyToManyField(User, related_name='discuss_posts_like', blank=True, default=None)
-
+    courseId = models.ForeignKey(course,on_delete=models.CASCADE)
     def __str__(self):
         return f'{self.user} - question'
 
     def num_likes(self):
         return self.bloglike.count()
+
+    def get_absolute_url(self):
+        return reverse('discuss')
 
 
 class discussionComment(models.Model):

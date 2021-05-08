@@ -1,16 +1,17 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import *
-from .forms import *
 from django.forms import widgets
 from django.contrib.auth.models import User
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView,DetailView
 from django.http import HttpResponseRedirect,JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
 from django.contrib import messages
-import datetime
 from django.db.models import Q,Count
 from django.contrib.auth.decorators import login_required
+import datetime,re
 from users.models import *
+from chat.models import *
+from .models import *
+from .forms import *
 
 def teacher_dashboard(request):
     teacher_course = course.objects.filter(teacherId = request.user)
@@ -70,6 +71,13 @@ class courseListView(LoginRequiredMixin,ListView):
     template_name='course-list.html'
     context_object_name='courses'
 
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['types'] = Type_category.objects.all()
+        context['categorys'] = language_category.objects.all()
+        return context
+
 
 class MaincourseListView(LoginRequiredMixin,ListView):
     model = course
@@ -94,16 +102,51 @@ class MaincourseListView(LoginRequiredMixin,ListView):
         context['enrolled_course'] = event_enrolled
         context['trend'] = trend_course
         context['length'] = len(event_enrolled)
+        context['types'] = Type_category.objects.all()
+        context['categorys'] = language_category.objects.all()
         return context
+    
+def search(request):
+    if request.method == "GET":
+        search_name = request.GET['search_name']
+        course_type = request.GET['type']
+        course_cat = request.GET['category']
+        words = re.split(r"[^A-Za-z']+",search_name)
+        type_category = get_object_or_404(Type_category,name=course_type)
+        lang_category = get_object_or_404(language_category,name=course_cat)
+        query = Q()
+        if search_name == '':
+            courses = course.objects.filter(language_type=lang_category,course_type=type_category).all()
+        else:
+            for i in words:
+                query |= Q(course_name__icontains=i)
+            
+            courses = course.objects.filter(query,language_type=lang_category,course_type=type_category).all()
         
+        context = {
+            'courses' : courses,
+            'types' : Type_category.objects.all(),
+            'categorys' : language_category.objects.all(),
+        }
+        return render(request,'course-list.html',context=context)
+        pass
 class courseCreateView(LoginRequiredMixin,CreateView):
     model = course
     template_name = 'course-create-dashboard.html'
     fields = ['course_name','thumbnail_image','course_description','course_type','language_type','fees']
 
     def form_valid(self, form):
-        form.instance.teacherId = self.request.user
+        self.object = form.save(commit=False)
+        self.object.teacherId = self.request.user
+        self.object.save()
+        course_pk = get_object_or_404(course,pk=self.object.id)
+        publicchat = PublicChat(course=course_pk)
+        publicchat.save()
+        # form.instance.teacherId = self.request.user
         return super().form_valid(form)
+
+        
+
 
 class moduleCreateView(LoginRequiredMixin,CreateView):
     model = module
@@ -195,6 +238,8 @@ class enrollCourse(LoginRequiredMixin,DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        self.request.session['fxfrd'] = self.object.pk
+        print(self.request.session.get('fxfrd'))
         a = module.objects.filter(course_associate=self.object)
         b = 1
         for i in a:
@@ -203,7 +248,7 @@ class enrollCourse(LoginRequiredMixin,DetailView):
             else:
                 b =0 
         context['module'] = module.objects.filter(course_associate=self.object)
-        context['completed'] = b
+        context['completed'] = Review.objects.filter(course=self.object.pk,user_name=self.request.user).exists()
         return context
 
 
@@ -212,8 +257,13 @@ def Enroll(request,pk):
 
 
     if courseId.studentEnrolled.filter(id=request.user.id).exists():
+        
         return redirect('enroll-course',pk=int(pk))
     else:
+        chat_create = Chat(course = courseId)
+        chat_create.save()
+        chat_create.user_in_chat.add(request.user)
+        chat_create.user_in_chat.add(courseId.teacherId)
         courseId.studentEnrolled.add(request.user)
     
     return redirect('enroll-course',pk=int(pk))
@@ -267,6 +317,38 @@ def completedModule(request,pk):
     
     return  redirect('enroll-course',pk=int(moduleId.course_associate.id))
 
+class review(CreateView):
+    model = Review
+    template_name = 'review.html'
+    fields = ['rating','comment']
+
+    def form_valid(self, form):
+        print('form calid')
+        course_pk = self.request.session.get('fxfrd')
+        print(course_pk)
+        course_foreign =get_object_or_404(course,pk=course_pk)
+        self.object = form.save(commit=False)
+        self.object.course = course_foreign
+        self.object.user_name = self.request.user
+        self.object.save()
+
+        if course_foreign.studentCompleted.filter(id=self.request.user.id).exists():
+            pass
+        else:
+            course_foreign.studentCompleted.add(self.request.user)
+            profile = Profile.objects.get(user=self.request.user)
+
+            for i in course_foreign.language_type.all():
+                if profile.languages_prefer.filter(id=i.id).exists():
+                    pass
+                else:
+                    profile.languages_prefer.add(i)
+        
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('enroll-course',kwargs={'pk':self.request.session.get('fxfrd')})
+
 def completedCourse(request,pk):
     courseid  = get_object_or_404(course,id=pk)
     print(courseid)
@@ -293,22 +375,35 @@ def completedCourse(request,pk):
 class discussionListView(LoginRequiredMixin,ListView):
     model = discussionpanel   
     template_name='discussionpanel-list.html'
-    context_object_name='blogs'
+    # context_object_name='blogs'
     ordering=['-date_posted']
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        course_pk = self.request.session.get('fxfrd')
+        context['discussions'] = discussionpanel.objects.filter(courseId=course_pk)
+        
+        return context
+
 
    
 
-class blogCreateView(LoginRequiredMixin,CreateView):
+class discussionCreateView(LoginRequiredMixin,CreateView):
     model =  discussionpanel
     fields = ['title','description']
     template_name = 'discuss-create.html'
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        course_pk = self.request.session.get('fxfrd')
+        course_foreign = get_object_or_404(course,pk=course_pk)
+        self.object = form.save(commit=False)
+        self.object.courseId = course_foreign
+        self.object.user = self.request.user
+        self.object.save()
         return super().form_valid(form)
 
 
-class blogtDetailView(LoginRequiredMixin,DetailView):
+class discussionDetailView(LoginRequiredMixin,DetailView):
     model = discussionpanel
     template_name = 'discuss-detail.html'
     context_object_name='blog'
@@ -327,7 +422,7 @@ class blogtDetailView(LoginRequiredMixin,DetailView):
         context['comment_form'] = commentForm()
         return context
 
-class blogUpdateView(LoginRequiredMixin,UpdateView):
+class discussionUpdateView(LoginRequiredMixin,UpdateView):
     model = discussionpanel
     template_name  = 'discuss-create.html'
     fields = ['title','description']
@@ -349,7 +444,7 @@ class blogUpdateView(LoginRequiredMixin,UpdateView):
         return HttpResponseRedirect(reverse('blog-illegal-trespass'))
     
 
-class blogDeleteView(LoginRequiredMixin,DeleteView):
+class discussionDeleteView(LoginRequiredMixin,DeleteView):
     model = discussionpanel
     template_name  = 'blogs_confirm_delete.html'
     success_url = '/blog/'

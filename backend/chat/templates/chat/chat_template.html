@@ -1,0 +1,128 @@
+{% extends 'chat_base.html '%}
+{% load static %}
+
+{% block content %}
+
+<div class="form-group col-md-12 chat_window">
+    <div class="top_menu">
+        
+        <div class="title">Floran Voice</div>
+    </div>
+    <ul class="messages">
+      
+    </ul>
+    <div class="bottom_wrapper clearfix">
+        <div class="message_input_wrapper">
+            <input class="message_input" id="chat-message-input" placeholder="Type your message here..." />
+        </div>
+        <!-- <a class="send_message" id="send_message"><h6 class="text">Send</h6></a> -->
+        <button class="send_message" id="chat-message-submit">
+            <div class="icon"></div>
+            <div class="text"><i class="fas fa-paper-plane"></i></div>
+        </button>
+        
+    </div>
+</div>
+<div class="form-group col-md-12 message_template">
+    <li class="message">
+        <!-- <div class="avatar"></div> -->
+        <div>
+          <h5 class="chat-username">
+
+          </h5>
+        </div>
+        <div class="text_wrapper">
+            <div class="text"></div>
+        </div>
+    </li>
+</div>
+{% endblock content %}
+
+
+{% block morejs %}
+<script src="{% static 'js/reconnecting-websocket.js' %}"></script>
+{{ room_name|json_script:"room-name" }} 
+{{ username|json_script:"user-name" }} 
+<script>
+    var roomName = JSON.parse(document.getElementById('room-name').textContent);
+    var username = JSON.parse(document.getElementById('user-name').textContent);
+    var chatSocket = new ReconnectingWebSocket(
+        'ws://' + window.location.host +
+        '/ws/chat/' + roomName + '/');
+
+    chatSocket.onopen = function(e) {
+      fetchMessages();
+    }
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        if (data['command'] === 'messages') {
+          for (let i=0; i<data['messages'].length; i++) {
+            createMessage(data['messages'][i]);
+          }
+        } else if (data['command'] === 'new_message'){
+          createMessage(data['message']);
+        }
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.getElementById('chat-message-submit').onclick = function(e) {
+      console.log('message send try')  
+      var messageInputDom = document.getElementById('chat-message-input');
+        var message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'command': 'new_message',
+            'message': message,
+            'from': username
+        }));
+
+        messageInputDom.value = '';
+    };
+
+    function fetchMessages() {
+      chatSocket.send(JSON.stringify({'command': 'fetch_messages' }));
+    }
+
+    function createMessage(data) {
+      var author = data['author'];
+      var msgListTag = document.createElement('li');
+      var imgTag = document.createElement('img');
+      var pTag = document.createElement('p');
+      var utag = document.createElement('h6');
+      pTag.textContent = data.content;
+      utag.textContent = data.author;
+      imgTag.src = '{{user.profile.image.url}}';
+
+      var $message;
+      $message = $($('.message_template').clone().html());
+    //   $message.addClass(side).find('.text').html(text);
+      
+
+      if (author === username) {
+        msgListTag.className = 'sent';
+        $message.addClass("right").find('.text').html(data.content);
+      } else {
+        msgListTag.className = 'replies';
+        $message.addClass("left").find('.text').html(data.content);
+      }
+      $message.find('.chat-username').html(data.author);
+
+      $message.addClass('appeared')
+      $('.messages').append($message);
+    //   msgListTag.appendChild(imgTag);
+    //   msgListTag.appendChild(utag);
+    //   msgListTag.appendChild(pTag);
+    //   document.querySelector('#chat-log').appendChild(msgListTag);
+    }
+
+</script>
+{% endblock morejs %}

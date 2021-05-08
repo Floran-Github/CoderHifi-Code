@@ -1,90 +1,81 @@
 {% extends 'course-enroll.html' %} 
 
 {% block content %}
-<div class="second-div-1">
-    <div class="second-div-2">
-      <div class="second-div-3">
-        <div class="second-div-4" style="padding-top: 10px">
-          <h1>{{object.course_name}}</h1>
-          <div class="second-div-5"></div>
+
+<header>
+  <div class="row">
+    <div class="col-md-2 col-12">
+    </div>
+    <div class="col-md-8 col-sm-12">
+
+      <div class="row">
+        <div class="col-12">
+          <h1>
+            {{object.course_name}}
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
           <p>
             {{object.course_description|safe|truncatewords:"50"|linebreaks}}
-            <!-- <a class="button devsite-playlist-return-button" hidden="">
-              Go back
-            </a> -->
           </p>
-          <div class="devsite-playlist-summary">
-            <div></div>
-            <div
-              class="devsite-playlist-summary-details"
-              style="padding-bottom: 10px"
-            >
-              <strong>{{module.count}} Modules</strong></strong>
-            </div>
-            <div>
-              <a type="button" href="{% url 'discuss' %}" style="
-                  background-color: #4e4350;
-                  border: none;
-                  color: white;
-                  text-align: center;
-                  text-decoration: none;
-                  display: inline-block;
-                  font-size: 16px;
-                  margin: 4px 2px;
-                  cursor: pointer; padding: 10px 24px; border-radius:10%; position:realtive; right:20%; top:20%;">Disscussion Panel</a>
-            </div>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h6>
+          <strong>{{module.count}} Modules</strong></strong>
+        </h6>
+      </div>
+      <div class="row">
+        <div class="col-md-9 col-12"></div>
+        <div class="col-3">
+          <a class="btn btn-light" href="{% url 'discuss' %}" > <i class="bi bi-app-indicator"></i> Disscussion Panel</a>
         </div>
       </div>
     </div>
   </div>
-  <div>
-    <br />
-    <br />
-  </div>
+</header>
 
-  <div class="container">
+<br /><br />
+<div class="container">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-8">
+        {% if not completed %}
+        <a href="{% url 'review' %}" class="btn btn-warning">Give the review to complete the course </a>
+        {% endif%}
+        </div>
+      </div>
+      <br><br>
     <div class="row">
 `   {% for i in module%}
       <div class="col-md-4">
-        <div class="group">
-          <div class="upper-dvision">
-            <div class="image">
-              <img
-                src="{{i.module_image.url}}"
-                alt="python"
-                class="center"
-              />
-            </div>
-          </div>
-          <div class="lower-division">
-            <div class="lower-text">
-              <h3>
-                {{i.module_name}}
-              </h3>
-            </div>
-            <br />
-            <div class="date-time-container">june 2021</div>
-            <p>
+        {% if user in i.studentCompleted.all %}
+        <style>
+          .completed{
+            color:#fff !important;
+          }
+        </style>
+          <div class="card text-white bg-success" style="border-radius: 25px; padding: 10px; ">
+        {% else %}
+          <div class="card" style="border-radius: 25px; padding: 10px; ">
+        {% endif %}
+          <img class="card-img-top" style="background-color:#fff !important;" src="{{i.module_image.url}}" alt="Card image cap">
+          <div class="card-body">
+            <h3 class="card-title">{{i.module_name}}</h3>
               {{i.Description|safe|truncatewords:"50"|linebreaks}}
-            </p>
+            <p class="card-text">
             <div class="lower-explore">
-              <h3><a href="{% url 'enroll-module' i.id%}">Continue</a></h3>
+              <h3><a class="completed" href="{% url 'enroll-module' i.id%}">Continue</a></h3>
             </div>
+            </p>
           </div>
         </div>
       </div>
+      <br><br><br><br><br><br>
       {% endfor %}
   </div>
-
-  <div class="row">
-    <div class="col-5"></div>
-    <div class="col-5">
-      {% if completed == 1 %}
-      <a href="{% url 'completed-course' object.id %}" class="btn btn-success">Complete Course </a>
-      {% endif%}
-    </div>
-  </div>
+  
   </div>
 {% endblock content %}

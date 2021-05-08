@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'job-dashboard.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="row">
-    <div class="col-12 col-md-12 container-style">
+    <div class="col-12 col-md-12">
       <div class="blog-sec">
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}

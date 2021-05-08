@@ -82,5 +82,11 @@ class Chat(models.Model):
     def __str__(self):
         return f'{self.code_for_chat} - chat'
 
+class PublicChat(models.Model):
+    course = models.ForeignKey(course,on_delete=models.CASCADE)
+    messages = models.ManyToManyField(Message,blank=True)
+    code_for_chat = models.CharField(max_length=10,default=generate,unique=True)
 
+    def __str__(self):
+        return f'Public {self.code_for_chat} - chat'
 

@@ -59,8 +59,8 @@ span.status.incomplete {
                 <br />
                 </div>
                 <div>
-                <span id="played">0</span> seconds out of 
-                <span id="duration"></span> seconds. (only updates when the video pauses)
+                <span id="played" style="display: none;">0</span> 
+                <span id="duration" style="display: none;"></span> 
                 </div>
             {% else %}
             <a href="{% url 'completed-content' object.id %}" class="btn btn-success">Next Item >    </a>

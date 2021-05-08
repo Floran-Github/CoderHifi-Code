@@ -8,7 +8,7 @@
 <div class="col-md-12 event_list">
    <!-- {{object}} -->
    
-   <h1>{{object.title}}</h1>
+   <h1>{{object.job_title}}</h1>
    <h4>Deadline:- {{object.deadline}}</h4>
    <h4>Number of user apllied:- {{object.applied_people.all.count}}</h4>
    
@@ -16,6 +16,7 @@
     <br>
    
     <br>
+    <h2>Verified People</h2>
     <table class="table table-bordered table-hover" data-page-length='100'>
         <thead class="thead-light">
             <tr>
@@ -25,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for i in object.applied_people.all %}
+            {% for i in verified %}
         
             <tr class='clickable-row' data-href="{% url 'share-profile' i.id%}">
                 <td style="max-width: 10px;">{{forloop.counter}}</td>
@@ -33,6 +34,38 @@
                 <td>{{i.profile.rating}}</td>
             </tr>
             {% endfor %}
+            </tbody>
+        </table>
+    <br>
+    <h2>UnVerified People</h2>
+    <table class="table table-bordered table-hover" data-page-length='100'>
+        <thead class="thead-light">
+            <tr>
+                <th>S/N</th>
+                <th>Name</th>
+                <th>Ranking</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if unverified %}
+                {% for i in unverified %}
+            
+                <tr class='clickable-row' data-href="{% url 'share-profile' i.id%}">
+                    <td style="max-width: 10px;">{{forloop.counter}}</td>
+                    <td>{{i.username}}</td>
+                    <td>{{i.profile.rating}}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr class='clickable-row' data-href="">
+                    <td></td>
+                    <td>
+                        <i>No data</i>
+                    </td>
+                    <td></td>
+               
+                </tr>
+            {% endif %}
             </tbody>
         </table>
         
@@ -55,11 +88,5 @@
 {% block morejs %}
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-    $(function () {
-        $("#search_bar").autocomplete({
-            source: '{% url 'event-add-participant' object.id %}',
-        });
-    });
-</script>
+
 {% endblock morejs %}
