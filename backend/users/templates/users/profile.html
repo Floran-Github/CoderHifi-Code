@@ -80,6 +80,11 @@
           </div>
         </div>
       </div>
+        {% if not request.user.groups.all %}
+            <div class="row" style="margin-top: 10px; color:#fff !important;">
+              <a href="{% url 'teacher-register' %}" class="btn btn-warning">Upgrade to Teacher Profile</a>
+            </div>
+        {% endif %}
     </div>
   </div>
 </div>

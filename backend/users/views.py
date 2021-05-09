@@ -54,6 +54,7 @@ def register(request):
 
     return render(request, 'users/register.html', {'form' : form})
 
+
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -99,13 +100,14 @@ def update_to_teacher(request):
                 user = User.objects.get(id=request.user.id)
                 user.is_staff =True
                 user.save()
-                print(user)
+                
+                return redirect('course-dashboard')
         else:
             form = TeacherProfile()
 
         return render(request, 'users/teacher_register.html', {'form' : form})     
     else:
-        pass
+        return render(request,'users/congratulation.html')
 
 
 class shareProfile(LoginRequiredMixin,DetailView):

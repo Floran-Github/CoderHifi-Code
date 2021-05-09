@@ -1,12 +1,17 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import *
 from .forms import *
+from django.db.models import Count
 from django.urls import reverse
 from django.views.generic import ListView,CreateView,DeleteView,DetailView,UpdateView
 from django.http import HttpResponseRedirect, request,HttpResponse,JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
-
+from event.models import *
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
 # Create your views here.
 
 class blogListView(LoginRequiredMixin,ListView):
@@ -16,7 +21,9 @@ class blogListView(LoginRequiredMixin,ListView):
     ordering=['-date_posted']
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        events = event.objects.all().annotate(num_tags=Count('userEnrolled')).order_by('-num_tags')[:4]
         context['comment_form'] = commentForm()
+        context['events'] = events
         return context
 
 class blogCreateView(LoginRequiredMixin,CreateView):
@@ -30,27 +37,39 @@ class blogCreateView(LoginRequiredMixin,CreateView):
 
 
 @login_required
-def like_main_post(request, pk):
-    post = get_object_or_404(blogs, id=request.POST.get('post_id'))
-
-# unlike and like condition
+def like_main_post(request):
+    print(request.POST.get('blog_id'))
+    post = get_object_or_404(blogs, id=request.POST.get('id',None))
+    is_like = False
     if post.bloglike.filter(id=request.user.id).exists():
         post.bloglike.remove(request.user)
+        is_like = False
     else:
+        is_like = True
         post.bloglike.add(request.user)
     
-    return HttpResponseRedirect(reverse('blog-list')) 
+    context = {
+        'likes_count':post.bloglike.count(),
+        'is_like':is_like,
+    }
+    return HttpResponse(json.dumps(context), content_type='application/json')
 
 @login_required
 def comment(request):
-    prj = get_object_or_404(blogs,id=request.POST.get('comment_id'))
-    if request.method == 'POST':
-        form = commentForm(request.POST,request.FILES)
-        if form.is_valid():
-            comment = blogComment(blog=prj,user=request.user,body=form.cleaned_data['body'])
-            comment.save()
+    prj = get_object_or_404(blogs,id=request.POST.get('post_id'))
+    if request.method == "POST":
+        comment = blogComment(blog=prj,user=request.user,body=request.POST.get('datas'))
+        comment.save()
+        context={
+            'username': request.user.username,
+            'userid':request.user.id,
+            'body': request.POST.get('datas'),
+            'image':request.user.profile.image.url,
+            'date':str(comment.date_added),
+            'number_of_comments': blogComment.objects.filter(blog=prj).all().count(),
+        }
 
-    return redirect('blog-list')
+        return HttpResponse(json.dumps(context), content_type='application/json')
 
 
 class blogtDetailView(LoginRequiredMixin,DetailView):

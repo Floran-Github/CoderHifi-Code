@@ -1,27 +1,11 @@
-.second-div-1{
-    background-color: #1a1a1d;
-    color: wheat;
-    padding-left:200px;
-}
-.img{
-    border-radius: 50;
-}
-
-.lower-explore{
-    color: firebrick;
-    text-align:center;
-    padding-bottom: 10px;
-    margin-right: 4%;
-    
-}
-.group{
-    background-color:antiquewhite;
-    /* height: 110%; */
-    border-radius:3%;
+header{
+    background-color: rgb(36, 156, 156);
+    color: #fff;
+    padding: 10px;
 }
 
 .enroll_content{
-    background-color: antiquewhite;
+    background-color: #fff;
     padding: 10px;
     border-radius: 10px;
     

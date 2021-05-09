@@ -61,22 +61,19 @@
             <div class="row">
               <ul class="like-com">
                 <li>
+                  {% if user not in blog.bloglike.all %}
+                      <button type="submit" id="like" name="blog_id" value="{{ blog.id }}">
+                          <i class="fas fa-heart"></i> Like
+                      </button>   
+                      <span class="number_of_like">{{ blog.bloglike.all.count }} </span>
+                  {% else %}
+                      <button type="submit" id="like" style="color: #e44d3a;"  name="post_id" value="{{ blog.id }}"><i class="fas fa-heart "></i> Like</button><span class="number_of_like">{{ blog.bloglike.all.count }}  </span>
+                  {% endif %}
                     
-                    <form action="{% url 'like_main_post' blog.id %}" method="POST">
-                        {% csrf_token %}
-                            {% if user not in blog.bloglike.all %}
-                                <button type="submit"  name="post_id" value="{{ blog.id }}">
-                                    <i class="fas fa-heart"></i> Like
-                                </button>   
-                                <span>{{ blog.bloglike.all.count }} </span>
-                            {% else %}
-                                <button type="submit" style="color: #e44d3a;"  name="post_id" value="{{ blog.id }}"><i class="fas fa-heart "></i> Like</button><span>{{ blog.bloglike.all.count }}  </span>
-                            {% endif %}
-                    </form>
                   <!-- <button><i class="fas fa-heart"></i> Like</button> -->
                 </li>
                 <li>
-                  <button class="com" id="{{ forloop.counter }}" onclick="showComment(this.id)" ><i class="fas fa-comment-alt"></i> Comment</button>
+                  <button class="com comment_text{{blog.id}}" id="{{ forloop.counter }}" onclick="showComment(this.id)" ><i class="fas fa-comment-alt"></i> Comment {{blog.comment_blog.all.count}}</button>
                 </li>
               </ul>
             </div>
@@ -90,19 +87,19 @@
             <div class="row">
               <!-- comments -->
               <div class="comment-list">
-                <div class="row">
+                <div class="row" id='commentList{{blog.id}}'> 
                   {% for comment in blog.comment_blog.all %}
                   <!-- comment -->
-                  <div class="comment row">
+                  <div class="comment row">  
                     <div class="col-1">
                       <img src="{{ comment.user.profile.image.url}}" class="rounded-circle comment-img">
                     </div>
                     <div class="col-11">
                       <div class="row">
-                        <small class="text-muted">{{ comment.date_posted|date:"F d, Y" }}</small>
+                        <small class="text-muted">{{ comment.date_added|date:"F d, Y" }}</small>
                       </div>
                       <div class="row">
-                        <h5>{{ comment.user }}</h5>
+                        <h5><a class="username_tag" href="{%url 'share-profile' comment.user.id %}">{{ comment.user }}</a></h5>
                       </div>
                       <div class="row">
                         <p>
@@ -112,17 +109,19 @@
                     </div>
                   
                   </div>
+
                   <hr>
                   {% endfor %}
                 </div>
               </div>
             </div>
             <!-- comment box -->
-            <form id="comment_sec" action="{% url 'comments' %}" method="POST">
+            <form id="comment_sec" action="{% url 'comments' %}" method="POST"  data-attr="{{ blog.id }}">
                 <div class="row">
                 <div class="col-10">
-                  {% csrf_token %}
-                  {{ comment_form.body }}
+                  <!-- {% csrf_token %}
+                  {{ comment_form.body }} -->
+                  <input id="id_body" type="text" placeholder="Comment">
                 </div>
                 <div class="col-2">
                   <button class="comment-button" type="submit" name="comment_id" value="{{ blog.id }}">Add</button>
@@ -137,6 +136,135 @@
 
 
     </div>
+    <div class="col-md-2">
+      <div class="sidebar">
+        <div class="ex1">
+          <h3>Top events</h3>
+        </div>
+      </div>
+      <br>
+      {% for event in events %}
+      {% if user not in event.userEnrolled.all %}
+        <div class="sidebar">
+          <div class="ex1">
+            <h3>{{event.title}}</h3>
+            <p>
+              Cost : {{event.cost}} <br>
+              Last Day Of Registration : {{event.last_day_of_registration}} <br>
+            </p>
+            <br>
+            <div class="event-button-sec">
+              <a class="event-button" href="{% url 'event-enroll' event.id%}">Enroll</a>
+            </div>
+          </div>
+        </div>
+        <br>
+      {% endif %}
+      {% endfor%}
+    </div>
 </div>
 
 {% endblock content %}
+{% block javascript %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+  <script>
+    $('#like').click(function(){
+            $.ajax({
+                    type: "POST",
+                    url: "{% url 'blog_like_main_post' %}",
+                    data: {'id': $(this).attr('value'),'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    dataType: "json",
+                    success: function(response) {
+                        console.log("yeahhh")
+                        if(response.is_like){
+                            $('#like').addClass("active");
+                            $('.number_of_like').text(response.likes_count);
+                            }else{
+                            $('#like').removeClass("active");
+                            $('.number_of_like').text(response.likes_count);
+                        }
+                            console.log('Company likes count is now ' + response.likes_count);
+                        },
+                        error: function(rs, e) {
+                            console.log(rs.responseText);
+                        }
+                }); 
+            })
+
+            $('#comment_sec').submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                type:"POST",
+                url: "{% url 'comments' %}",
+                data: {
+                    'post_id':$(e.target).data('attr'),
+                    'datas':$('#id_body').val(),
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                    addComment(response.username,response.userid,response.image,response.body,response.date,$(e.target).data('attr'))
+                    $('#id_body').val('')
+                    $('.comment_text'+$(e.target).data('attr')).text('Comment '+response.number_of_comments)
+                    },
+                error: function(rs, e) {
+                    console.log(rs.responseText);
+                }
+            });
+        })
+
+        function addComment(username,userid,image,body,postDate,id){
+            main = document.getElementById('commentList'+id)
+
+
+            var mainDiv = document.createElement('div');
+            mainDiv.classList.add('comment');
+            mainDiv.classList.add('row');
+            
+            var imgDiv = document.createElement('div');
+            imgDiv.classList.add('col-1')
+            var img = document.createElement('img');
+            img.setAttribute('src',image);
+            img.classList.add('rounded-circle');
+            img.classList.add('comment-img');
+            imgDiv.appendChild(img);
+            
+            var cmdDiv = document.createElement('div');
+            cmdDiv.classList.add('col-11');
+            
+            var dateDiv = document.createElement('div')
+            dateDiv.classList.add('row');
+            var stag = document.createElement('small')
+            stag.classList.add('text-muted')
+            var spanTag = document.createElement('span')
+            let dt = moment(postDate, "YYYY-MM-DD");
+            stag.innerHTML = dt.format('LL')
+            dateDiv.appendChild(stag)
+
+            var userdiv = document.createElement('div')
+            userdiv.classList.add('row')
+            var h5tag = document.createElement('h5')
+            var atag = document.createElement('a');
+            atag.href = '/profile/'+userid
+            atag.innerHTML = username
+            atag.classList.add('username_tag')
+            h5tag.appendChild(atag);
+            userdiv.append(h5tag)
+
+            var bdiv = document.createElement('div')
+            bdiv.classList.add('row')
+            var pTag = document.createElement('p');
+            pTag.innerHTML = body
+            bdiv.appendChild(pTag)
+
+
+            cmdDiv.appendChild(dateDiv)
+            cmdDiv.appendChild(userdiv)
+            cmdDiv.appendChild(bdiv)
+            mainDiv.appendChild(imgDiv)
+            mainDiv.appendChild(cmdDiv)
+            main.appendChild(mainDiv)
+        }
+  </script>
+{% endblock javascript %}

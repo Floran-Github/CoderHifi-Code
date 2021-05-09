@@ -51,3 +51,4 @@ class PublicRoomChatMessageAdmin(admin.ModelAdmin):
 admin.site.register(PublicChatMsg, PublicRoomChatMessageAdmin)
 admin.site.register(Message)
 admin.site.register(Chat)
+admin.site.register(PublicChat)

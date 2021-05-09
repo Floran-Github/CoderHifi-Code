@@ -41,4 +41,4 @@ class blogComment(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
    
     def __str__(self):
-        return f'{self.blog.user} - comment'
+        return f'{self.user} comment on {self.blog.user} blog'

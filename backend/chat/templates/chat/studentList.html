@@ -1,0 +1,43 @@
+{% extends 'chat_base.html '%}
+{% load static %}
+
+{% block content %}
+<div class="form-group col-md-12">
+    <div class="row">
+        <h3>
+            Student Enrolled
+        </h3>
+    </div>
+    <div class="col-12">
+        <div class="table-responsive">
+            <table id="studenttable" class="table table-bordered table-hover" data-page-length='100'>
+                <thead class="thead-light">
+                  <tr>
+                    <th>S/N</th>
+                    <th>Fullname</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+          
+                  {% for student in objects %}
+                    <tr class='clickable-row' data-href="{% url 'teacher-chat' student.id %}">
+                      <td>{{ forloop.counter}}</td>
+                      <td>{{ student.username}}</td>
+                      
+                    </tr>
+                  {% endfor %}
+          
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block morejs %}
+<script>
+  $('#studenttable').DataTable({
+  });
+</script>
+
+{% endblock morejs %}

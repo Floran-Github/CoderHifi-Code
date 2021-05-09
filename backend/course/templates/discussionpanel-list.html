@@ -1,44 +1,46 @@
-{% extends 'base.html' %}
+{% extends 'chat_base.html' %}
 
 {% block content %}
-<div class="row">
-    <div class="col-12 col-md-12 container-style">
-        <div class="blog-sec">
+<div class="form-group col-md-12">
+<div class="col-12 col-md-12 ">
+        <div class="discuss-sec">
             <div class="row">
             <div class="col-md-3 col-12"></div>
             <div class="col-md-9 col-12">
                 <h1>
-                    ask your Doubt! <i class="fas fa-plus"></i>
+                    <a class="discuss-link" href="{% url 'discuss-create' %}">
+                        ask your Doubt! <i class="fas fa-plus"></i>
+                    </a>
               </h1>
             </div>
           </div>
         </div>
         
 
-        <div class="blog-sec">
-            <!-- blog post user area -->
-            {% for i in blogs %}
+        <!-- blog post user area -->
+        {% for i in discussions %}
+        <div class="discuss-sec">
             <a href="{% url 'discuss-det' i.id%}" class="course-link" >
 
                 <div class="row">
                     <div class="col-1">
-                        <img class="rounded-circle article-img" src="{{i.user.profile.image.url}}">
+                        <img class="rounded-circle discuss-img" src="{{i.user.profile.image.url}}">
                     </div>
                     <div class="col-11 username">
-                        <h5>{{i.user}}</h5>
+                        <h5 class="discuss-user">{{i.user}}</h5>
                     </div>
                 </div>
                 <hr>
                 <!-- blog-post -->
                 <div class="row">
-                    <h1 class="blog-text">
+                    <h1 class="discuss-text">
                         {{i.title}}
                     </h1>
                 </div>
                     <!-- like comment -->
             </a> 
-            {% endfor %}
         </div>
+            {% endfor %}
     </div>
 </div>
 {% endblock content %}

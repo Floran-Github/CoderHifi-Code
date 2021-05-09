@@ -1,30 +1,41 @@
 {% extends 'course-enroll.html' %} 
 
 {% block content %}
+<header>
+  <div class="row">
+    <div class="col-md-2 col-12">
+    </div>
+    <div class="col-md-8 col-sm-12">
 
-<div class="second-div-1">
-    <div class="second-div-2">
-      <div class="second-div-3">
-        <div class="second-div-4" style="padding-top: 10px">
-          <h1>{{object.module_name}}</h1>
-          <div class="second-div-5"></div>
+      <div class="row">
+        <div class="col-12">
+          <h1>
+            {{object.module_name}}
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
           <p>
             {{object.Description|safe|truncatewords:"50"|linebreaks}}
-            <!-- <a class="button devsite-playlist-return-button" hidden="">
-              Go back
-            </a> -->
           </p>
-          <div class="devsite-playlist-summary">
-            <div></div>
-            <div class="devsite-playlist-summary-details" style="padding-bottom: 10px">
-              <strong>{{module.count}} Content</strong></strong>
-            </div>
-            <div></div>
-          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h6>
+          <strong>{{module.count}} Content</strong></strong>
+        </h6>
+      </div>
+      <div class="row">
+        <div class="col-md-9 col-12"></div>
+        <div class="col-3">
+          <a class="btn btn-light" href="{% url 'discuss' %}" > <i class="bi bi-app-indicator"></i> Disscussion Panel</a>
         </div>
       </div>
     </div>
   </div>
+</header>
+
   <div>
     <br />
     <br />
@@ -40,7 +51,7 @@
             <div class="col-1">
                 <h2>{{forloop.counter}}</h2>
             </div>
-            <div class="col-9">
+            <div class="col-10">
                 <h2>{{i.content_name}}</h2>
             </div>
             

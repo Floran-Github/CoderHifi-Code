@@ -2,14 +2,30 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="row">
-    <div class="col-10">
-        <input type="text" class="comment-box" placeholder="Enter Course Name">
+<form action="{%url 'search' %}" method="GET">
+    <div class="row">
+    <div class="col-4">
+      <input type="text" name="search_name" class="comment-box" placeholder="Enter Course Name" />
+    </div>
+    <div class="col-3">
+      <select name="type" class="comment-button" >
+        {%for type in types%}
+        <option value="{{type.name}}">{{type.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-3">
+      <select name="category" class="comment-button">
+        {%for category in categorys %}
+        <option value="{{category.name}}">{{category.name}}</option>
+        {% endfor %}
+      </select>
     </div>
     <div class="col-2">
-        <button class="comment-button">Search</button>
+      <input type="submit" value="Search"  class="comment-button">
     </div>
-</div>
+  </div>
+  </form>
 <br><br>
 <div class="row">
     <div class="col-12 col-md-12 container-style">

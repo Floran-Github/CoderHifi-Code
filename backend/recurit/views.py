@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
 from django.contrib import messages
 import datetime
 from users.models import *
-from django.db.models import Q
+from django.db.models import Count, Q
 
 class jobList(LoginRequiredMixin,ListView):
     model = jobPost
@@ -30,7 +30,7 @@ class jobList(LoginRequiredMixin,ListView):
             pass
         else:
             for i in userp.languages_prefer.all():
-                for j in jobPost.objects.filter(skills=i).all():
+                for j in jobPost.objects.filter(skills=i).all().order_by('-id'):
                     b.append(j)
             finalList = set(b)
 
@@ -39,6 +39,20 @@ class jobList(LoginRequiredMixin,ListView):
         context['is_company'] = is_company
         return context
 
+
+class allJob(LoginRequiredMixin,ListView):
+    model = jobPost
+    template_name = 'explore_jobs.html'
+
+    def get_context_data(self,**kwargs):
+        context =  super().get_context_data(**kwargs)
+        context['jobs'] = jobPost.objects.all().order_by('-id')
+        context['tops'] = jobPost.objects.all().annotate(num_tags=Count('applied_people')).order_by('-num_tags')[:2]
+
+        return context
+
+################################################
+###### dashboard
 class jobCreate(LoginRequiredMixin,CreateView):
     model = jobPost
     template_name = 'job-create.html'
@@ -98,8 +112,6 @@ def apply(request,pk):
 
     return redirect('job-detail',pk=pk)
 
-################################################
-###### dashboard
 
 def dash(request):
     user = get_object_or_404(User,id=request.user.id)
@@ -136,5 +148,31 @@ class jobdashlist(LoginRequiredMixin,ListView):
 class viewpeople(LoginRequiredMixin,DetailView):
     model = jobPost
     template_name = 'view-people.html'
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        print(self.object.applied_people.all().count())
+        skill = []
+        verified = []
+        unverified = []
+        applies = self.object.applied_people.all()
+        for i in self.object.skills.all():
+            skill.append(i)
+        
+        for i in applies:
+            count = 0
+            for j in i.profile.languages_prefer.all():
+                if j in skill:
+                    count = 1
+                    verified.append(i)
+                    break
+            if count != 1:
+                unverified.append(i)               
+
+        context['verified'] = verified
+        context['unverified'] = unverified
+        return context
+
+
 
     

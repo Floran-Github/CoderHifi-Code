@@ -5,6 +5,12 @@ from django.views.generic import ListView,CreateView,DeleteView,DetailView,Updat
 from django.http import HttpResponseRedirect, request,HttpResponse,JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
+from event.models import *
+from django.db.models import Count
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
 # Create your views here.
 class projectListView(LoginRequiredMixin,ListView):
     model = projects   
@@ -13,7 +19,9 @@ class projectListView(LoginRequiredMixin,ListView):
     ordering=['-date_posted']
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        events = event.objects.all().annotate(num_tags=Count('userEnrolled')).order_by('-num_tags')[:4]
         context['comment_form'] = commentForm()
+        context['events'] = events
         return context
 
 class projectCreateView(LoginRequiredMixin,CreateView):
@@ -27,27 +35,43 @@ class projectCreateView(LoginRequiredMixin,CreateView):
 
 
 @login_required
-def like_main_post(request, pk):
-    post = get_object_or_404(projects, id=request.POST.get('post_id'))
-
-# unlike and like condition
+def like_main_post(request):
+    post = get_object_or_404(projects, id=request.POST.get('id',None))
+    is_like = False
     if post.like.filter(id=request.user.id).exists():
         post.like.remove(request.user)
+        is_like = False
     else:
+        is_like = True
         post.like.add(request.user)
-    
-    return HttpResponseRedirect(reverse('project-list')) 
+
+    context = {
+        'likes_count':post.like.count(),
+        'is_like':is_like,
+    }
+    return HttpResponse(json.dumps(context), content_type='application/json')
+
 
 @login_required
 def comment(request):
-    prj = get_object_or_404(projects,id=request.POST.get('comment_id'))
+    print("jojo")
+    prj = get_object_or_404(projects, id=request.POST.get('post_id',None))
+    print(request.POST.get('id',None))
     if request.method == 'POST':
-        form = commentForm(request.POST,request.FILES)
-        if form.is_valid():
-            comment = Comment(project=prj,user=request.user,body=form.cleaned_data['body'])
-            comment.save()
+        comment = Comment(project=prj,user=request.user,body=request.POST.get('datas'))
+        comment.save()
 
-    return redirect('project-list')
+    context={
+            'username': request.user.username,
+            'userid':request.user.id,
+            'body': request.POST.get('datas'),
+            'image':request.user.profile.image.url,
+            'date':str(comment.date_added),
+            'number_of_comments': Comment.objects.filter(project=prj).all().count(),
+        }
+
+    return HttpResponse(json.dumps(context), content_type='application/json')
+
 
 
 

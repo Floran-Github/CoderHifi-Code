@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    a{
+        color: #000;
+        text-decoration: none;
+    }
+    a:hover{
+        color: #0592d4;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <h2 class="h2" style="color: #fff;"><b>Job Portal</b></h2>
+            {% for job in jobs %}
+            <a href="{% url 'job-detail' job.id %}">
+                <div class="row">
+                    <div class="card" style="border-radius: 10px; padding: 10px; margin: 10px 0;">
+                        <div class="card-body">
+                            <h4 class="card-title">Job Title : {{job.job_title}} </h4>
+                            <div class="card-subtitle mb-2 text-muted">
+                            {{job.company.recruiter_profile.company_name}}<br>
+                            {{job.company.recruiter_profile.city}},{{job.company.recruiter_profile.country}}
+                        </div>
+                        <p class="card-text">
+                            Computer Support Specialists: Computer support specialists/network specialists provide support
+                            to Information Technology employees within an organisation. They help IT staff analyze,
+                            troubleshoot and evaluate the computer network problems.
+                        </p>
+                        <div class="row">
+                            <div class="col-4">
+                                Number of Applies : {{job.applied_people.count}}
+                            </div>
+                        </div>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+                </div>
+            </a>
+            {% endfor%}
+            <!-- <div class="panel panel-default">
+                <div class="panel-body">Job Title: <a href="#" class="aa"></pre>Python Developer</pre></a></div>
+                <h5></h5>
+                <button type="button" class="btn btn-dark">Apply</button>
+            </div> -->
+            
+        </div>
+        <div class="col-sm-3">
+            <div class="h2" style="color:#fff;display: block;margin-right: auto; margin-left:auto;"><b>Other Jobs</b></div>
+            <!-- Event Sidebar -->
+            <div class="col-md-2">
+                {% for job in tops %}
+                <div class="sidebar">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="">
+                                <h3>{{job.job_title}}</h3>
+                                <p>
+                                    Number of Applies : {{job.applied_people.count}}
+                                </p>
+                                <br>
+                                <div class="event-button-sec">
+                                    <a class="event-button" href="{% url 'job-detail' job.id %}">View</a>
+                                </div>
+                            </div>
+                        </div>
+                
+                        </div>
+                    </div>
+                <br />
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

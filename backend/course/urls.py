@@ -30,13 +30,15 @@ urlpatterns = [
     path('course/module/content/completed/<int:pk>/',completeContent,name='completed-content'),
     path('course/module/completed/<int:pk>/',completedModule,name='completed-module'),
     path('course/completed/<int:pk>/',completedCourse,name='completed-course'),
-    
+    path('course/review/',review.as_view(),name='review'),
     
     path('course/discussoin/',discussionListView.as_view(),name='discuss'),
-    path('course/discussoin/<int:pk>',blogtDetailView.as_view(),name='discuss-det'),
+    path('course/discussoin/create',discussionCreateView.as_view(),name='discuss-create'),
+    path('course/discussoin/<int:pk>',discussionDetailView.as_view(),name='discuss-det'),
     path('course/likes/<int:pk>',like_main_post, name='di-like_main_post'),
     path('course/comment/',comment, name='di-comments'),
 
+    path('search/',search,name="search"),
 
     
 ]
