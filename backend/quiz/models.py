@@ -5,7 +5,6 @@ from django.core.exceptions import ValidationError
 from django.urls import reverse
 import os
 
-# Create your models here.
 class quizcourse(models.Model):
 
     title = models.CharField(max_length=100,unique=True)
@@ -32,15 +31,22 @@ class question(models.Model):
     
     quiz = models.ForeignKey(quizLevels,on_delete=models.CASCADE)
     questions = models.CharField(max_length=100,unique=True)
+    option1 = models.CharField(max_length=100)
+    option2 = models.CharField(max_length=100)
+    option3 = models.CharField(max_length=100)
+    option4 = models.CharField(max_length=100)
+    answer = models.CharField(max_length=100)
 
     def __str__(self):
         return self.questions
 
-class answer(models.Model):
+# class answer(models.Model):
 
-    questionid = models.ForeignKey(question,on_delete=models.CASCADE)
-    ans = models.CharField(max_length=1000,unique=True)
-    is_correct = models.BooleanField(default=False)
+#     questionid = models.ForeignKey(question,on_delete=models.CASCADE)
+#     ans = models.CharField(max_length=1000,unique=True)
+#     is_correct = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.ans
+#     def __str__(self):
+#         return self.ans
+
+

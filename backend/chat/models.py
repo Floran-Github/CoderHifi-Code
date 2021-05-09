@@ -3,7 +3,19 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.urls import reverse
+from course.models import *
 import os 
+import string,random
+
+#Code generation function
+def generate():
+    length = 7
+    while True:
+        code = ''.join(random.choices(string.ascii_uppercase, k=length))
+        if Chat.objects.filter(code_for_chat=code).count() == 0:
+            break
+
+    return code
 # Create your models here.
 class PublicChatRoom(models.Model):
     room_name = models.CharField(max_length=100,unique=True)
@@ -52,7 +64,7 @@ class PublicChatMsg(models.Model):
     def __str__(self):
         return self.content
 
-class message(models.Model):
+class Message(models.Model):
     user = models.ForeignKey(User,related_name='user_message',on_delete=models.CASCADE)
     message = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -60,8 +72,15 @@ class message(models.Model):
     def __str__(self):
         return self.user.username
 
-    def recent_message(self):
-        return message.objects.order_by('-timestamp').all()[:10]
+class Chat(models.Model):
+    user_in_chat = models.ManyToManyField(User,related_name='chats',blank=True)
+    messages = models.ManyToManyField(Message,blank=True)
+    course = models.ForeignKey(course,on_delete=models.CASCADE,null=True)
+    # chat_code = models.CharField(max_length=10, unique=True)
+    code_for_chat = models.CharField(max_length=10,default=generate,unique=True)
+
+    def __str__(self):
+        return f'{self.code_for_chat} - chat'
 
 
 

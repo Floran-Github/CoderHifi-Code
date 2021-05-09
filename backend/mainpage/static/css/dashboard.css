@@ -105,7 +105,7 @@ body{
 .number_of_event{
     background-color: #007bff;
     padding: 10px;
-    color: #f8fafc;
+    /* color: #f8fafc; */
     border-radius: 20px;
     min-height: 150px;
     text-align: center;

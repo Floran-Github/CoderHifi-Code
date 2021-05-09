@@ -4,4 +4,3 @@ from .models import *
 admin.site.register(quizLevels)
 admin.site.register(quizcourse)
 admin.site.register(question)
-admin.site.register(answer)

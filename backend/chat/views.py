@@ -1,66 +1,27 @@
-from django.shortcuts import render
-
+from django.shortcuts import render,get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .models import *
+from django.http import HttpResponseRedirect
 # Create your views here.
-def index(request):
-    return render(request, 'chat/chatindex.html')
 
+@login_required
 def room(request, room_name):
-    return render(request, 'chat/room.html', {
-        'room_name': room_name
+    
+    return render(request, 'chat/chat.html', {
+        'room_name': room_name,
+        'username': request.user.username,
+        'user': request.user,
     })
 
- # def connect(self):
-    #     self.room_name = self.scope['url_route']['kwargs']['room_name']
-    #     self.room_group_name = 'chat_%s' % self.room_name
-    #     async_to_sync(self.channel_layer.group_add)(
-    #         self.room_group_name,
-    #         self.channel_name
-    #     )
-    #     self.accept()
+def get_last_10_messages(chatId):
+    try:
+        chat = get_object_or_404(Chat, code_for_chat=chatId)
+        return chat.messages.order_by('-timestamp').all()[:10]
+    except:
+        return '0'
 
-    # # def connect(self):
-    # #     self.room_name = self.scope['url_route']['kwargs']['room_name']
-    # #     self.room_group_name = 'chat_%s' % self.room_name
-
-    # #     # Join room group
-    # #     async_to_sync(self.channel_layer.group_add)(
-    # #         self.room_group_name,
-    # #         self.channel_name
-    # #     )
-
-    # #     self.accept()
-
-    # def disconnect(self, close_code):
-    #     async_to_sync(self.channel_layer.group_discard)(
-    #         self.room_group_name,
-    #         self.channel_name
-    #     )
-
-    # def receive(self, text_data):
-    #     data = json.loads(text_data)
-    #     print('receive')
-    #     self.commands[data['command']](self, data)
-
-    # def send_msg(self,message):
-
-    #     # Send message to room group
-    #     async_to_sync( self.channel_layer.group_send)(
-    #         self.room_group_name,
-    #         {
-    #             'type': 'chat_message',
-    #             'message': message
-    #         }
-    #     )
-
-    # # Receive message from room group
-    # def chat_message(self, event):
-    #     message = event['message']
-
-    #     # Send message to WebSocket
-    #     async_to_sync( self.send(text_data=json.dumps({
-    #         'message': message
-    #     })))
-    # commands = {
-    #     'fetch_messages': fetch_messages,
-    #     'new_message': new_message
-    # }
+def get_current_chat(chatId):
+    try:
+        return get_object_or_404(Chat, code_for_chat=chatId)
+    except:
+        return '0'

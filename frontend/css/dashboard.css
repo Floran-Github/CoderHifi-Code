@@ -22,7 +22,7 @@ body{
 }
 .nav-link,
 .navbar-brand{
-    color: #fff !important;
+    /* color: #fff !important; */
     text-decoration: none;
 }
 .navbar-toggler{
@@ -70,12 +70,12 @@ body{
 .brand-link{
     border-radius: 25px !important;
     padding: 10px !important;
-    background-color: #00327e !important;
+    /* background-color: #00327e !important; */
     max-height: 50px;
 }
 .main-sidebar{
     
-    background-color: #f8f9fa !important;
+    /* background-color: #f8f9fa !important; */
 }
 
 .sidebar{
@@ -83,7 +83,7 @@ body{
     border-radius: 35px !important;
     padding: 20px 40px;
     /* background-color: #000a12; */
-    color: #f8f9fa;
+    color: #000;
     width: 250px;
     padding: 10px !important;
 }
