@@ -1,0 +1,77 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+
+<div class="row">
+  <div class="col-md-6">
+    <h6 style="color: white">Total Number of Question is {{count}}</h6>
+  </div>
+  <div class="col-md-6" id="mark" style="color: white; display: none;">
+  </div>
+</div>
+
+<h2 align='center' id='status' style="color: #fff;;display: none;">
+
+</h2>
+<div class="col-lg-8 question-sec mx-auto" id="quiz-ele">
+  {% for i in obj%}
+  <div id="{{ forloop.counter }}" class="question_sec" style="border: 1px #010101 solid;border-radius: 25px ; margin-bottom: 10px;padding: 20px;">
+    <div class="row">
+      <h4>{{i.questions}}</h4>
+    </div>
+    <form id="quiz-form">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="radio" style="margin: 10px;">
+          <label>
+            <input type="radio" name="name" id="option1" value="{{i.option1}}"/>{{i.option1}}
+          </label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="radio" style="margin: 10px;">
+          <label>
+            <input type="radio" name="name" id="option2" value="{{i.option2}}"/>{{i.option2}}
+          </label>
+        </div>
+      </div>
+      <br />
+      <div class="col-md-6">
+        <div class="radio" style="margin: 10px;">
+          <label>
+            <input type="radio" name="name" id="option3" value="{{i.option3}}"/>{{i.option3}}
+          </label>
+        </div>
+      </div>
+      <br />
+      <div class="col-md-6">
+        <div class="radio" style="margin: 10px;">
+          <label>
+            <input  type="radio"  name="name"  id="option4"  value="{{i.option4}}"/>{{i.option4}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+  </form>
+</div>
+  {%endfor%}
+  <div class="form-group">
+  </div>
+  <br />
+  <div class="paginetor">
+    <div class="form-group">
+      <button class="btn form-control btn-info text-light" id="save_ans" style="display: block;"> <i class="bi bi-capslock-fill"></i> Submit Answer</button>
+      <button class="btn form-control btn-warning text-light" id="retake" style="display: none;"> <i class="bi bi-arrow-counterclockwise"></i> Retake </button>
+      <br>
+      <a href="{% url 'quiz_level' request.session.gxgrff %}" class="btn form-control btn-success text-light" id="goback" style="display: none;"> <i class="bi bi-chevron-left"></i>  Go Back </a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} 
+{% block javascript%}
+  {{ quizlevel|json_script:"quiz" }} 
+  <script src="{% static 'js/script.js' %}"></script>
+{% endblock javascript%}

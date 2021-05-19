@@ -36,6 +36,13 @@ function MaintoggleTheme() {
             } 
         }
 
+const logo = document.querySelectorAll("#logo path");
+console.log('gerr')
+for(i= 0;i < logo.length;i++){
+  console.log(logo[i].getTotalLength())
+}
+
+
 
 $(document).ready(function() {
     $(".menu-toggle").on("click", function() {

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    textarea{
+        padding: 10px;
+        height: 200px;
+    }
+    .quiz{
+        border: 1px #1b1b1b solid;
+        border-radius: 25px;
+        padding: 20px;
+    }
+    .ans{
+        width: 100%;
+        margin: 10px 0px;
+        padding: 5px 10px;
+    }
+    .check{
+        margin-top: 20px;
+    }
+    select{
+        width: 100%;
+        max-height: 200px;
+    }
+    .marks{
+        margin-top: 10px;
+    }
+    
+
+</style>
+<div class="row">
+    <div class="col-12 col-md-10 container-style">
+      <!-- blog-section -->
+      <form>
+
+          <div class="blog-sec">
+              <div class="row">
+                  <div class="col-6">
+                      <h4>Select the module for question </h4>
+                  </div>
+                  <div class="col-6">
+                      <select id="module">
+                            <option value='none' selected disabled>Select Module</option>
+                            {% for i in quiz %}
+                                <option value="{{i.id}}">{{i.title}}</option>
+                            {% endfor %}
+                      </select>
+                  </div>
+              </div>
+              
+              <div class="quiz">
+
+              </div>
+              <div class="row">
+                  <div class="col-9"></div>
+                  <div class="col-3" style="margin-top: 10px;">
+                      <button class="btn btn-info text-light" onclick="createSection()">Create new section</button> 
+                  </div>
+              </div>
+              <button class="btn btn-success" onclick="readData()">Submit the Question</button>
+              <!-- <input type="button" value="submit" onclick="readData()"> -->
+      </div>
+  </form>
+        </div>
+      </div>
+{% endblock content %}
+
+
+{% block javascript %}
+{{ id|json_script:"id" }} 
+<script src="{% static 'js/createquiz.js' %}"></script>
+{% endblock javascript %}

@@ -21,6 +21,7 @@
                     <div class="username-sec">
                       <h5>{{ object.username }}</h5>
                       <h5>{{ object.email }}</h5>
+                      <h6>point {{user.profile.rating}}</h6>
                     </div>
                   </div>
                 </div>
@@ -28,6 +29,7 @@
           </div>
 
           <div class="col-12 col-sm-12 col-md-8">
+            {% if completed %}
             <div class="completed-course row">
               <h3>Completed Course</h3>
               <hr>
@@ -39,9 +41,10 @@
               </div>
             </div>  
             {% endfor %}
-              
-
             </div>
+          {% endif %}
+
+          {% if enrolled %}
             <div class="enrolled-course row">
               <h3>Enrolled Course</h3>
               <hr>
@@ -53,9 +56,21 @@
                 </div>
               </div>
             {% endfor %}
-              
-
+          </div>
+        {% endif %}
+        {% if quizs %}
+          <div class="enrolled-course row">
+            <h3>Quizes Completed</h3>
+            <hr>
+            {% for i in quizs %}
+            <div class="col-12 col-md-4">
+              <div class="badges">
+                <h4>{{i.title}}</h4>
+              </div>
             </div>
+            {% endfor %}
+          </div>
+        {% endif %}
           </div>
         </div>
       </div>

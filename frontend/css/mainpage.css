@@ -84,6 +84,43 @@ section .bg{
     height: 90%;
     width: 60%;
 }
+.bg2{
+    position: absolute;
+    top: 40%;
+    right: 20%;
+}
+
+#logo path:nth-child(1){
+    stroke-dasharray: 275.9233703613281px;
+    stroke-dashoffset: 275.9233703613281px;
+    animation: line-anime 2s ease forwards;
+}
+#logo path:nth-child(2){
+    stroke-dasharray: 537.696533203125px;
+    stroke-dashoffset: 537.696533203125px;
+    animation: line-anime 2s ease forwards 0.3s;
+}
+#logo path:nth-child(3){
+    stroke-dasharray: 217.5177764892578px;
+    stroke-dashoffset: 217.5177764892578px;
+    animation: line-anime 2s ease forwards 0.6s;
+}
+#logo path:nth-child(4){
+    stroke-dasharray: 275.92340087890625px;
+    stroke-dashoffset: 275.92340087890625px;
+    animation: line-anime 2s ease forwards 0.9s;
+}
+
+@keyframes line-anime {
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes fill {
+    to{
+        fill: white;
+    }
+}
 
 section .content{
     position: relative;
@@ -132,6 +169,9 @@ section .content input:hover{
         display: block;
         margin-left: auto;
         margin-right: auto;
+    }
+    .bg2{
+        display: none;
     }
     section .bg{
         position: absolute;

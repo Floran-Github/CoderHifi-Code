@@ -27,8 +27,10 @@ def chat_with_Student(request,pk):
 
 def get_public_room(request):
     courseId = request.session.get('fxfrd')
-    room_code = PublicChat.objects.filter(course=courseId)
-    print('public - ',room_code)
+    courses = get_object_or_404(course,pk=courseId)
+    print(courses)
+    room_code = PublicChat.objects.filter(course=courses)
+    print('public - ',courseId)
     return redirect('room',room_name=room_code[0].code_for_chat)
 
 @login_required

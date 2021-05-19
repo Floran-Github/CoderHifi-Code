@@ -129,7 +129,6 @@ def search(request):
             'categorys' : language_category.objects.all(),
         }
         return render(request,'course-list.html',context=context)
-        pass
 class courseCreateView(LoginRequiredMixin,CreateView):
     model = course
     template_name = 'course-create-dashboard.html'
@@ -310,9 +309,7 @@ def completeContent(request,pk):
 def completedModule(request,pk):
     moduleId  = get_object_or_404(module,id=pk)
     print(moduleId)
-    if moduleId.studentCompleted.filter(id=request.user.id).exists():
-        pass
-    else:
+    if not moduleId.studentCompleted.filter(id=request.user.id).exists():
         moduleId.studentCompleted.add(request.user)
     
     return  redirect('enroll-course',pk=int(moduleId.course_associate.id))
@@ -332,9 +329,8 @@ class review(CreateView):
         self.object.user_name = self.request.user
         self.object.save()
 
-        if course_foreign.studentCompleted.filter(id=self.request.user.id).exists():
-            pass
-        else:
+        if not course_foreign.studentCompleted.filter(id=self.request.user.id).exists():
+           
             course_foreign.studentCompleted.add(self.request.user)
             profile = Profile.objects.get(user=self.request.user)
 

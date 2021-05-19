@@ -1,0 +1,73 @@
+{% extends 'base.html' %} 
+
+{% block content %} 
+<style>
+    .pass{
+        border : 1px solid #00FF00;
+        background : #32CD32;
+    }
+    .fail{
+        border : 1px solid #FF0800;
+        background-color: #EA3C53;
+    }
+</style>
+<div class="row">
+    {% if status %}
+    <figure class="text-center" style="color: #fff;">
+        <blockquote class="blockquote">
+          <p>Congratulations <h2>{{user.username}}</h2> on completing the quiz you rank as been updated.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            CoderHi Community 
+        </figcaption>
+      </figure>
+        <!-- <h4 style="color: #fff;" class=""> Quiz Course Completed </h4> -->
+    {% endif %}
+</div>
+<div class="row">
+    <div class="col-8"></div>
+    <div class="col-4">
+        {% if user.is_superuser  or user.profile.rating > 10000 %}
+            <a href="{% url 'create_page' %}" class="btn btn-light" style="width: 100%;">Create Quiz</a>
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    {%for i in object %}
+        <a href="{% url 'quiz' i.id %}" style="text-decoration: none; color: #1b1b1b;">
+            {{ i.userParticipated.all }}
+            {% for j in i.userParticipated.all %}
+                {% if j.status == 'Pass' %}
+                    passed
+                {% endif%}
+            {% endfor %}
+            <div class="col-sm-12 panel panel-default blog-sec">
+
+               <div class="panel panel-default">
+                <div class="panel-body row">
+                    <div class="col-8">
+                        <h2>{{i.title}}</h2>
+                    </div>
+                        <div class="col-4">
+                            <div class="row">
+                                {% if user not in i.peoplePassed.all %}
+                                    <h5 class="text-danger"> Status : Not Passed</h5>
+                                {% else %}
+                                    <h5 class="text-success"> Status : Passed</h5>
+                                {% endif %}
+                                </div>
+                            <div class="row">
+                                <h5>
+                                    Level :{{i.level}}
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            </div>
+        </a>
+           {% endfor %}
+        </div>
+
+{% endblock content %}

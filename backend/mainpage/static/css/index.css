@@ -105,6 +105,13 @@ body{
     background-color: #fff !important;
     padding: 20px 40px;
 }
+.question-sec{
+    margin-top: 10px;
+    border-radius: 25px !important;
+    background-color: #fff !important;
+    padding: 20px;
+
+}
 .discuss-sec{
     margin-top: 5px;
     
@@ -655,9 +662,19 @@ color: orange;
     padding: 10px;
 }
 
+.badges{
+    background-image: linear-gradient(to right,#FFCC00,#ffc400,#FFCC00);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 25px;
+    color: #000;
+}
+
 .username-sec{
     margin-top: 10px;
-    padding-right: 40px;
+    /* padding-right: 40px; */
 }
 
 

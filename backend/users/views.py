@@ -8,6 +8,8 @@ from django.http import HttpResponseRedirect,JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
 from .models import *
 from course.models import *
+from quizapp.models import *
+
 # Create your views here.
 
 def rec_register(request):
@@ -70,21 +72,27 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
     courses = course.objects.all()
+    quizs = quizcourse.objects.all()
     completed_course = []
     enrolled_course = []
-
+    quiz_completed = []
     for i in courses:
         if i.studentEnrolled.filter(id=request.user.id).exists():
             if i.studentCompleted.filter(id=request.user.id).exists():
                 completed_course.append(i)
             else:
                 enrolled_course.append(i)
+    for i in quizs:
+        if i.peoplePassed.filter(id=request.user.id).exists():
+            quiz_completed.append(i)
+
 
     context = {
         'u_form':u_form,
         'p_form':p_form,
         'completed':completed_course,
         'enrolled':enrolled_course,
+        'quizs':quiz_completed,
     }
     return render(request, 'users/profile.html',context)
 

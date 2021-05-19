@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'event.apps.EventConfig',
     'course.apps.CourseConfig',
-    'quiz.apps.QuizConfig',
+    'quizapp.apps.QuizappConfig',
     'recurit.apps.RecuritConfig',
     'chat.apps.ChatConfig',
 ]

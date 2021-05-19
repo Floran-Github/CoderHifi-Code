@@ -27,7 +27,7 @@ urlpatterns = [
     path("blog/",include('blogs.urls')),
     path("event/",include('event.urls')),
     path("course/",include('course.urls')),
-    path("quiz/",include('quiz.urls')),
+    path("quiz/",include('quizapp.urls')),
     path("job/",include('recurit.urls')),
     path("chat/",include('chat.urls')),
 
