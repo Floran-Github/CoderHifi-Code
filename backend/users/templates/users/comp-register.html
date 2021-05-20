@@ -19,15 +19,23 @@
                     </div>
                 </div>
             </fieldset>
+            {% if status == 'create' %}
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Sign Up</button>
             </div>
+            {% else %}
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+            {% endif %}
         </form>
+        {% if status == 'create' %}
         <div class="border-top pt-3">
             <small class="text-muted">
                 Already Have An Account?<a class="ml-2" href="{% url 'login' %}">Sign In</a>
             </small>
         </div>
+        {% endif %}
     </div>
     </div>
     </div>

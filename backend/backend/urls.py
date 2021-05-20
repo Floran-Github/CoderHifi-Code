@@ -34,8 +34,12 @@ urlpatterns = [
 
     path('register/',user_views.register, name='register'),
     path('company/register/',user_views.rec_register, name='company-register'),
+    path('company/update/',user_views.company_profile_update, name='company-update'),
+    path('teacher/profile/update/',user_views.update_teacher_profile, name='teacher-update'),
     path('teacher/register/',user_views.update_to_teacher, name='teacher-register'),
     path('profile/',user_views.profile, name='profile'),
+    path('company/<str:username>',user_views.view_job_profile, name='company-profile'),
+    path('teacher/<str:username>',user_views.view_teacher, name='teacher-profile'),
     path('profile/<int:pk>',user_views.shareProfile.as_view(), name='share-profile'),
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),

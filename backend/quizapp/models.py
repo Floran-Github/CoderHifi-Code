@@ -12,7 +12,7 @@ class quizcourse(models.Model):
 
     title = models.CharField(max_length=100,unique=True)
     description = models.TextField()
-    peoplePassed = models.ManyToManyField(User,blank=True,null=True)
+    peoplePassed = models.ManyToManyField(User,blank=True)
 
     def __str__(self):
         return self.title
@@ -27,7 +27,7 @@ class quizLevels(models.Model):
     quizCourse_related = models.ForeignKey(quizcourse,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     level = models.CharField(max_length=100,choices=RATING_CHOICES)
-    peoplePassed = models.ManyToManyField(User,blank=True,null=True)
+    peoplePassed = models.ManyToManyField(User,blank=True)
     def __str__(self):
         return self.title
     

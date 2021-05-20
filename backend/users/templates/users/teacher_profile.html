@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .course-a{
+        text-decoration: none;
+        color: #1b1b1b;
+    }
+    .course-a:hover{
+        color: #4b4b4b;
+    }
+</style>
+<div class="row">
+    <div class="col-12 col-md-12 container-style">
+      <div class="blog-sec">
+        <div class="container">
+          <div class="row align-items-start">
+              <div class="col-md-3">
+                  <img class="rounded-circle blog-pict" src="{{ object.profile.image.url }}"/>
+              </div>
+              <div class="col-md-6 my-auto">
+                  <div class="username-sec">
+                    <h2>{{object.username}}</h2>
+                    <h4>{{object.email}}</h4>
+                    <h4>{{teacher.university_name}}</h4>
+                    <h4>{{teacher.position}}</h4>
+                    {% if user.username == object.username%}
+                      <a href="{% url 'teacher-update' %}" class="btn btn-dark">Update Teacher Profile</a>
+                    {% endif %}
+                  </div>
+              </div>
+              <div class="col-md-3 my-auto">
+                <img class="teacher-logo" src="{{ teacher.university_picture.url }}">
+              </div>
+         
+          </div>
+        </div>
+        <br><hr>
+        <div class="row">
+            <h3><u>Bio</u></h3>
+            <p style="white-space: pre-line;">
+                {{teacher.bio}}
+            </p>
+        </div>
+        <br><hr>
+        <div class="row">
+          <h3><u>Courses</u></h3><br><br>
+          {% if courses %}
+              <div class="row">
+                {% for i in courses %}
+                <!-- <div class="col-md-1"></div> -->
+              <div class="col-12 col-md-5 teacher-profile-course">
+                  <a class="course-a" href="{% url 'course-detail' i.id%}">
+                   
+                        <img src="{{ i.thumbnail_image.url }}">
+                        <h4 class="text-center">{{i.course_name}}</h4>
+                        <h5>Number of people Enrolled : {{i.studentEnrolled.all.count}}</h5>
+                    </a>
+                </div>  
+              
+              {% endfor %}
+               
+              </div>
+            {% endif %}
+        
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

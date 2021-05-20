@@ -594,6 +594,8 @@ color: orange;
     font-size: 2em;
     margin: 0;
 }
+
+.teacher-profile-course,
 .completed-course-section{
     text-align: center;
     margin: 10px 0;
@@ -601,7 +603,9 @@ color: orange;
     /* border: solid 1px #000; */
     /* padding: 10px; */
 }
-
+.teacher-profile-course{
+     width: 500px;
+}
 .completed-course-section img{
     width: 200px;
 }

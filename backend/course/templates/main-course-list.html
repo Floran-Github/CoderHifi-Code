@@ -43,13 +43,8 @@
         <h1 class="enroll-title">Enroll Courses</h1>
         <i class="fas fa-chevron-left prev"></i>
         <i class="fas fa-chevron-right next"></i>
-
         <div class="enroll-wrapper">
-
-        
         {% for course in enrolled_course %}
-        
-
           <div class="post" style="width: 15rem;">
               <!-- <div class="row"> -->
                 {% if user not in course.studentCompleted.all %} 
@@ -68,57 +63,12 @@
                     </p>
                   </div>
                 </div>
-              <!-- </div> -->
-              <!-- <div class="row">
-                <div class="col-12">
-                  <img
-                    src="{{course.thumbnail_image.url}}"
-                    alt=""
-                    class="slider-image"
-                  />
-                </div>
-                <div class="col-12">
-                  <div class="post-info">
-                    <h4>
-                       {{ course.course_name }}
-                    </h4>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <h6 class="main-course-page-teacher-name">{{course.teacherId}}</h6>
-                </div>
-               
-                
-                <div class="col-12 event-button-sec">
-                  <a href="{% url 'enroll-course' course.id %}" class="event-button">Go To Course</a>             
-                </div>
-                <br><br>
-                <div class="col-12">
-                  <h6 class="main-course-page">Course progress</h6>
-                  <div class="row">
-
-                    <div class="col-3"></div>
-                    <div class="col-9">
-                      
-                      {% if user not in course.studentCompleted.all %} 
-                      <button class="evnet-button btn btn-warning" >Incompleted <i class="bi bi-x"></i></button>
-                      {% else %}
-                      <button class="btn btn-success" >Completed <i class="bi bi-check2"></i></button>
-                      {% endif %}
-                    </div>
-                  </div>
-                  <br>
-                </div>
-              </div> -->
-            
           </div>
-
           {% endfor %}
-
         </div>
       </div>
     {% endif %}
-
+      {% if trend %}
       <div class="post-slider">
         <h1 class="slider-title">Trending Course</h1>
         <i class="fas fa-chevron-left prev"></i>
@@ -168,11 +118,12 @@
         {% endfor %}
         </div>
       </div>
+      {% endif %}
     </div>
   </div>
-  <div class="row down-style">
-    <div class="col-12 col-md-4"></div>
-    <div class="col-12 col-md-4 explore-more-course-sec">
+  <div class="row ">
+    <div class="col-12"></div>
+    <div class="col-12 ms-auto explore-more-course-sec">
       <a class="btn explore-more-course" href="{% url 'course-list' %}">Explore more <i class="fas fa-chevron-down"></i></a>
     </div>
   </div>

@@ -79,15 +79,26 @@ class eventListView(ListView):
         # context['event_not_done'] = event.objects.filter(Q(last_day_of_registration=datetime.date.today()))
 
         event_enrolled = []
-        a = eventMaytoMany.objects.filter(userId=self.request.user)
-        b = event.objects.filter(Q(last_day_of_registration__gte=datetime.date.today()))
+        event_not_enrolled = []
+        eventmany = eventMaytoMany.objects.filter(userId=self.request.user)
+        events = event.objects.filter(Q(last_day_of_registration__gte=datetime.date.today()))
 
-        for i in a:
-            if i.eventId in b:
+        for i in events:
+            check = 0
+            for j in eventmany:
+                if i == j.eventId:
+                    check = 1
+                    break
+            
+            if check == 1:
                 event_enrolled.append(i)
-        # context['comment_form'] = commentForm()
+            else:
+                event_not_enrolled.append(i)  
+        
+     
         context['enrolled_event'] = event_enrolled
-        context['events'] = b
+        context['events'] = event_not_enrolled
+        context['create'] = event.objects.filter(created_by=self.request.user).exists()
         return context
 
 class eventCreateView(CreateView):

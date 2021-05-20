@@ -29,6 +29,7 @@ class teacher_profile(models.Model):
     university_picture = models.ImageField(upload_to='university_pic',default='university.png')
     university_name = models.CharField(max_length = 100)
     position = models.CharField(max_length=100)
+    bio = models.TextField(blank=True)
     
     def __str__(self):
         return f'{self.user.username} - Teacher Profile'
@@ -41,8 +42,8 @@ class recruiter_profile(models.Model):
     city = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     mobile_num_regex  = RegexValidator(regex="^[0-9]{10,15}$", message="Entered mobile number isn't in a right format!")
-    mobile_number  = models.CharField(validators=[mobile_num_regex], max_length=13, blank=True)
-
+    mobile_number  = models.CharField(validators=[mobile_num_regex], max_length=10, blank=True)
+    description = models.TextField(blank=True,null=True)
 
     def __str__(self):
         return f'{self.user} - company profile'

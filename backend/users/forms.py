@@ -26,7 +26,7 @@ class ProfileUpdateForm(forms.ModelForm):
 class TeacherProfile(forms.ModelForm):
     class Meta:
         model = teacher_profile
-        fields = ['university_picture','university_name','position']
+        fields = ['university_picture','university_name','position','bio']
         
 class CompanyProfile(forms.ModelForm):
     class Meta:

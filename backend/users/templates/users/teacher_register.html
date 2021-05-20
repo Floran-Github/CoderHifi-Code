@@ -9,12 +9,30 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4"> <h2>
-                    <span class="txt-type" data-wait="2900" data-words='["The art of teaching is the art of assisting discovery.  - Mark Van Doren", "Education breeds confidence. Confidence breeds hope. Hope breeds peace.   - Confucius","A good teacher is like a candle—it consumes itself to light the way for others.   - Mustafa Kemal Atatürk"]'></span></h2>   </legend>
-                {{ form|crispy }}
+                <legend class="border-bottom mb-4"> 
+                    <h2>
+                        {% if status == 'create' %}
+                            <span class="txt-type" data-wait="2900" data-words='["The art of teaching is the art of assisting discovery.  - Mark Van Doren", "Education breeds confidence. Confidence breeds hope. Hope breeds peace.   - Confucius","A good teacher is like a candle—it consumes itself to light the way for others.   - Mustafa Kemal Atatürk"]'></span>
+                        {% else %}
+                            Update Teacher Profile
+                        {% endif %}
+                    </h2>   
+                </legend>
+                    {% if status == 'update' %}
+                    <div class="row">
+                        <img class="teacher-logo" src="{{ form.instance.university_picture.url }}">
+                    </div>
+                    <br>
+                    {% endif %}
+                    {{ form|crispy }}
             </fieldset>
+            <br>
             <div class="form-group">
+                {% if status == 'create' %}
                 <button class="btn btn-outline-info" type="submit">Become Teacher</button>
+                {% else %}
+                <button class="btn btn-outline-info" type="submit">Update </button>
+                {% endif %}
             </div>
         </form>
 

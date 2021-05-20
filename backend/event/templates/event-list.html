@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="row">
-  <div class="col-5">
+    {% if create %}  
     <a class="event-button" href="{% url 'event-dashboard' %}">Dashboard</a>
+    {% else %}
+    <a class="event-button" href="{% url 'event-dashboard' %}">Wanna Host Event ?</a>
+    {%endif%}
   </div>
-</div>
 <div class="row">
-  
+  {% if enrolled_event %}
   <div class="blog-sec">
     <div class="row">
       {% for event in enrolled_event %}
@@ -38,81 +41,68 @@
       
     </div>
   </div>
+  {% endif %}
 </div>
+<br>
 <div class="row">
-    <div class="col-12 col-md-12 container-style">
+  
+  <div class="col-12 col-md-12 container-style">
+      <div class="blog-sec">
+        <h1 class="text-center">Events</h1>
+      </div>
+      {% if events %}
       <div class="col-12">
         <div class="container">
           <div class="row align-items-start">
             {% for event in events %}
-            {% if user not in event.userEnrolled.all %}
                 <div class="col-12 col-md-4">
-                <div class="blog-sec">
-                    <div class="row">
-                    <div class="col-12 ">
-                        <div class="row">
-                            <div class="col-10">
-                                <h3>{{ event.title }}</h3>
-                            </div>
-                            <div class="col-2">
-                                {% if event.created_by == user %}
-                                <div class="dropdown">
-                                    <button class="btn " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <a class="dropdown-item" href="{% url 'event-update' event.id %}">Edit</a>
-                                        <a class="dropdown-item" href="{% url 'event-delete' event.id %}">Delete</a>
-                                    </ul>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <hr>
+                  <div class="blog-sec">
+                      <div class="row">
+                      <div class="col-12 ">
+                          <div class="row">
+                              <div class="col-10">
+                                  <h3>{{ event.title }}</h3>
+                              </div>
+                              <div class="col-2">
+                                  {% if event.created_by == user %}
+                                  <div class="dropdown">
+                                      <button class="btn " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                          <i class="fas fa-ellipsis-v"></i>
+                                      </button>
+                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                          <a class="dropdown-item" href="{% url 'event-update' event.id %}">Edit</a>
+                                          <a class="dropdown-item" href="{% url 'event-delete' event.id %}">Delete</a>
+                                      </ul>
+                                  </div>
+                                  {% endif %}
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                      <hr>
 
-                    <div class="row">
-                    <img class="event-pic" src="{{ event.picture.url }}">
-                    <p class="blog-text">
-                       {{ event.description}}
-
-                    </p>
-                    <h6>Last Date of Registeration:- {{ event.last_day_of_registration }}</h6>
-                    <h6>Cost- ${{ event.cost }}</h6>
-                    </div>
-                    <div class="event-button-sec">
-                      {{ event.enrolled_user.all.count }}
-                      {% if user not in event.userEnrolled.all %}
-
-                      <a class="event-button" href="{% url 'event-enroll' event.id%}">Enroll</a>
-                      {% else %}
-                        enrolled
-                      {% endif %}
-
-                      <!-- {% if enrolled1 != "1" %}
+                      <div class="row">
+                        <img class="event-pic" src="{{ event.picture.url }}">
+                        <p class="blog-text">
+                          {{ event.description}}
+                        </p>
+                        <h6>Last Date of Registeration:- {{ event.last_day_of_registration }}</h6>
+                        <h6>Cost- ${{ event.cost }}</h6>
+                      </div>
+                      <div class="event-button-sec">
+                        {{ event.enrolled_user.all.count }}
                         <a class="event-button" href="{% url 'event-enroll' event.id%}">Enroll</a>
-                      
-                      {% endif %}
-
-                      {% if enrolled == "1" %}
-                      Enrolled
-                      {% endif %}                       -->
-                    <!-- <input class="event-button" type="button" value="Enroll"> -->
-                    </div>
+                      </div>
+                  </div>
                 </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-
-
-            
-
-         
-
+            {% endfor %}
           </div>
         </div>
       </div>
+      {% else %}
+      <br>
+      <h3 style="color: #123ad1;" class="text-center">You are all set</h3>
+      {% endif %}
     </div>
   </div>
 

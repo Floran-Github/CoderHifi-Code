@@ -19,7 +19,7 @@
 <link id="theme" rel="stylesheet" href="{% static 'css/girls-theme.css' %}">
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <title>CoderHi</title>
 </head>
@@ -40,14 +40,16 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'project-list' %}">Projects</a>
           </li>
+          {% if not request.user.groups.all %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'main-course-list' %}">Learn</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'event-list' %}">Event</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'courses' %}">Quiz</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'event-list' %}">Event</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'job-list' %}">Jobs</a>
@@ -62,7 +64,11 @@
               <img src="{{ user.profile.image.url}}" class="rounded-circle profile-img">
             </a>
             <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+              {% if not request.user.groups.all %}
               <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+              {% else %}
+              <li><a class="dropdown-item" href="{% url 'company-profile' user.username%}">Profile</a></li>
+              {% endif %}
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Sign Out</a></li>
               {% if request.user.is_staff %}
@@ -94,10 +100,10 @@
 
     {% if messages %}
     {% for message in messages %}
-    <scripsss type=text/javascript>
+    <script type=text/javascript>
       toastr.options.progressBar = true;
       toastr.{{ message.tags }}('{{ message }}')
-    </scripsss>
+    </script>
     {% endfor %}
     {% endif %}
 </body>
