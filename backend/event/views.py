@@ -88,11 +88,10 @@ class eventListView(ListView):
             for j in eventmany:
                 if i == j.eventId:
                     check = 1
+                    event_enrolled.append(j)
                     break
             
-            if check == 1:
-                event_enrolled.append(i)
-            else:
+            if check == 0:
                 event_not_enrolled.append(i)  
         
      

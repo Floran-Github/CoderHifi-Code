@@ -207,16 +207,18 @@
           
           <hr>
           <div class="col-12">
+              <a style="text-decoration: none; color: #1b1b1b;" href="{% url 'teacher-profile' object.teacherId.username %}">
               <div class="row">
-                  <div class="col-12 col-md-4">
-                      <img src="{{object.teacherId.profile.image.url}}" class="rounded-circle teacher-img-detail-page">
+                      <div class="col-12 col-md-4">
+                          <img src="{{object.teacherId.profile.image.url}}" class="rounded-circle teacher-img-detail-page">
+                        </div>
+                        <div class="col-12 col-md-6 teacher-desc-detail-page">
+                            <h3>{{object.teacherId}}</h3>
+                            <h5>{{object.teacherId.teacher_profile.position}}</h5>
+                            <h6>{{object.teacherId.teacher_profile.university_name}}</h6>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-6 teacher-desc-detail-page">
-                        <h3>{{object.teacherId}}</h3>
-                        <h5>{{object.teacherId.teacher_profile.position}}</h5>
-                        <h6>{{object.teacherId.teacher_profile.university_name}}</h6>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
       </div>
